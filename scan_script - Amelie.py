@@ -63,7 +63,7 @@ class NanoScanner:
                 y = np.append(y, y_scan[j])
 
                 # voltage = np.random.rand() # * Replace with Keithley 
-                voltage = self.keithley.get_voltage() 
+                voltage = self.keithley.read() 
 
                 v = np.append(v, voltage)
 
@@ -91,7 +91,7 @@ if __name__ == '__main__':
         args = parser.parse_args()
 
         default_path = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
-        scanner = NanoScanner("COM3", "COM4")
+        scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
 
         for _ in range(args.num_scans): #In the terminal, output would be python scan_script - Amelie.py 5
             scanner.home(axis = 3) #change axis value
@@ -100,32 +100,3 @@ if __name__ == '__main__':
             scanner.generate_filename(path_root = default_path, myname = "scan", extension = "csv")
 
         scanner.close_connection()
-
-
-#############COMMENTS################
-# *  from .... Keithley import ...
-# parameters
-
-# # initialize SHRC
-# com = "ASRL3::INSTR"
-# shrc = SHRC203(com)
-# shrc.open_connection()
-
-# * initialize Keithely
-# ( 1) USB0::0x05E6::0x2100::1149087::INSTR -> KEITHLEY INSTRUMENTS INC.,MODEL 2100,1,01.08-01-01
-
-# Move to home of Axis 1, 2, and 3 (X, Y, Z, respectively)
-# shrc.home(1)
-# shrc.home(2)
-# shrc.home(3)
-
-# Move relative
-# shrc.move_relative(10,1)
-
-# Focus (move absolute)
-# shrc.move(8.282*1e3 ,3) # position (um), axis
-
-
-
-
-#################END OF COMMENTS######
