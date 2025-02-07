@@ -35,6 +35,9 @@ class NanoScanner:
     def focus(self, position, axis): 
         self.shrc.move(position, axis)
 
+    # def set_units(self, unit: str):
+    #     self.shrc.set_unit(unit)
+
     def generate_filename(self ,path_root, myname, extension="csv"):
         now = datetime.now()
         prefix = now.strftime("%Y%m%d_%H%M%S")
@@ -70,6 +73,9 @@ class NanoScanner:
 
                 plt.clf()
                 plt.scatter(x, y, c=v)
+                plt.xlabel("Position (um)")
+                plt.ylabel("Voltage (V)")
+
                 plt.pause(0.05)
 
                 time.sleep(0.5)
@@ -92,11 +98,12 @@ if __name__ == '__main__':
 
         default_path = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
         scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR") # Replace with an actual visa resource.
+        # scanner.set_units('um') #set the default unit
 
         for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
             scanner.home(axis = 3) #change axis value
             scanner.focus(8.282*1e3, 3) #change to values that make sense
-            df = scanner.scan2d(0, 100, 10, 0, 100, 10)
+            df = scanner.scan2d(0, 30, 10, 0, 30, 10)
             scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
 
         scanner.close_connection()

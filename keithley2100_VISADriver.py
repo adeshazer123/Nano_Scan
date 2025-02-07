@@ -1,7 +1,6 @@
 import pyvisa as visa
-from pymodaq.utils.logger import set_logger, get_module_name
-logger = set_logger(get_module_name(__file__))
-
+import logging
+logger = logging.getLogger(__name__)
 
 class Keithley2100VISADriver:
     """VISA class driver for the Keithley 2100 Multimeter/Switch System
@@ -18,6 +17,7 @@ class Keithley2100VISADriver:
         """
         self._instr = None
         self.rsrc_name = rsrc_name
+        self.rm = None
 
     def init_hardware(self):
         """Initialize the selected VISA resource
@@ -25,8 +25,8 @@ class Keithley2100VISADriver:
         :param pyvisa_backend: Expects a pyvisa backend identifier or a path to the visa backend dll (ref. to pyvisa)
         :type pyvisa_backend: string
         """
-        rm = visa.highlevel.ResourceManager()
-        self._instr = rm.open_resource(self.rsrc_name,
+        self.rm = visa.highlevel.ResourceManager()
+        self._instr = self.rm.open_resource(self.rsrc_name,
                                            write_termination="\n",
                                            )    
        
@@ -41,8 +41,8 @@ class Keithley2100VISADriver:
         self._instr.write("TRAC:CLE:AUTO ON")
 
     def close(self):
-        self._instr.write("ROUT:OPEN:ALL")
-        self._instr.close()
+        # self._instr.write("ROUT:OPEN:ALL")
+        self.rm.close()
 
     def get_card(self):
         return self._instr.query("*OPT?")
