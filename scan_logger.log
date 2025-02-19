@@ -5333,3 +5333,83 @@
 2025-02-07 22:56:16,245 pyvisa DEBUG viClose(1,) -> 0
 2025-02-07 22:56:16,245 pyvisa DEBUG COM3 - is closed
 2025-02-07 22:56:16,247 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-19 06:34:41,631 asyncio DEBUG Using proactor: IocpProactor
+2025-02-19 06:35:45,936 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-19 06:35:45,936 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-19 06:35:45,949 pyvisa DEBUG No user defined configuration
+2025-02-19 06:35:45,955 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:35:45,955 pyvisa DEBUG No user defined library files
+2025-02-19 06:35:45,955 pyvisa DEBUG The IVI implementation available
+2025-02-19 06:35:45,955 pyvisa DEBUG No user defined configuration
+2025-02-19 06:35:45,958 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:35:45,958 pyvisa DEBUG No user defined library files
+2025-02-19 06:35:45,976 pyvisa DEBUG Library signatures: 90 ok, 0 failed
+2025-02-19 06:35:45,976 pyvisa DEBUG Created library wrapper for C:\WINDOWS\system32\visa32.dll
+2025-02-19 06:35:46,869 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x000002CAD35342D0>',) -> 0
+2025-02-19 06:35:46,869 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-19 06:35:46,870 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x000002CAD3534550>, <ctypes.c_char_Array_256 object at 0x000002CAD3534650>, <ctypes.c_char_Array_256 object at 0x000002CAD35346D0>) -> 0
+2025-02-19 06:35:46,870 pyvisa DEBUG COM3 - opening ...
+2025-02-19 06:35:46,889 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000002CAD3534550>') -> 0
+2025-02-19 06:35:46,889 pyvisa DEBUG COM3 - is open with session 1
+2025-02-19 06:35:46,890 pyvisa DEBUG viSetAttribute(1, 1073676321, 9600) -> 0
+2025-02-19 06:35:46,890 pyvisa DEBUG viSetAttribute(1, 1073676322, 8) -> 0
+2025-02-19 06:35:46,890 pyvisa DEBUG viSetAttribute(1, 1073676323, <Parity.none: 0>) -> 0
+2025-02-19 06:35:46,890 pyvisa DEBUG viSetAttribute(1, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-19 06:35:46,890 pyvisa DEBUG viSetAttribute(1, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-19 06:35:46,890 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-19 06:35:46,891 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-19 06:35:46,891 pyvisa DEBUG No user defined configuration
+2025-02-19 06:35:46,898 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:35:46,898 pyvisa DEBUG No user defined library files
+2025-02-19 06:35:46,899 pyvisa DEBUG The IVI implementation available
+2025-02-19 06:35:46,899 pyvisa DEBUG No user defined configuration
+2025-02-19 06:35:46,907 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:35:46,907 pyvisa DEBUG No user defined library files
+2025-02-19 06:35:46,908 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-19 06:35:46,909 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x000002CAD3535050>, <ctypes.c_char_Array_256 object at 0x000002CAD35352D0>, <ctypes.c_char_Array_256 object at 0x000002CAD35353D0>) -> 0
+2025-02-19 06:35:46,909 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-19 06:35:46,910 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000002CAD3535350>') -> -1073807343
+2025-02-19 06:35:48,238 pyvisa DEBUG COM3 - closing
+2025-02-19 06:35:48,238 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-19 06:35:48,239 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-19 06:35:48,239 pyvisa DEBUG viClose(1,) -> 0
+2025-02-19 06:35:48,240 pyvisa DEBUG COM3 - is closed
+2025-02-19 06:41:56,803 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-19 06:41:56,804 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-19 06:41:56,804 pyvisa DEBUG No user defined configuration
+2025-02-19 06:41:56,819 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:41:56,819 pyvisa DEBUG No user defined library files
+2025-02-19 06:41:56,819 pyvisa DEBUG The IVI implementation available
+2025-02-19 06:41:56,820 pyvisa DEBUG No user defined configuration
+2025-02-19 06:41:56,822 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:41:56,822 pyvisa DEBUG No user defined library files
+2025-02-19 06:41:56,822 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-19 06:41:56,822 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x000002CAD3535D50>, <ctypes.c_char_Array_256 object at 0x000002CAD3535E50>, <ctypes.c_char_Array_256 object at 0x000002CAD3535F50>) -> 0
+2025-02-19 06:41:56,823 pyvisa DEBUG COM3 - opening ...
+2025-02-19 06:41:56,830 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000002CAD3535D50>') -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG COM3 - is open with session 1
+2025-02-19 06:41:56,831 pyvisa DEBUG viSetAttribute(1, 1073676321, 9600) -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG viSetAttribute(1, 1073676322, 8) -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG viSetAttribute(1, 1073676323, <Parity.none: 0>) -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG viSetAttribute(1, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG viSetAttribute(1, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-19 06:41:56,831 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-19 06:41:56,831 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-19 06:41:56,831 pyvisa DEBUG No user defined configuration
+2025-02-19 06:41:56,835 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:41:56,835 pyvisa DEBUG No user defined library files
+2025-02-19 06:41:56,835 pyvisa DEBUG The IVI implementation available
+2025-02-19 06:41:56,835 pyvisa DEBUG No user defined configuration
+2025-02-19 06:41:56,837 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-19 06:41:56,838 pyvisa DEBUG No user defined library files
+2025-02-19 06:41:56,838 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-19 06:41:56,838 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x000002CAD3536C50>, <ctypes.c_char_Array_256 object at 0x000002CAD3536CD0>, <ctypes.c_char_Array_256 object at 0x000002CAD3536DD0>) -> 0
+2025-02-19 06:41:56,838 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-19 06:41:56,839 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000002CAD3536D50>') -> -1073807343
+2025-02-19 06:41:59,030 pyvisa DEBUG COM3 - closing
+2025-02-19 06:41:59,031 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-19 06:41:59,031 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-19 06:41:59,031 pyvisa DEBUG viClose(1,) -> 0
+2025-02-19 06:41:59,031 pyvisa DEBUG COM3 - is closed
+2025-02-19 07:00:02,251 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-19 07:00:02,259 pyvisa DEBUG viClose(4097,) -> 0
