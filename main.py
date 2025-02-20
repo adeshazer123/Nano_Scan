@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot
@@ -24,9 +24,40 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
         layout = QVBoxLayout()
+        grid_layout = QGridLayout() 
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
         layout.addWidget(self.canvas)
+
+        self.x_start_input = QLineEdit(self)
+        self.x_start_input.setPlaceholderText("Enter x start")
+        grid_layout.addWidget(QLabel("X Start"), 0, 0) 
+        grid_layout.addWidget(self.x_start_input, 0, 1)
+
+        self.x_stop_input = QLineEdit(self)
+        self.x_stop_input.setPlaceholderText("Enter x stop")
+        grid_layout.addWidget(QLabel("X Stop"), 0, 2)
+        grid_layout.addWidget(self.x_stop_input, 0, 3)
+
+        self.x_step_input = QLineEdit(self)
+        self.x_step_input.setPlaceholderText("Enter x step")
+        grid_layout.addWidget(QLabel("X Step"), 0, 4)
+        grid_layout.addWidget(self.x_step_input, 0, 5)
+
+        self.y_start_input = QLineEdit(self)
+        self.y_start_input.setPlaceholderText("Enter y start")
+        grid_layout.addWidget(QLabel("Y Start"), 1, 0)
+        grid_layout.addWidget(self.y_start_input, 1, 1)
+
+        self.y_stop_input = QLineEdit(self)
+        self.y_stop_input.setPlaceholderText("Enter y stop")
+        grid_layout.addWidget(QLabel("Y Stop"), 1, 2)
+        grid_layout.addWidget(self.y_stop_input, 1, 3)
+
+        self.y_step_input = QLineEdit(self)
+        self.y_step_input.setPlaceholderText("Enter y step")
+        grid_layout.addWidget(QLabel("Y Step"), 1, 4)
+        grid_layout.addWidget(self.y_step_input, 1, 5)
 
         self.move_position_input = QLineEdit(self)
         self.move_position_input.setPlaceholderText("Enter move position")
