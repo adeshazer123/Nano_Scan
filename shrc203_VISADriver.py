@@ -103,11 +103,14 @@ class SHRC203VISADriver:
         try:
             rm = pyvisa.ResourceManager()
             self._instr = rm.open_resource(self.rsrc_name)
-            self._instr.baud_rate = 9600
+            self._instr.baud_rate = 38400
             self._instr.data_bits = 8 
             self._instr.parity = pyvisa.constants.Parity.none 
             self._instr.write_termination = "\r\n" 
             self._instr.read_termination = "\r\n"
+            self._instr.flow_control.rts_cts = True
+            self._instr.timeout = 50000
+                
         except Exception as e:
             logger.error(f"Error connecting to {self.rsrc_name}: {e}")
     
@@ -146,6 +149,9 @@ class SHRC203VISADriver:
             return logger.error("Position is None")
         return self.position[channel-1]
 
+    def query_position(self, channel): 
+        pass 
+        # position = self._instr.query(???) #TODO Fix this 
 
     def set_speed(self, speed_ini, speed_fin, accel_t, channel): 
         """Sets the speed of the stage.
