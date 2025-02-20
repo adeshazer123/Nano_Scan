@@ -59,6 +59,8 @@ class MainWindow(QMainWindow):
         grid_layout.addWidget(QLabel("Y Step"), 1, 4)
         grid_layout.addWidget(self.y_step_input, 1, 5)
 
+        layout.addLayout(grid_layout)
+
         self.move_position_input = QLineEdit(self)
         self.move_position_input.setPlaceholderText("Enter move position")
         layout.addWidget(self.move_position_input)
@@ -153,14 +155,16 @@ class MainWindow(QMainWindow):
     def start_scan(self):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
-            move_position = float(self.move_position_input.text())
-            focus_position = float(self.focus_position_input.text())
-            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
-            scanner.home(axis = 3)
-            scanner.focus(focus_position,3)
-            scanner.move(move_position,3)
+            x_start = float(self.x_start_input.text())
+            x_stop = float(self.x_stop_input.text())
+            x_step = float(self.x_step_input.text())
+            y_start = float(self.y_start_input.text())
+            y_stop = float(self.y_stop_input.text())
+            y_step = float(self.y_step_input.text())
+
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
             # Example scan parameters
-            df = scanner.scan2d(0, 30, 10, 0, 30, 10)
+            df = scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
             QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             scanner.close_connection()
             self.plot_scan_results(df)
