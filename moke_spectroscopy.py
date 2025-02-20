@@ -17,39 +17,30 @@ class MokeSpectro:
         self.path_root = Path(path_root)
         self.path_root.mkdir(exist_ok=True)
 
-        # Initialize SHRC
         self.shrc = SHRC203(com_shrc)
         self.shrc.open_connection()
 
-        # Initialize Keithley
         self.keithley = KEITHLEY2100(com_keithley)
         self.keithley.init_hardware()
 
-        # Initialize SR830
         self.sr830 = SR830(com_sr830)
-
-        # Initialize Zaber
         self.zaber = ZaberMultiple()
         self.zaber.connect(com_zaber)
         self.index_zaber = index_zaber
 
-        # Initialize Power Meter
         self.powermeter = CustomTLPM(index_powermeter)
         self.powermeter.open_by_index(index_powermeter)
 
-        # Initialize CCS
         self.ccs = CCSXXX(visa_ccs)
         self.ccs.connect()
 
-        # Home SHRC axes
         self.shrc.home(1)
         self.shrc.home(2)
         self.shrc.home(3)
         print("Waiting for 5 s")
         time.sleep(5)
 
-        # Focus SHRC
-        self.shrc.move(8.282 * 1e3, 3)  # position (um), axis
+        self.shrc.move(8.282 * 1e3, 3)
 
     def read_moke(self, wait_time):
         self.sr830.set_harmonics(1)
