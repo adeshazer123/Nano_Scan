@@ -1,12 +1,13 @@
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit
 import sys
+import numpy as np
 from PyQt5.QtCore import pyqtSlot
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas 
 import pandas as pd
 from scan_script_amelie import NanoScanner
-
-
+import logging
+logger = logging.getLogger(__name__)
 class MplCanvas(FigureCanvas):
     def __init__(self, parent = None, width = 5, height = 4, dpi = 100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -31,9 +32,25 @@ class MainWindow(QMainWindow):
         self.move_position_input.setPlaceholderText("Enter move position")
         layout.addWidget(self.move_position_input)
 
+        self.set_axis_input = QLineEdit(self)   
+        self.set_axis_input.setPlaceholderText("Enter axis")
+        layout.addWidget(self.set_axis_input)
+
         self.focus_position_input = QLineEdit(self)
         self.focus_position_input.setPlaceholderText("Enter focus position")
         layout.addWidget(self.focus_position_input)
+
+        self.move_stage_button = QPushButton("Move Stage")
+        self.move_stage_button.clicked.connect(self.move_stage)
+        layout.addWidget(self.move_stage_button)
+
+        self.set_axis_button = QPushButton("Set Axis")
+        self.set_axis_button.clicked.connect(self.set_axis)
+        layout.addWidget(self.set_axis_button)
+
+        self.focus_stage_button = QPushButton("Focus Stage")
+        self.focus_stage_button.clicked.connect(self.focus_stage)
+        layout.addWidget(self.focus_stage_button)
 
         self.start_scan_button = QPushButton("Start Scan")
         self.start_scan_button.clicked.connect(self.start_scan)
@@ -48,6 +65,60 @@ class MainWindow(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
+        self.setStyleSheet("""QWidget { background-color: #001f3f;
+                           color: #ffffff; 
+                            }
+                           QLineEdit {
+                           padding: 5px;}
+                           border: 1px solid #ccc;
+                           border-radius: 5px;
+                           }
+                           QPushButton {
+                           padding: 10px; 
+                           background-color: #0078d7; 
+                           color: black;
+                           border: none;
+                           border-radius: 5px;
+                           }
+                           QPushButton:hover {
+                           background-color: #0056b3;
+                           }
+                           QPushButton:pressed {
+                           background-color: #003f8a;
+                           }
+                           """)
+    @pyqtSlot()
+    def set_axis(self, axis): 
+        try: 
+            axis = int(self.set_axis_input.text())
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner.home(axis)
+            scanner.close_connection()
+            logger.info(f"Homed axis {axis}")
+        except Exception as e:
+            logger.error(f"An error occurred: {str(e)}")
+    @pyqtSlot()
+    def move_stage(self): 
+        try: 
+            move_position = float(self.move_position_input.text())
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner.move(move_position, 3)
+            scanner.close_connection()
+            logger.info(f"Moved stage to position {move_position}")
+        except Exception as e:
+            logger.error(f"An error occurred: {str(e)}")
+    
+    @pyqtSlot() 
+    def focus_stage(self):
+        try: 
+            focus_position = float(self.focus_position_input.text())
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner.focus(focus_position, 3)
+            scanner.close_connection()
+            logger.info(f"Focused stage at position {focus_position}")
+        except Exception as e:
+            logger.error(f"An error occurred: {str(e)}")
+    @pyqtSlot()
     def start_scan(self):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
@@ -70,10 +141,18 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Results", "Displaying scan results...")
     def plot_scan_results(self, df): 
         self.canvas.axes.clear()
-        scatter = self.canvas.axes.scatter(df["x (um)"], df["y (um)"], c=df["v (V)"], cmap="viridis")
-        self.canvas.axes.set_xlabel("Position (um)")
+        x = df["x (um)"].values
+        y = df["y (um)"].values
+        v = df["v (V)"].values
+
+        x_min = np.unique(x)
+        y_min = np.unique(y)
+        v_reshaped = v.reshape(len(y_min), len(x_min))
+
+        img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
+        self.canvas.axes.set_xlabel("Position X, Y (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.figure.colorbar(scatter, ax=self.canvas.axes)
+        self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
 
 if __name__ == "__main__":
