@@ -35,6 +35,11 @@ class NanoScanner:
             
     def focus(self, position, axis): 
         self.shrc.move(position, axis)
+        # self.logger.info(f"Moved to position {position} on axis {axis}")
+    
+    def move(self, position, axis): 
+        self.shrc.move(position, axis)
+        # self.logger.info(f"Moved to position {position} on axis {axis}")  
 
     # def set_units(self, unit: str):
     #     self.shrc.set_unit(unit)

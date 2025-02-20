@@ -61,7 +61,7 @@ class MainWindow(QMainWindow):
             df = scanner.scan2d(0, 30, 10, 0, 30, 10)
             QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             scanner.close_connection()
-            self.plot.scan_results(df)
+            self.plot_scan_results(df)
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     @pyqtSlot()
@@ -70,10 +70,10 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Results", "Displaying scan results...")
     def plot_scan_results(self, df): 
         self.canvas.axes.clear()
-        scatter = self.canvas.axes.scatter(df["X"], df["Y"], c=df["Z"], cmap="viridis")
+        scatter = self.canvas.axes.scatter(df["x (um)"], df["y (um)"], c=df["v (V)"], cmap="viridis")
         self.canvas.axes.set_xlabel("Position (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.fig.colorbar(scatter, ax=self.canvas.axes)
+        self.canvas.figure.colorbar(scatter, ax=self.canvas.axes)
         self.canvas.draw()
 
 if __name__ == "__main__":
