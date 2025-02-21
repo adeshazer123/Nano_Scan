@@ -150,7 +150,9 @@ class SHRC203VISADriver:
         return self.position[channel-1]
 
     def query_position(self, channel): 
-        pass 
+        position = self._instr.query(f"Q:")
+        position = position[channel - 1]
+        return position
         # position = self._instr.query(???) #TODO Fix this 
 
     def set_speed(self, speed_ini, speed_fin, accel_t, channel): 

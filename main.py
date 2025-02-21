@@ -27,7 +27,11 @@ class MainWindow(QMainWindow):
         grid_layout = QGridLayout() 
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        layout.addWidget(self.canvas)
+        self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        grid_layout.addWidget(self.canvas, 2, 0)
+        grid_layout.addWidget(self.harmonics1_canvas, 2, 2)
+        grid_layout.addWidget(self.harmonics2_canvas, 2,4)
 
         self.x_start_input = QLineEdit(self)
         self.x_start_input.setPlaceholderText("Enter x start")
@@ -61,28 +65,39 @@ class MainWindow(QMainWindow):
 
         layout.addLayout(grid_layout)
 
+        self.file_path_input = QLineEdit(self)
+        self.file_path_input.setPlaceholderText("Enter file path")
+        self.file_path_input.setFixedWidth(200)
+        layout.addWidget(self.file_path_input)
+
         self.move_position_input = QLineEdit(self)
         self.move_position_input.setPlaceholderText("Enter move position")
+        self.move_position_input.setFixedWidth(200)
         layout.addWidget(self.move_position_input)
 
         self.set_axis_input = QLineEdit(self)   
         self.set_axis_input.setPlaceholderText("Enter axis")
+        self.set_axis_input.setFixedWidth(200)
         layout.addWidget(self.set_axis_input)
 
         self.focus_position_input = QLineEdit(self)
         self.focus_position_input.setPlaceholderText("Enter focus position")
+        self.focus_position_input.setFixedWidth(200)
         layout.addWidget(self.focus_position_input)
 
         self.move_stage_button = QPushButton("Move Stage")
         self.move_stage_button.clicked.connect(self.move_stage)
+        self.move_stage_button.setFixedWidth(200)
         layout.addWidget(self.move_stage_button)
 
         self.set_axis_button = QPushButton("Set Axis")
         self.set_axis_button.clicked.connect(self.set_axis)
+        self.set_axis_button.setFixedWidth(200)
         layout.addWidget(self.set_axis_button)
 
         self.focus_stage_button = QPushButton("Focus Stage")
         self.focus_stage_button.clicked.connect(self.focus_stage)
+        self.focus_stage_button.setFixedWidth(200)
         layout.addWidget(self.focus_stage_button)
 
         self.start_scan_button = QPushButton("Start Scan")
