@@ -15336,3 +15336,1253 @@
 2025-02-20 16:02:22,919 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\TEMPSITC.TTF', name='Tempus Sans ITC', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
 2025-02-20 16:02:22,919 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibri.ttf', name='Calibri', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
 2025-02-20 16:02:22,919 matplotlib.font_manager DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('C:\\Users\\desha\\anaconda3\\envs\\guibase\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2025-02-21 09:09:13,826 asyncio DEBUG Using proactor: IocpProactor
+2025-02-21 09:10:26,797 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:10:26,797 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:10:26,815 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:26,817 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:26,818 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:26,818 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:10:26,819 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:26,820 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:26,821 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:26,885 pyvisa DEBUG Library signatures: 90 ok, 0 failed
+2025-02-21 09:10:26,885 pyvisa DEBUG Created library wrapper for C:\WINDOWS\system32\visa32.dll
+2025-02-21 09:10:27,159 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151FBF335D0>',) -> 0
+2025-02-21 09:10:27,159 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:10:27,216 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151FBFD4550>, <ctypes.c_char_Array_256 object at 0x00000151FBFD45D0>, <ctypes.c_char_Array_256 object at 0x00000151FBFD4650>) -> 0
+2025-02-21 09:10:27,220 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151FBFD45D0>, <ctypes.c_char_Array_256 object at 0x00000151FBFD4550>, <ctypes.c_char_Array_256 object at 0x00000151FBFD44D0>) -> 0
+2025-02-21 09:10:27,220 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:10:27,266 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151FBFD44D0>') -> 0
+2025-02-21 09:10:27,266 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:10:27,267 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:10:27,267 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:10:27,267 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:10:27,268 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:27,270 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:27,271 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:27,271 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:10:27,271 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:27,273 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:27,274 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:27,274 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:10:27,275 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x00000151FBFD4BD0>, <ctypes.c_char_Array_256 object at 0x00000151FBFD4DD0>, <ctypes.c_char_Array_256 object at 0x00000151FBFD4D50>) -> 0
+2025-02-21 09:10:27,275 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:10:27,295 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151FBFD4DD0>') -> 0
+2025-02-21 09:10:27,295 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:10:27,304 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:10:27,304 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:10:27,305 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:27,307 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:27,308 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:27,308 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:10:27,310 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:27,312 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:27,312 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:27,313 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:10:27,313 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151FBFD5D50>, <ctypes.c_char_Array_256 object at 0x00000151FBFD5E50>, <ctypes.c_char_Array_256 object at 0x00000151FBFD5C50>) -> 0
+2025-02-21 09:10:27,314 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:10:27,317 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151FBFD5D50>') -> 0
+2025-02-21 09:10:27,318 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:10:27,318 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:10:27,319 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:27,319 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:27,325 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD6450>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:10:27,527 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:27,527 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:27,527 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD64D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:27,728 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:27,728 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:27,728 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD67D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:27,928 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:27,928 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:27,928 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD6AD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:28,129 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:28,129 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:28,129 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD6DD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:28,329 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:28,329 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:28,329 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD70D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:28,530 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:28,530 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:28,530 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD73D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:28,730 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:28,730 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:28,730 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD76D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:28,931 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:28,931 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:28,931 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD79D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:29,131 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:29,131 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:29,131 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:29,332 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:29,332 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:29,332 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7A50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:29,533 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:29,533 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:29,533 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:29,733 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:29,733 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:29,733 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD76D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:29,934 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:29,934 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:29,934 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD79D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,135 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,135 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,135 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,336 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,336 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,336 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7A50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,536 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,536 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,536 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,536 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:10:30,536 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,536 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,544 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD76D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,544 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:10:30,544 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,544 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,544 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7BD0>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:10:30,744 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,744 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,744 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:30,945 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:30,945 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:30,945 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD73D0>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:10:31,145 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:31,145 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:31,145 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:31,346 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:31,346 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:31,346 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7CD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:31,546 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:31,546 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:31,546 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7BD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:31,747 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:31,747 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:31,747 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:31,948 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:31,948 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:31,948 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD73D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:32,149 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:32,149 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:32,149 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:32,349 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:32,349 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:32,349 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7CD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:32,550 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:32,550 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:32,550 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7BD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:32,751 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:32,751 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:32,751 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:32,952 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:32,952 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:32,952 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD73D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:33,153 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:33,153 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:33,153 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:33,353 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:33,353 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:33,353 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7CD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:33,554 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:33,554 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:33,554 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7BD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:33,754 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:33,754 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:33,754 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:33,955 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:33,955 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:33,955 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD73D0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:34,156 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:34,156 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:34,156 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD4FD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:34,356 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:34,356 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:34,356 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7CD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:34,557 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:34,557 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:34,557 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7BD0>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:34,559 pyvisa DEBUG viWrite(2, b'A:3+None8282.0\r\n', 16, 'c_ulong(16)') -> 0
+2025-02-21 09:10:34,559 pyvisa DEBUG viWrite(2, b'G:\r\n', 4, 'c_ulong(4)') -> 0
+2025-02-21 09:10:34,564 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:34,564 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:34,564 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7C50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:10:34,884 matplotlib.pyplot DEBUG Loaded backend qtagg version 5.15.11.
+2025-02-21 09:10:34,919 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:34,919 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:34,942 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FBFD7CD0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,325 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SegUIVar.ttf', name='Segoe UI Variable', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\l_10646.ttf', name='Lucida Sans Unicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\monbaiti.ttf', name='Mongolian Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaVF.ttf', name='Sitka', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibl.ttf', name='Segoe UI', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhbd.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\sylfaen.ttf', name='Sylfaen', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,326 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelb.ttf', name='Corbel', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taileb.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaVF-Italic.ttf', name='Sitka', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibril.ttf', name='Calibri', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Nirmala.ttf', name='Nirmala UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeprb.ttf', name='Segoe Print', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrib.ttf', name='Calibri', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarab.ttf', name='Candara', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\UDDigiKyokashoN-B.ttc', name='UD Digi Kyokasho N-B', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesi.ttf', name='Times New Roman', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriaz.ttf', name='Cambria', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrii.ttf', name='Calibri', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicz.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtext.ttf', name='Myanmar Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuil.ttf', name='Segoe UI', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguili.ttf', name='Segoe UI', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisbi.ttf', name='Segoe UI', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspa.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolaz.ttf', name='Consolas', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palab.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palabi.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Gabriola.ttf', name='Gabriola', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisym.ttf', name='Segoe UI Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothM.ttc', name='Yu Gothic', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segmdl2.ttf', name='Segoe MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbel.ttf', name='Corbel', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoepr.ttf', name='Segoe Print', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbeli.ttf', name='Corbel', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constan.ttf', name='Constantia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbi.ttf', name='Courier New', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,327 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelli.ttf', name='Corbel', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugib.ttf', name='Gadugi', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\symbol.ttf', name='Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\impact.ttf', name='Impact', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taile.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisb.ttf', name='Segoe UI', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDGothicR.ttc', name='BIZ UDGothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiai.ttf', name='Georgia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarai.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanb.ttf', name='Constantia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanai.ttf', name='Verdana', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.6863636363636365
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constani.ttf', name='Constantia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comici.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyh.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspab.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\couri.ttf', name='Courier New', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\meiryo.ttc', name='Meiryo', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaral.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\bahnschrift.ttf', name='Bahnschrift', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunsl.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comic.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palai.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgun.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjh.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrimabd.ttf', name='Ebrima', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbd.ttf', name='Courier New', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhl.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuiz.ttf', name='Segoe UI', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SegoeIcons.ttf', name='Segoe Fluent Icons', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelz.ttf', name='Corbel', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariali.ttf', name='Arial', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 7.413636363636363
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaS.ttf', name='Nirmala UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbi.ttf', name='Arial', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 7.698636363636363
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanz.ttf', name='Constantia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,328 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhbd.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibli.ttf', name='Segoe UI', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SansSerifCollection.ttf', name='Sans Serif Collection', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arial.ttf', name='Arial', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 6.413636363636363
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\UDDigiKyokashoN-R.ttc', name='UD Digi Kyokasho N-R', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbd.ttf', name='Times New Roman', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelaUIb.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsunb.ttf', name='SimSun-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanaz.ttf', name='Verdana', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.971363636363637
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\pala.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuii.ttf', name='Segoe UI', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothB.ttc', name='Yu Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriab.ttf', name='Cambria', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriai.ttf', name='Cambria', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Inkfree.ttf', name='Ink Free', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahoma.ttf', name='Tahoma', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mingliub.ttc', name='MingLiU-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candara.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuib.ttf', name='Segoe UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarali.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SimsunExtG.ttf', name='SimSun-ExtG', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailub.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consola.ttf', name='Consolas', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebuc.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaB.ttf', name='Nirmala UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\webdings.ttf', name='Webdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunbd.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msgothic.ttc', name='MS Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbi.ttf', name='Times New Roman', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeui.ttf', name='Segoe UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolab.ttf', name='Consolas', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrima.ttf', name='Ebrima', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahomabd.ttf', name='Tahoma', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\himalaya.ttf', name='Microsoft Himalaya', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuisl.ttf', name='Segoe UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:10:35,329 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\holomdl2.ttf', name='HoloLens MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msmincho.ttc', name='MS Mincho', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framd.ttf', name='Franklin Gothic Medium', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbd.ttf', name='Arial', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 6.698636363636363
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtextb.ttf', name='Myanmar Text', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsun.ttc', name='SimSun', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbi.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanab.ttf', name='Verdana', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.9713636363636367
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\times.ttf', name='Times New Roman', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugi.ttf', name='Gadugi', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\meiryob.ttc', name='Meiryo', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguihis.ttf', name='Segoe UI Historic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolai.ttf', name='Consolas', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailu.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDGothicB.ttc', name='BIZ UDGothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdana.ttf', name='Verdana', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.6863636363636365
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framdit.ttf', name='Franklin Gothic Medium', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoesc.ttf', name='Segoe Script', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambria.ttc', name='Cambria', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicbd.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cour.ttf', name='Courier New', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibriz.ttf', name='Calibri', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yumindb.ttf', name='Yu Mincho', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisli.ttf', name='Segoe UI', style='italic', variant='normal', weight=350, stretch='normal', size='scalable')) = 11.0975
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrili.ttf', name='Calibri', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhl.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yumin.ttf', name='Yu Mincho', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothL.ttc', name='Yu Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibri.ttf', name='Calibri', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelUIsl.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\wingding.ttf', name='Wingdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbell.ttf', name='Corbel', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothR.ttc', name='Yu Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucit.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:10:35,330 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbd.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoescb.ttf', name='Segoe Script', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariblk.ttf', name='Arial', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 6.888636363636364
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\javatext.ttf', name='Javanese Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDMinchoM.ttc', name='BIZ UDMincho', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\micross.ttf', name='Microsoft Sans Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyi.ttf', name='Microsoft Yi Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaraz.ttf', name='Candara', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguiemj.ttf', name='Segoe UI Emoji', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yuminl.ttf', name='Yu Mincho', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgia.ttf', name='Georgia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\lucon.ttf', name='Lucida Console', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiaz.ttf', name='Georgia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mvboli.ttf', name='MV Boli', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelawUI.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiab.ttf', name='Georgia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:10:35,331 matplotlib.font_manager DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2025-02-21 09:10:35,888 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:35,888 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:35,911 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FC66B0D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:36,471 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:36,471 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:36,494 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FC66BE50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:37,080 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:37,080 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:37,102 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FBFD6850>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:37,664 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:37,664 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:37,686 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FC669450>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:38,246 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:38,246 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:38,287 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FBF651D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:38,846 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:38,846 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:38,869 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FC6685D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:39,428 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:39,428 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:39,450 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151FC66AF50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:40,009 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:10:40,009 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:10:40,031 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151813D9950>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:10:40,600 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x000001518142A490>
+2025-02-21 09:10:40,665 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:10:40,666 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:10:40,667 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:40,670 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:40,671 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:40,672 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:10:40,673 pyvisa DEBUG No user defined configuration
+2025-02-21 09:10:40,675 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:10:40,676 pyvisa DEBUG No user defined library files
+2025-02-21 09:10:40,676 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:10:40,676 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:10:40,676 pyvisa DEBUG COM3 - closing
+2025-02-21 09:10:40,676 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:10:40,676 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:10:40,686 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:10:40,686 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:10:40,686 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:10:40,686 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:10:40,686 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:10:40,687 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:10:40,687 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:10:40,687 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:10:40,687 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:10:40,687 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:10:40,687 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:10:40,687 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:10:40,688 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:10:40,689 asyncio DEBUG Using selector: InputHookSelector
+2025-02-21 09:11:46,016 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:11:46,016 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:11:46,017 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,019 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,019 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,019 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:11:46,021 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,023 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,024 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,029 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151813DBCD0>',) -> 0
+2025-02-21 09:11:46,029 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:11:46,032 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x000001518145A950>, <ctypes.c_char_Array_256 object at 0x000001518145A7D0>, <ctypes.c_char_Array_256 object at 0x000001518145AC50>) -> 0
+2025-02-21 09:11:46,035 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x000001518145AC50>, <ctypes.c_char_Array_256 object at 0x000001518145A7D0>, <ctypes.c_char_Array_256 object at 0x000001518145A950>) -> 0
+2025-02-21 09:11:46,035 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:11:46,043 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000001518145A350>') -> 0
+2025-02-21 09:11:46,044 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:11:46,044 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:11:46,044 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:11:46,044 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:11:46,045 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,047 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,048 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,048 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:11:46,049 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,051 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,051 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,051 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:11:46,051 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x000001518145B0D0>, <ctypes.c_char_Array_256 object at 0x00000151814585D0>, <ctypes.c_char_Array_256 object at 0x0000015181458BD0>) -> 0
+2025-02-21 09:11:46,051 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:11:46,069 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151814585D0>') -> 0
+2025-02-21 09:11:46,069 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:11:46,073 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:11:46,073 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:11:46,073 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:11:46,074 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:11:46,074 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:11:46,074 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:11:46,074 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:11:46,074 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:11:46,074 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:11:46,075 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,077 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,078 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,078 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:11:46,078 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:46,080 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:46,081 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:46,081 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:11:46,082 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x000001518145BAD0>, <ctypes.c_char_Array_256 object at 0x000001518145BBD0>, <ctypes.c_char_Array_256 object at 0x000001518145BC50>) -> 0
+2025-02-21 09:11:46,082 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:11:46,085 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x000001518145BAD0>') -> 0
+2025-02-21 09:11:46,085 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:11:46,086 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:11:46,088 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:46,088 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:46,092 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x0000015183BBC250>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:11:46,293 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:46,293 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:46,293 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:46,494 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:46,494 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:46,494 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:46,694 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:46,694 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:46,694 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:46,895 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:46,895 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:46,895 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:47,096 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:47,096 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:47,096 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:47,296 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:47,296 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:47,296 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:47,497 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:47,497 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:47,497 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:47,697 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:47,697 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:47,697 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:47,898 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:47,898 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:47,898 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:48,099 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:48,099 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:48,099 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:48,300 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:48,300 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:48,300 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:48,500 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:48,500 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:48,500 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:48,701 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:48,701 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:48,701 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:48,902 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:48,902 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:48,902 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,102 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,102 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,102 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,303 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,303 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,303 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,504 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,504 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,504 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,705 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,705 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,705 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,705 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:11:49,705 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,705 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,708 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:49,708 pyvisa DEBUG viWrite(2, b'H:3\r\n', 5, 'c_ulong(5)') -> 0
+2025-02-21 09:11:49,711 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,711 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,711 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:11:49,912 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:49,912 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:49,912 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:50,113 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:50,113 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:50,113 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(4)') -> 0
+2025-02-21 09:11:50,314 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:50,314 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:50,314 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:50,515 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:50,515 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:50,515 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:50,715 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:50,715 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:50,715 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:50,916 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:50,916 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:50,916 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:51,117 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:51,117 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:51,117 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:51,318 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:51,318 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:51,318 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:51,518 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:51,518 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:51,518 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:51,719 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:51,719 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:51,719 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:51,919 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:51,919 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:51,919 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:52,120 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:52,120 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:52,120 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:52,321 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:52,321 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:52,321 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:52,521 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:52,521 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:52,521 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:52,722 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:52,722 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:52,722 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:52,923 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:52,923 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:52,923 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,124 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,124 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,124 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,325 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,325 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,325 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,525 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,525 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,525 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,726 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,726 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,726 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG viWrite(2, b'A:3+None8282.0\r\n', 16, 'c_ulong(16)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG viWrite(2, b'G:\r\n', 4, 'c_ulong(4)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG viWrite(2, b'!:3S\r\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG COM3 - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,728 pyvisa DEBUG viRead(2, <ctypes.c_char_Array_20480 object at 0x000001518145A050>, 20480, 'c_ulong(3)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:53,728 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:53,750 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x000001518145BE50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:54,334 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:54,334 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:54,356 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBC850>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:54,914 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:54,914 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:54,937 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBD950>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:55,496 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:55,496 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:55,517 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBDE50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:56,077 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:56,077 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:56,174 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBF050>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:56,733 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:56,733 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:56,755 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBDA50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:57,314 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:57,314 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:57,337 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183BBFCD0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:57,896 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:57,896 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:57,919 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183950050>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:58,477 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:11:58,477 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:11:58,499 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151839511D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:11:59,066 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183BFDB50>
+2025-02-21 09:11:59,105 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:11:59,105 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:11:59,106 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:59,108 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:59,109 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:59,109 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:11:59,109 pyvisa DEBUG No user defined configuration
+2025-02-21 09:11:59,112 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:11:59,112 pyvisa DEBUG No user defined library files
+2025-02-21 09:11:59,112 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:11:59,113 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:11:59,113 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:11:59,113 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:11:59,113 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:11:59,113 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:11:59,113 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:11:59,113 pyvisa DEBUG COM3 - closing
+2025-02-21 09:11:59,113 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:11:59,113 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:11:59,121 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:11:59,121 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:11:59,121 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:11:59,121 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:11:59,121 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:11:59,121 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:11:59,121 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:11:59,122 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:11:59,122 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:11:59,122 asyncio DEBUG Using selector: InputHookSelector
+2025-02-21 09:14:01,088 matplotlib.font_manager DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0.
+2025-02-21 09:14:01,088 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 0.05
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBolIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFiveSymReg.ttf', name='STIXSizeFiveSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-BoldOblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymBol.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Bold.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-BoldItalic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmtt10.ttf', name='cmtt10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniBol.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Bold.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymBol.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif-Italic.ttf', name='DejaVu Serif', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmex10.ttf', name='cmex10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,089 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono.ttf', name='DejaVu Sans Mono', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymBol.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansMono-Oblique.ttf', name='DejaVu Sans Mono', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSansDisplay.ttf', name='DejaVu Sans Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerif.ttf', name='DejaVu Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizFourSymReg.ttf', name='STIXSizeFourSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSerifDisplay.ttf', name='DejaVu Serif Display', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralItalic.ttf', name='STIXGeneral', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymBol.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Bold.ttf', name='DejaVu Sans', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 0.33499999999999996
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUniIta.ttf', name='STIXNonUnicode', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizTwoSymReg.ttf', name='STIXSizeTwoSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXNonUni.ttf', name='STIXNonUnicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizOneSymReg.ttf', name='STIXSizeOneSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneral.ttf', name='STIXGeneral', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmss10.ttf', name='cmss10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmmi10.ttf', name='cmmi10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-Oblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=400, stretch='normal', size='scalable')) = 1.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBol.ttf', name='STIXGeneral', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXSizThreeSymReg.ttf', name='STIXSizeThreeSym', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmb10.ttf', name='cmb10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\STIXGeneralBolIta.ttf', name='STIXGeneral', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmsy10.ttf', name='cmsy10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\cmr10.ttf', name='cmr10', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans-BoldOblique.ttf', name='DejaVu Sans', style='oblique', variant='normal', weight=700, stretch='normal', size='scalable')) = 1.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SegUIVar.ttf', name='Segoe UI Variable', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\l_10646.ttf', name='Lucida Sans Unicode', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\monbaiti.ttf', name='Mongolian Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaVF.ttf', name='Sitka', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibl.ttf', name='Segoe UI', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 10.525
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhbd.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\sylfaen.ttf', name='Sylfaen', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelb.ttf', name='Corbel', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taileb.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SitkaVF-Italic.ttf', name='Sitka', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibril.ttf', name='Calibri', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Nirmala.ttf', name='Nirmala UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeprb.ttf', name='Segoe Print', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrib.ttf', name='Calibri', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarab.ttf', name='Candara', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\UDDigiKyokashoN-B.ttc', name='UD Digi Kyokasho N-B', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesi.ttf', name='Times New Roman', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriaz.ttf', name='Cambria', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrii.ttf', name='Calibri', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicz.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtext.ttf', name='Myanmar Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuil.ttf', name='Segoe UI', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguili.ttf', name='Segoe UI', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisbi.ttf', name='Segoe UI', style='italic', variant='normal', weight=600, stretch='normal', size='scalable')) = 11.24
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspa.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolaz.ttf', name='Consolas', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,090 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palab.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palabi.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Gabriola.ttf', name='Gabriola', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisym.ttf', name='Segoe UI Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothM.ttc', name='Yu Gothic', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segmdl2.ttf', name='Segoe MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbel.ttf', name='Corbel', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoepr.ttf', name='Segoe Print', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbeli.ttf', name='Corbel', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constan.ttf', name='Constantia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbi.ttf', name='Courier New', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelli.ttf', name='Corbel', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugib.ttf', name='Gadugi', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\symbol.ttf', name='Symbol', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\impact.ttf', name='Impact', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\taile.ttf', name='Microsoft Tai Le', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisb.ttf', name='Segoe UI', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDGothicR.ttc', name='BIZ UDGothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiai.ttf', name='Georgia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarai.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanb.ttf', name='Constantia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanai.ttf', name='Verdana', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 4.6863636363636365
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constani.ttf', name='Constantia', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comici.ttf', name='Comic Sans MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyh.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\phagspab.ttf', name='Microsoft PhagsPa', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\couri.ttf', name='Courier New', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\meiryo.ttc', name='Meiryo', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaral.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\bahnschrift.ttf', name='Bahnschrift', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunsl.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comic.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\palai.ttf', name='Palatino Linotype', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgun.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjh.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrimabd.ttf', name='Ebrima', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\courbd.ttf', name='Courier New', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,091 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyhl.ttc', name='Microsoft YaHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuiz.ttf', name='Segoe UI', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SegoeIcons.ttf', name='Segoe Fluent Icons', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbelz.ttf', name='Corbel', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariali.ttf', name='Arial', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 7.413636363636363
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaS.ttf', name='Nirmala UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbi.ttf', name='Arial', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 7.698636363636363
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\constanz.ttf', name='Constantia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhbd.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguibli.ttf', name='Segoe UI', style='italic', variant='normal', weight=900, stretch='normal', size='scalable')) = 11.525
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SansSerifCollection.ttf', name='Sans Serif Collection', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arial.ttf', name='Arial', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 6.413636363636363
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\UDDigiKyokashoN-R.ttc', name='UD Digi Kyokasho N-R', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbd.ttf', name='Times New Roman', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelaUIb.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsunb.ttf', name='SimSun-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanaz.ttf', name='Verdana', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 4.971363636363637
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\pala.ttf', name='Palatino Linotype', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuii.ttf', name='Segoe UI', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothB.ttc', name='Yu Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriab.ttf', name='Cambria', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambriai.ttf', name='Cambria', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Inkfree.ttf', name='Ink Free', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahoma.ttf', name='Tahoma', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mingliub.ttc', name='MingLiU-ExtB', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candara.ttf', name='Candara', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuib.ttf', name='Segoe UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candarali.ttf', name='Candara', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\SimsunExtG.ttf', name='SimSun-ExtG', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailub.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consola.ttf', name='Consolas', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebuc.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\NirmalaB.ttf', name='Nirmala UI', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\webdings.ttf', name='Webdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\malgunbd.ttf', name='Malgun Gothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,092 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msgothic.ttc', name='MS Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\timesbi.ttf', name='Times New Roman', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeui.ttf', name='Segoe UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolab.ttf', name='Consolas', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ebrima.ttf', name='Ebrima', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\tahomabd.ttf', name='Tahoma', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\himalaya.ttf', name='Microsoft Himalaya', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoeuisl.ttf', name='Segoe UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\holomdl2.ttf', name='HoloLens MDL2 Assets', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msmincho.ttc', name='MS Mincho', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framd.ttf', name='Franklin Gothic Medium', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\arialbd.ttf', name='Arial', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 6.698636363636363
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mmrtextb.ttf', name='Myanmar Text', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\simsun.ttc', name='SimSun', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbi.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdanab.ttf', name='Verdana', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 3.9713636363636367
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\times.ttf', name='Times New Roman', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\gadugi.ttf', name='Gadugi', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\meiryob.ttc', name='Meiryo', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguihis.ttf', name='Segoe UI Historic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\consolai.ttf', name='Consolas', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ntailu.ttf', name='Microsoft New Tai Lue', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDGothicB.ttc', name='BIZ UDGothic', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\verdana.ttf', name='Verdana', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 3.6863636363636365
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\framdit.ttf', name='Franklin Gothic Medium', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoesc.ttf', name='Segoe Script', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cambria.ttc', name='Cambria', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\comicbd.ttf', name='Comic Sans MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\cour.ttf', name='Courier New', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibriz.ttf', name='Calibri', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yumindb.ttf', name='Yu Mincho', style='normal', variant='normal', weight=600, stretch='normal', size='scalable')) = 10.24
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguisli.ttf', name='Segoe UI', style='italic', variant='normal', weight=350, stretch='normal', size='scalable')) = 11.0975
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibrili.ttf', name='Calibri', style='italic', variant='normal', weight=300, stretch='normal', size='scalable')) = 11.145
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msjhl.ttc', name='Microsoft JhengHei', style='normal', variant='normal', weight=290, stretch='normal', size='scalable')) = 10.1545
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yumin.ttf', name='Yu Mincho', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothL.ttc', name='Yu Gothic', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\calibri.ttf', name='Calibri', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,093 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelUIsl.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=350, stretch='normal', size='scalable')) = 10.0975
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\wingding.ttf', name='Wingdings', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\corbell.ttf', name='Corbel', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\YuGothR.ttc', name='Yu Gothic', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucit.ttf', name='Trebuchet MS', style='italic', variant='normal', weight=400, stretch='normal', size='scalable')) = 11.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\trebucbd.ttf', name='Trebuchet MS', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\segoescb.ttf', name='Segoe Script', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\ariblk.ttf', name='Arial', style='normal', variant='normal', weight=900, stretch='normal', size='scalable')) = 6.888636363636364
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\javatext.ttf', name='Javanese Text', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\BIZ-UDMinchoM.ttc', name='BIZ UDMincho', style='normal', variant='normal', weight=500, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\micross.ttf', name='Microsoft Sans Serif', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\msyi.ttf', name='Microsoft Yi Baiti', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\Candaraz.ttf', name='Candara', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\seguiemj.ttf', name='Segoe UI Emoji', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\yuminl.ttf', name='Yu Mincho', style='normal', variant='normal', weight=300, stretch='normal', size='scalable')) = 10.145
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgia.ttf', name='Georgia', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\lucon.ttf', name='Lucida Console', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiaz.ttf', name='Georgia', style='italic', variant='normal', weight=700, stretch='normal', size='scalable')) = 11.335
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\mvboli.ttf', name='MV Boli', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\LeelawUI.ttf', name='Leelawadee UI', style='normal', variant='normal', weight=400, stretch='normal', size='scalable')) = 10.05
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: score(FontEntry(fname='C:\\Windows\\Fonts\\georgiab.ttf', name='Georgia', style='normal', variant='normal', weight=700, stretch='normal', size='scalable')) = 10.335
+2025-02-21 09:14:01,094 matplotlib.font_manager DEBUG findfont: Matching sans\-serif:style=normal:variant=normal:weight=normal:stretch=normal:size=10.0 to DejaVu Sans ('C:\\Users\\DK-microscope\\miniconda3\\envs\\pymodaq\\Lib\\site-packages\\matplotlib\\mpl-data\\fonts\\ttf\\DejaVuSans.ttf') with score of 0.050000.
+2025-02-21 09:14:42,157 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:17:57,591 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:20:26,181 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:20:52,034 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:20:52,034 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:20:52,035 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,037 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,037 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,037 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:20:52,039 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,041 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,041 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,044 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151839C2ED0>',) -> 0
+2025-02-21 09:20:52,044 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:20:52,047 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151839C30D0>, <ctypes.c_char_Array_256 object at 0x00000151839C3150>, <ctypes.c_char_Array_256 object at 0x00000151839C31D0>) -> 0
+2025-02-21 09:20:52,049 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151839C30D0>, <ctypes.c_char_Array_256 object at 0x00000151839C3050>, <ctypes.c_char_Array_256 object at 0x00000151839C2FD0>) -> 0
+2025-02-21 09:20:52,049 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:20:52,056 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151839C30D0>') -> 0
+2025-02-21 09:20:52,056 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:20:52,057 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:20:52,057 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:20:52,057 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:20:52,057 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,059 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,059 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,059 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:20:52,060 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,062 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,062 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,062 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:20:52,063 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x00000151839C37D0>, <ctypes.c_char_Array_256 object at 0x00000151839C38D0>, <ctypes.c_char_Array_256 object at 0x00000151839C3A50>) -> 0
+2025-02-21 09:20:52,063 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:20:52,071 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151839C38D0>') -> 0
+2025-02-21 09:20:52,071 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:20:52,080 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:20:52,080 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:20:52,081 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,083 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,083 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,083 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:20:52,084 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:52,086 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:52,086 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:52,086 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:20:52,087 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015183A90450>, <ctypes.c_char_Array_256 object at 0x0000015183A90550>, <ctypes.c_char_Array_256 object at 0x0000015183A905D0>) -> 0
+2025-02-21 09:20:52,087 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:20:52,090 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015183A90450>') -> 0
+2025-02-21 09:20:52,091 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:20:52,091 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:20:52,091 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:20:52,114 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183A909D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:20:52,693 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015183AB7610> <matplotlib.colors.Normalize object at 0x0000015183AB7610>
+2025-02-21 09:20:52,693 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A6D650>
+2025-02-21 09:20:52,694 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015183AB7610> <matplotlib.colors.Normalize object at 0x0000015183AB7610>
+2025-02-21 09:20:52,695 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A6D650>
+2025-02-21 09:20:52,697 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A5C990>
+2025-02-21 09:20:54,668 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:20:54,668 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:20:54,669 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:54,672 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:54,672 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:54,672 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:20:54,674 pyvisa DEBUG No user defined configuration
+2025-02-21 09:20:54,676 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:20:54,676 pyvisa DEBUG No user defined library files
+2025-02-21 09:20:54,676 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:20:54,676 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:20:54,676 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:20:54,676 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:20:54,677 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:20:54,677 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:20:54,677 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:20:54,677 pyvisa DEBUG COM3 - closing
+2025-02-21 09:20:54,677 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:20:54,677 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:20:54,685 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:20:54,685 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:20:54,685 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:20:54,685 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:20:54,686 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:20:54,686 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:20:54,686 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:20:54,687 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:20:54,697 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015183A5DB90> <matplotlib.colors.Normalize object at 0x0000015183A5DB90>
+2025-02-21 09:20:54,697 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A3AD10>
+2025-02-21 09:20:54,699 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015183A5DB90> <matplotlib.colors.Normalize object at 0x0000015183A5DB90>
+2025-02-21 09:20:54,700 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A3AD10>
+2025-02-21 09:20:54,702 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A3ABD0>
+2025-02-21 09:20:54,730 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:05,713 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:05,713 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:05,714 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,717 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,717 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,717 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:05,718 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,720 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,720 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,723 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151839C2CD0>',) -> 0
+2025-02-21 09:22:05,723 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:22:05,726 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015184BBA250>, <ctypes.c_char_Array_256 object at 0x0000015184BBA5D0>, <ctypes.c_char_Array_256 object at 0x0000015184BBA4D0>) -> 0
+2025-02-21 09:22:05,728 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015184BBA5D0>, <ctypes.c_char_Array_256 object at 0x0000015184BBA250>, <ctypes.c_char_Array_256 object at 0x0000015184BBA350>) -> 0
+2025-02-21 09:22:05,728 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:22:05,735 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015184BBA250>') -> 0
+2025-02-21 09:22:05,735 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:22:05,735 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:22:05,735 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:05,735 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:05,736 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,738 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,738 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,738 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:05,739 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,741 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,741 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,741 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:05,741 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x0000015184BBAC50>, <ctypes.c_char_Array_256 object at 0x0000015184BBAD50>, <ctypes.c_char_Array_256 object at 0x0000015184BBAED0>) -> 0
+2025-02-21 09:22:05,741 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:22:05,749 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015184BBAD50>') -> 0
+2025-02-21 09:22:05,749 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:22:05,758 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:05,758 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:05,759 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,761 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,761 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,761 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:05,761 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:05,763 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:05,764 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:05,764 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:05,765 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015184BBB850>, <ctypes.c_char_Array_256 object at 0x0000015184BBB950>, <ctypes.c_char_Array_256 object at 0x0000015184BBB9D0>) -> 0
+2025-02-21 09:22:05,765 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:22:05,768 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015184BBB850>') -> 0
+2025-02-21 09:22:05,768 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:22:05,769 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:05,769 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:05,791 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015184BBBDD0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:06,369 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015184C7F050> <matplotlib.colors.Normalize object at 0x0000015184C7F050>
+2025-02-21 09:22:06,370 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015184BFE810>
+2025-02-21 09:22:06,371 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015184C7F050> <matplotlib.colors.Normalize object at 0x0000015184C7F050>
+2025-02-21 09:22:06,372 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015184BFE810>
+2025-02-21 09:22:06,374 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A65B50>
+2025-02-21 09:22:10,986 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:10,986 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:10,987 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:10,990 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:10,990 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:10,990 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:10,991 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:10,993 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:10,993 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:10,993 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:10,993 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:22:10,993 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:10,993 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:10,993 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:10,994 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:22:10,994 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:22:10,994 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:22:10,994 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:10,994 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:10,994 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:22:10,994 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:22:10,994 pyvisa DEBUG COM3 - closing
+2025-02-21 09:22:10,994 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:10,994 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:11,003 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:22:11,003 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:22:11,004 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:22:11,013 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015184BFFC10> <matplotlib.colors.Normalize object at 0x0000015184BFFC10>
+2025-02-21 09:22:11,015 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A7B710>
+2025-02-21 09:22:11,016 matplotlib.colorbar DEBUG colorbar update normal <matplotlib.colors.Normalize object at 0x0000015184BFFC10> <matplotlib.colors.Normalize object at 0x0000015184BFFC10>
+2025-02-21 09:22:11,017 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183A7B710>
+2025-02-21 09:22:11,018 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015184BB1C10>
+2025-02-21 09:22:11,052 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:18,530 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:18,530 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:18,531 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,532 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,533 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,533 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:18,534 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,535 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,536 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,538 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151839C10D0>',) -> 0
+2025-02-21 09:22:18,538 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:22:18,541 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015186161650>, <ctypes.c_char_Array_256 object at 0x0000015186161750>, <ctypes.c_char_Array_256 object at 0x0000015186161450>) -> 0
+2025-02-21 09:22:18,544 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015186161750>, <ctypes.c_char_Array_256 object at 0x0000015186161650>, <ctypes.c_char_Array_256 object at 0x00000151861615D0>) -> 0
+2025-02-21 09:22:18,544 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:22:18,550 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015186161650>') -> 0
+2025-02-21 09:22:18,550 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:22:18,550 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:22:18,551 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:18,551 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:18,551 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,554 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,555 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,555 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:18,555 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,556 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,557 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,557 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:18,557 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x0000015186162050>, <ctypes.c_char_Array_256 object at 0x0000015186162150>, <ctypes.c_char_Array_256 object at 0x00000151861622D0>) -> 0
+2025-02-21 09:22:18,558 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:22:18,574 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015186162150>') -> 0
+2025-02-21 09:22:18,574 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:22:18,579 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:18,579 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:18,580 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,582 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,582 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,582 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:18,582 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:18,584 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:18,585 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:18,585 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:18,586 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x0000015186162C50>, <ctypes.c_char_Array_256 object at 0x0000015186162D50>, <ctypes.c_char_Array_256 object at 0x0000015186162DD0>) -> 0
+2025-02-21 09:22:18,586 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:22:18,589 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x0000015186162C50>') -> 0
+2025-02-21 09:22:18,589 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:22:18,589 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:18,589 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:18,611 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151861631D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:19,176 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:19,176 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:19,198 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015184BBB6D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:19,790 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:19,790 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:19,859 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183953F50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:20,418 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:20,418 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:20,441 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151D9FD8550>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:21,008 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015186179710>
+2025-02-21 09:22:24,344 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:24,344 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:24,345 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:24,346 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:24,347 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:24,347 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:24,348 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:24,349 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:24,349 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:24,349 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:24,349 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:22:24,349 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:24,351 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:24,351 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:24,351 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:22:24,351 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:22:24,351 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:22:24,351 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:24,351 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:24,351 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:22:24,351 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:22:24,352 pyvisa DEBUG COM3 - closing
+2025-02-21 09:22:24,352 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:24,352 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:24,358 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:22:24,358 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:22:24,359 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:22:24,370 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015184BCAC90>
+2025-02-21 09:22:24,406 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:39,608 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:39,608 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:39,609 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,610 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,612 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,612 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:39,612 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,614 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,614 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,617 pyvisa DEBUG viOpenDefaultRM('<ViObject object at 0x00000151814587D0>',) -> 0
+2025-02-21 09:22:39,617 pyvisa DEBUG Created ResourceManager with session 4097
+2025-02-21 09:22:39,619 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151813D8550>, <ctypes.c_char_Array_256 object at 0x00000151813DB4D0>, <ctypes.c_char_Array_256 object at 0x00000151813D88D0>) -> 0
+2025-02-21 09:22:39,622 pyvisa DEBUG viParseRsrcEx(4097, 'GPIB0::1::INSTR', 'c_ushort(1)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151813DB4D0>, <ctypes.c_char_Array_256 object at 0x00000151813D8550>, <ctypes.c_char_Array_256 object at 0x00000151813D9CD0>) -> 0
+2025-02-21 09:22:39,622 pyvisa DEBUG GPIB0::1::INSTR - opening ...
+2025-02-21 09:22:39,630 pyvisa DEBUG viOpen(4097, 'GPIB0::1::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151813D8550>') -> 0
+2025-02-21 09:22:39,631 pyvisa DEBUG GPIB0::1::INSTR - is open with session 1
+2025-02-21 09:22:39,631 pymeasure.instruments.instrument INFO Initializing Stanford Research Systems SR830 Lock-in amplifier.
+2025-02-21 09:22:39,631 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:39,631 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:39,632 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,634 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,635 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,635 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:39,636 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,637 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,638 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,638 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:39,638 pyvisa DEBUG viParseRsrcEx(4097, 'COM3', 'c_ushort(4)', 'c_ushort(3)', <ctypes.c_char_Array_256 object at 0x00000151813DAF50>, <ctypes.c_char_Array_256 object at 0x00000151813DB5D0>, <ctypes.c_char_Array_256 object at 0x00000151813DBB50>) -> 0
+2025-02-21 09:22:39,638 pyvisa DEBUG COM3 - opening ...
+2025-02-21 09:22:39,658 pyvisa DEBUG viOpen(4097, 'COM3', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151813DB5D0>') -> 0
+2025-02-21 09:22:39,658 pyvisa DEBUG COM3 - is open with session 2
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, 1073676321, 38400) -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, 1073676322, 8) -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, 1073676323, <Parity.none: 0>) -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar: 1073676312>, 10) -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, <ResourceAttribute.termchar_enabled: 1073676344>, 1) -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viGetAttribute(2, 1073676325, 'c_ushort(0)') -> 0
+2025-02-21 09:22:39,667 pyvisa DEBUG viSetAttribute(2, 1073676314, 50000) -> 0
+2025-02-21 09:22:39,668 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:39,668 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:39,668 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,670 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,671 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,671 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:39,671 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:39,673 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:39,673 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:39,673 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:39,675 pyvisa DEBUG viParseRsrcEx(4097, 'USB0::0x05E6::0x2100::1149087::INSTR', 'c_ushort(7)', 'c_ushort(0)', <ctypes.c_char_Array_256 object at 0x00000151813DA050>, <ctypes.c_char_Array_256 object at 0x00000151813DB1D0>, <ctypes.c_char_Array_256 object at 0x00000151813DAFD0>) -> 0
+2025-02-21 09:22:39,675 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - opening ...
+2025-02-21 09:22:39,678 pyvisa DEBUG viOpen(4097, 'USB0::0x05E6::0x2100::1149087::0::INSTR', <AccessModes.no_lock: 0>, 0, '<ViObject object at 0x00000151813DA050>') -> 0
+2025-02-21 09:22:39,678 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is open with session 3
+2025-02-21 09:22:39,678 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:39,678 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:39,700 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151813DAAD0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:40,265 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:40,265 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:40,287 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183952850>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:40,846 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:40,846 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:40,869 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x00000151839526D0>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:41,427 pyvisa DEBUG viWrite(3, b'READ?\n', 6, 'c_ulong(6)') -> 0
+2025-02-21 09:22:41,427 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - reading 20480 bytes (last status <StatusCode.success_max_count_read: 1073676294>)
+2025-02-21 09:22:41,449 pyvisa DEBUG viRead(3, <ctypes.c_char_Array_20480 object at 0x0000015183950B50>, 20480, 'c_ulong(15)') -> 0
+2025-02-21 09:22:42,015 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x0000015183AD61D0>
+2025-02-21 09:22:43,490 pyvisa DEBUG No visa library specified, trying to find alternatives.
+2025-02-21 09:22:43,490 pyvisa DEBUG Environment variable PYVISA_LIBRARY is unset.
+2025-02-21 09:22:43,491 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:43,493 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:43,494 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:43,494 pyvisa DEBUG The IVI implementation available
+2025-02-21 09:22:43,494 pyvisa DEBUG No user defined configuration
+2025-02-21 09:22:43,496 pyvisa DEBUG Automatically found library files: [None, 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa32.dll', 'C:\\WINDOWS\\system32\\visa64.dll', 'C:\\WINDOWS\\system32\\visa64.dll']
+2025-02-21 09:22:43,496 pyvisa DEBUG No user defined library files
+2025-02-21 09:22:43,496 pyvisa DEBUG Reusing ResourceManager with session 4097
+2025-02-21 09:22:43,498 pyvisa DEBUG Closing ResourceManager (session: 4097)
+2025-02-21 09:22:43,498 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:22:43,498 pyvisa DEBUG viDisableEvent(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:43,498 pyvisa DEBUG viDiscardEvents(1, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:43,499 pyvisa DEBUG viClose(1,) -> 0
+2025-02-21 09:22:43,499 pyvisa DEBUG GPIB0::1::INSTR - is closed
+2025-02-21 09:22:43,499 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - closing
+2025-02-21 09:22:43,499 pyvisa DEBUG viDisableEvent(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:43,499 pyvisa DEBUG viDiscardEvents(3, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:43,499 pyvisa DEBUG viClose(3,) -> 0
+2025-02-21 09:22:43,499 pyvisa DEBUG USB0::0x05E6::0x2100::1149087::0::INSTR - is closed
+2025-02-21 09:22:43,499 pyvisa DEBUG COM3 - closing
+2025-02-21 09:22:43,499 pyvisa DEBUG viDisableEvent(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676291
+2025-02-21 09:22:43,499 pyvisa DEBUG viDiscardEvents(2, <EventType.all_enabled: 1073709055>, <EventMechanism.all: 65535>) -> 1073676292
+2025-02-21 09:22:43,506 pyvisa DEBUG viClose(2,) -> 0
+2025-02-21 09:22:43,506 pyvisa DEBUG COM3 - is closed
+2025-02-21 09:22:43,507 pyvisa DEBUG viClose(4097,) -> 0
+2025-02-21 09:22:43,518 matplotlib.colorbar DEBUG locator: <matplotlib.ticker.AutoLocator object at 0x00000151839A1710>
+2025-02-21 09:22:43,556 pyvisa DEBUG GPIB0::1::INSTR - closing
+2025-02-21 09:24:04,495 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:24:36,533 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:25:14,332 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'
+2025-02-21 09:25:15,144 __main__ ERROR An error occurred: NanoScanner.__init__() missing 1 required positional argument: 'com_sr830'

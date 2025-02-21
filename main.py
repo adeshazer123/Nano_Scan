@@ -134,7 +134,7 @@ class MainWindow(QMainWindow):
     def move_stage(self): 
         try: 
             move_position = float(self.move_position_input.text())
-            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
             scanner.move(move_position, 3)
             scanner.close_connection()
             logger.info(f"Moved stage to position {move_position}")
@@ -145,7 +145,7 @@ class MainWindow(QMainWindow):
     def focus_stage(self):
         try: 
             focus_position = float(self.focus_position_input.text())
-            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
             scanner.focus(focus_position, 3)
             scanner.close_connection()
             logger.info(f"Focused stage at position {focus_position}")
