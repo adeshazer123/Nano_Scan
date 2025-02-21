@@ -242,7 +242,7 @@ if __name__ == '__main__':
         args = parser.parse_args()
 
         default_path = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
-        scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR") # Replace with an actual visa resource.
+        scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR") # Replace with an actual visa resource.
         # scanner.set_units('um') #set the default unit
 
         for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
