@@ -56,7 +56,7 @@ class SHRC203VISADriver:
         """
         self._instr = None
         self.rsrc_name = rsrc_name
-        self.unit = self.set_unit(self.default_units)
+        self.set_unit(self.default_units)
         self.loop = [-1, -1, -1]
         self.position = [0, 0, 0]
         self.speed_ini = [-1, -1, -1]
@@ -76,7 +76,7 @@ class SHRC203VISADriver:
         unit_list = ['nm', 'um', 'mm', 'deg', 'pulse']
         if unit in unit_list:
             self.unit = units[unit_list.index(unit)]
-        # self.unit = unit
+
 
     def check_error(self, channel):
         """
@@ -149,9 +149,11 @@ class SHRC203VISADriver:
             return logger.error("Position is None")
         return self.position[channel-1]
 
+
     def query_position(self, channel):
         # units = ["N", "U", "M", "D", "P"]
-        position = self._instr.query(f"Q:S{self.unit}")
+        print(f"self.unit in query_position: {self.unit}")
+        position = self._instr.query("Q:")
         print(position)
         return position
         # try:
@@ -241,4 +243,4 @@ class SHRC203VISADriver:
 
     def close(self):
         """Close the connection with the controller."""
-        pyvisa.ResourceManager().close()
+        pyvisa.ResourceManager().close()        
