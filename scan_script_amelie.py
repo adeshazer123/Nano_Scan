@@ -126,7 +126,10 @@ class NanoScanner:
                 voltage = np.abs(self.keithely.read()) # Measure voltage in Keithley
                 v = np.append(v, voltage)
 
-                r1_value, theta1_value, r2_value, theta2_value = self.read_moke() # Measure MOKE in the lock-in amplifier
+                r1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
+                r2_value, theta2_value = self.harmonics_two(wait_time) # Measure second harmonic in the lock-in amplifier   
+
+                # r1_value, theta1_value, r2_value, theta2_value = self.read_moke() # Measure MOKE in the lock-in amplifier
 
                 r1 = np.append(r1, r1_value)
                 theta1 = np.append(theta1, theta1_value)
