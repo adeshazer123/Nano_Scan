@@ -76,7 +76,7 @@ class SHRC203VISADriver:
         unit_list = ['nm', 'um', 'mm', 'deg', 'pulse']
         if unit in unit_list:
             self.unit = units[unit_list.index(unit)]
-        self.unit = unit
+        # self.unit = unit
 
     def check_error(self, channel):
         """
@@ -149,10 +149,23 @@ class SHRC203VISADriver:
             return logger.error("Position is None")
         return self.position[channel-1]
 
-    def query_position(self, channel): 
-        position = self._instr.query(f"Q:")
-        position = position[channel - 1]
+    def query_position(self, channel):
+        # units = ["N", "U", "M", "D", "P"]
+        position = self._instr.query(f"Q:S{self.unit}")
+        print(position)
         return position
+        # try:
+        #     if self.unit in units:
+        #         position = self._instr.query(f"Q:S{units.index(self.unit)}")
+        #         # position = position.split(",")[channel-1]
+        #         return position
+        # except Exception as e:
+        #     print(e)
+        #     logger.error(f"Error in query_position: {e}")
+        # position = self._instr.query(f"Q:Su") # Q:SM -> mm,
+        # position = position.split(",")[channel-1]
+        # # position = position[channel - 1]
+        # return position
         # position = self._instr.query(???) #TODO Fix this 
 
     def set_speed(self, speed_ini, speed_fin, accel_t, channel): 
