@@ -7,8 +7,8 @@ class SR830VISADriver:
         self.controller = SR830(self.com)
 
     def read_r_theta(self):
-        self.controller.snap('X', 'Y')
-        return self.controller.snap('X', 'Y')
+        self.controller.snap('R', 'Theta')
+        return self.controller.snap('R', 'Theta')
     
     def set_harmonics(self, harmonic):
         self.controller.harmonic = harmonic
