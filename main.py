@@ -239,6 +239,7 @@ class MainWindow(QMainWindow):
 
         if self.canvas.colorbar:
             self.canvas.colorbar.remove()
+            self.canvas.colorbar = None
 
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
         self.canvas.axes.set_xlabel("Position X, Y (um)")
