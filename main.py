@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog 
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot
@@ -77,7 +77,8 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.browse_buttom)
 
         self.file_format_combo = QComboBox(self)
-        self.file_format_combo.addItem(["CSV", "HDF5"])
+        self.file_format_combo.addItem("CSV")
+        self.file_format_combo.addItem("HDF5")
         layout.addWidget(self.file_format_combo)
 
         self.move_position_input = QLineEdit(self)
