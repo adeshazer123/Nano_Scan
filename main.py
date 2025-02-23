@@ -226,7 +226,7 @@ class MainWindow(QMainWindow):
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
         self.canvas.axes.set_xlabel("Position X, Y (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.figure.colorbar(img, ax=self.canvas.axes)
+        self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
 
         self.harmonics1_canvas.axes.plot(x, v, )
