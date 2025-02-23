@@ -191,6 +191,8 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Results", "Displaying scan results...")
     def plot_scan_results(self, df): 
         self.canvas.axes.clear()
+        self.harmonics1_canvas.axes.clear()
+        self.harmonics2_canvas.axes.clear()
         x = df["x (um)"].values
         y = df["y (um)"].values
         v = df["v (V)"].values
@@ -204,6 +206,8 @@ class MainWindow(QMainWindow):
         self.canvas.axes.set_ylabel("Voltage (V)")
         self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
+
+        self.harmonics1_canvas.axes.plot(x, v, )
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

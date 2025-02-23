@@ -150,7 +150,7 @@ class SHRC203VISADriver:
         return self.position[channel-1]
 
     def query_position(self, channel): 
-        position = self._instr.query(f"Q:")
+        position = self._instr.query("Q:")
         position = position[channel - 1]
         return position
         # position = self._instr.query(???) #TODO Fix this 
