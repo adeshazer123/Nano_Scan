@@ -219,6 +219,9 @@ class MainWindow(QMainWindow):
         y_min = np.unique(y)
         v_reshaped = v.reshape(len(y_min), len(x_min))
 
+        if self.canvas.colorbar:
+            self.canvas.colorbar.remove()
+
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
         self.canvas.axes.set_xlabel("Position X, Y (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
