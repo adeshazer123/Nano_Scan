@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog 
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot
@@ -77,7 +77,7 @@ class MainWindow(QMainWindow):
         layout.addWidget(self.browse_buttom)
 
         self.file_format_combo = QComboBox(self)
-        self.file_format_combo.addItem(["CSV", "HDF5"])
+        self.file_format_combo.addItems(["CSV", "HDF5"])
         layout.addWidget(self.file_format_combo)
 
         self.move_position_input = QLineEdit(self)
@@ -225,29 +225,42 @@ class MainWindow(QMainWindow):
     def show_results(self):
         # Implement logic to display scan results
         QMessageBox.information(self, "Results", "Displaying scan results...")
-    def plot_scan_results(self, df): 
-        self.canvas.axes.clear()
-        self.harmonics1_canvas.axes.clear()
-        self.harmonics2_canvas.axes.clear()
-        x = df["x (um)"].values
-        y = df["y (um)"].values
-        v = df["v (V)"].values
+def plot_scan_results(self, df): 
+    self.canvas.axes.clear()
+    self.harmonics1_canvas.axes.clear()
+    self.harmonics2_canvas.axes.clear()
+    
+    x = df["x (um)"].values
+    y = df["y (um)"].values
+    v = df["v (V)"].values
 
-        x_min = np.unique(x)
-        y_min = np.unique(y)
-        v_reshaped = v.reshape(len(y_min), len(x_min))
+    x_min = np.unique(x)
+    y_min = np.unique(y)
+    v_reshaped = v.reshape(len(y_min), len(x_min))
 
-        if self.canvas.colorbar is not None:
-            self.canvas.colorbar.remove()
-            self.canvas.colorbar = None
+    # Remove existing colorbar if it exists
+    if self.canvas.colorbar is not None:
+        self.canvas.colorbar.remove()
+        self.canvas.colorbar = None
 
-        img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
-        self.canvas.axes.set_xlabel("Position X, Y (um)")
-        self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
-        self.canvas.draw()
+    img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
+    self.canvas.axes.set_xlabel("Position X, Y (um)")
+    self.canvas.axes.set_ylabel("Voltage (V)")
+    self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
+    self.canvas.draw()
 
-        self.harmonics1_canvas.axes.plot(x, v, )
+    self.harmonics1_canvas.axes.plot(x, v, label="Harmonics 1d")
+    self.harmonics1_canvas.axes.set_xlabel("Position (um)")
+    self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d")
+    self.harmonics1_canvas.axes.legend()
+
+    self.harmonics2_canvas.axes.plot(y, v, label="Harmonics 2d")
+    self.harmonics2_canvas.axes.set_xlabel("Position (um)")
+    self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d")
+    self.harmonics2_canvas.axes.legend()
+
+    self.harmonics1_canvas.draw()
+    self.harmonics2_canvas.draw()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
