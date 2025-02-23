@@ -13,6 +13,7 @@ class MplCanvas(FigureCanvas):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
         super().__init__(fig)
+        self.colorbar = None    
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -74,6 +75,10 @@ class MainWindow(QMainWindow):
         self.browse_buttom.setFixedWidth(200)
         self.browse_buttom.clicked.connect(self.browse_file)
         layout.addWidget(self.browse_buttom)
+
+        self.file_format_combo = QComboBox(self)
+        self.file_format_combo.addItem(["CSV", "HDF5"])
+        layout.addWidget(self.file_format_combo)
 
         self.move_position_input = QLineEdit(self)
         self.move_position_input.setPlaceholderText("Enter move position")
@@ -198,7 +203,20 @@ class MainWindow(QMainWindow):
             scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
             # Example scan parameters
             df = scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
-            QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
+
+            directory_path = self.file_path_input.text()
+            if directory_path:
+                file_path = self.file_format_combo.currentText()
+                if file_path == "HDF5":
+                    file_path = f"{directory_path}/scan_results.h5"
+                    df.to_hdf(file_path, key='df', mode='w')
+                elif file_path == "CSV":
+                    file_path = f"{directory_path}/scan_results.csv"
+                    df.to_csv(file_path, index=False)
+                QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
+            else: 
+                QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
+
             scanner.close_connection()
             self.plot_scan_results(df)
         except Exception as e:
@@ -219,10 +237,14 @@ class MainWindow(QMainWindow):
         y_min = np.unique(y)
         v_reshaped = v.reshape(len(y_min), len(x_min))
 
+        if self.canvas.colorbar is not None:
+            self.canvas.colorbar.remove()
+            self.canvas.colorbar = None
+
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading = "auto", cmap = "viridis")
         self.canvas.axes.set_xlabel("Position X, Y (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.figure.colorbar(img, ax=self.canvas.axes)
+        self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
 
         self.harmonics1_canvas.axes.plot(x, v, )
