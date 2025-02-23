@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog 
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot
@@ -70,6 +70,11 @@ class MainWindow(QMainWindow):
         self.file_path_input.setFixedWidth(200)
         layout.addWidget(self.file_path_input)
 
+        self.browse_buttom = QPushButton("Browse")
+        self.browse_buttom.setFixedWidth(200)
+        self.browse_buttom.clicked.connect(self.browse_file)
+        layout.addWidget(self.browse_buttom)
+
         self.move_position_input = QLineEdit(self)
         self.move_position_input.setPlaceholderText("Enter move position")
         self.move_position_input.setFixedWidth(200)
@@ -84,6 +89,7 @@ class MainWindow(QMainWindow):
         self.focus_position_input.setPlaceholderText("Enter focus position")
         self.focus_position_input.setFixedWidth(200)
         layout.addWidget(self.focus_position_input)
+   
 
         self.move_stage_button = QPushButton("Move Stage")
         self.move_stage_button.clicked.connect(self.move_stage)
@@ -102,9 +108,11 @@ class MainWindow(QMainWindow):
 
         self.start_scan_button = QPushButton("Start Scan")
         self.start_scan_button.clicked.connect(self.start_scan)
+        self.start_scan_button.setFixedWidth(200)
 
         self.show_results_button = QPushButton("Show Results")
         self.show_results_button.clicked.connect(self.show_results)
+        self.show_results_button.setFixedWidth(200)
 
         layout.addWidget(self.start_scan_button)
         layout.addWidget(self.show_results_button)
@@ -113,33 +121,43 @@ class MainWindow(QMainWindow):
         container.setLayout(layout)
         self.setCentralWidget(container)
 
-        self.setStyleSheet("""QWidget { background-color: #001f3f;
-                           color: #ffffff; 
-                            }
-                           QLineEdit {
-                           padding: 5px;}
-                           border: 1px solid #ccc;
-                           border-radius: 5px;
-                           }
-                           QPushButton {
-                           padding: 10px; 
-                           background-color: #0078d7; 
-                           color: black;
-                           border: none;
-                           border-radius: 5px;
-                           }
-                           QPushButton:hover {
-                           background-color: #0056b3;
-                           }
-                           QPushButton:pressed {
-                           background-color: #003f8a;
-                           }
-                           """)
+        self.setStyleSheet("""
+            QWidget {
+                background-color: #001f3f;
+                color: #ffffff;
+            }
+            QLineEdit {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #003366;
+                color: #ffffff;
+            }
+            QPushButton {
+                padding: 5px;
+                background-color: #0078d7;
+                color: #ffffff;
+                border: none;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #005bb5;
+            }
+            QPushButton:pressed {
+                background-color: #003f8a;
+            }
+        """)
+    @pyqtSlot()
+    def browse_file(self): 
+        file_path = QFileDialog.getExistingDirectory(self, "Select Directory")
+        if file_path:
+            self.file_path_input.setText(file_path)
+
     @pyqtSlot()
     def set_axis(self, axis): 
         try: 
             axis = int(self.set_axis_input.text())
-            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR")
+            scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
             scanner.home(axis)
             scanner.close_connection()
             logger.info(f"Homed axis {axis}")
@@ -191,6 +209,8 @@ class MainWindow(QMainWindow):
         QMessageBox.information(self, "Results", "Displaying scan results...")
     def plot_scan_results(self, df): 
         self.canvas.axes.clear()
+        self.harmonics1_canvas.axes.clear()
+        self.harmonics2_canvas.axes.clear()
         x = df["x (um)"].values
         y = df["y (um)"].values
         v = df["v (V)"].values
@@ -204,6 +224,8 @@ class MainWindow(QMainWindow):
         self.canvas.axes.set_ylabel("Voltage (V)")
         self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
+
+        self.harmonics1_canvas.axes.plot(x, v, )
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
