@@ -13,6 +13,7 @@ class MplCanvas(FigureCanvas):
         fig = Figure(figsize=(width, height), dpi=dpi)
         self.axes = fig.add_subplot(111)
         super().__init__(fig)
+        self.colorbar = None    
 
 class MainWindow(QMainWindow):
     def __init__(self):
