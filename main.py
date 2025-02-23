@@ -237,7 +237,7 @@ class MainWindow(QMainWindow):
         y_min = np.unique(y)
         v_reshaped = v.reshape(len(y_min), len(x_min))
 
-        if self.canvas.colorbar:
+        if self.canvas.colorbar is not None:
             self.canvas.colorbar.remove()
             self.canvas.colorbar = None
 
