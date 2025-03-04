@@ -24,6 +24,7 @@ class MainWindow(QMainWindow):
 
         self.initUI()
         self.scanner = None
+        self.set_axis_input.setText("1")
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -75,6 +76,14 @@ class MainWindow(QMainWindow):
         self.y_step_input.setPlaceholderText("Enter y step")
         grid_layout.addWidget(QLabel("Y Step"), 1, 4)
         grid_layout.addWidget(self.y_step_input, 1, 5)
+
+        self.query_position_button = QPushButton("Query Position")
+        self.query_position_button.setFixedWidth(200) 
+        self.query_position_button.clicked.connect(self.query_position)
+        grid_layout.addWidget(self.query_position_button, 2, 0, 1, 6)
+        self.query_position_label = QLabel(f"Position: {self.query_position()}")
+        grid_layout.addWidget(self.query_position_label, 3, 0, 1, 6)
+
 
         layout.addLayout(grid_layout)
 
@@ -182,6 +191,17 @@ class MainWindow(QMainWindow):
             self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
         else: 
             self.scanner.close_connection()
+    def query_position(self): 
+        try: 
+            axis = int(self.set_axis_input.text())
+            self.scanner.set_axis(axis)
+            position = self.scanner.query_position(axis) 
+            print(f"position {position}")
+            QMessageBox.information(self, "Position", f"Current position: {position}")
+            return position
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+            return None
         
     @pyqtSlot()
     def browse_file(self):
@@ -277,8 +297,8 @@ class MainWindow(QMainWindow):
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
         if self.canvas.colorbar is None: 
             self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
-        else: 
-            pass
+        else:
+            self.canvas.colorbar.update_normal(img) 
         # if self.canvas.colorbar is not None:
         #     self.canvas.colorbar.remove()
         #     self.canvas.colorbar = None

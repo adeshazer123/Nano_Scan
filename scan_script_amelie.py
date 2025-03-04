@@ -44,6 +44,9 @@ class NanoScanner:
     
     def set_axis(self, axis): 
         self.axis = axis
+
+    def query_position(self, axis):
+        return self.shrc.query_position(axis)
     
     def get_position_xyz(self):
         x = self.shrc.get_position(1)
