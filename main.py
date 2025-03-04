@@ -147,7 +147,7 @@ class MainWindow(QMainWindow):
         self.setStyleSheet("""
             QWidget {
                 background-color:rgb(4, 52, 99);
-                color:rgb(247, 247, 250);
+                color:rgb(148, 148, 152);
             }
             QLineEdit {
                 padding: 5px;
@@ -184,7 +184,7 @@ class MainWindow(QMainWindow):
             self.scanner.close_connection()
         
     @pyqtSlot()
-    def browse_file(self): 
+    def browse_file(self):
         file_path = QFileDialog.getExistingDirectory(self, "Select Directory")
         if file_path:
             self.file_path_input.setText(file_path)
@@ -219,11 +219,17 @@ class MainWindow(QMainWindow):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
             x_start = float(self.x_start_input.text())
+            # print(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
+            # print(type(x_stop))
             x_step = float(self.x_step_input.text())
+            # print(type(x_step))
             y_start = float(self.y_start_input.text())
+            # print(type(y_start))
             y_stop = float(self.y_stop_input.text())
+            # print(type(y_stop))
             y_step = float(self.y_step_input.text())
+            # print(type(y_step))
 
             # Example scan parameters
             df = self.scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
@@ -268,15 +274,17 @@ class MainWindow(QMainWindow):
         y_min = np.unique(y)
         v_reshaped = v.reshape(len(y_min), len(x_min))
 
-        # Remove existing colorbar if it exists
-        if self.canvas.colorbar is not None:
-            self.canvas.colorbar.remove()
-            self.canvas.colorbar = None
-
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
+        if self.canvas.colorbar is None: 
+            self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
+        else: 
+            pass
+        # if self.canvas.colorbar is not None:
+        #     self.canvas.colorbar.remove()
+        #     self.canvas.colorbar = None
+
         self.canvas.axes.set_xlabel("Position X, Y (um)")
         self.canvas.axes.set_ylabel("Voltage (V)")
-        self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         self.canvas.draw()
 
         self.harmonics1_canvas.axes.plot(x, v, label="Harmonics 1d")
