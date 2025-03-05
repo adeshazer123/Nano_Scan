@@ -29,17 +29,24 @@ class NanoScanner:
         self.sr830 = SR830(com_sr830)
         self.shrc.open_connection()
         self.keithley.init_hardware()
+        self.axis = 1
     
-    def home(self, axis): 
+    def home(self): 
         for i in range(3): 
-            self.shrc.home(axis)
+            self.shrc.home(self.axis)
             i+=1
             
-    def focus(self, position, axis): 
-        self.shrc.move(position, axis)
+    def focus(self, position): 
+        self.shrc.move(position, self.axis)
 
-    def move(self, position, axis): 
-        self.shrc.move(position, axis)
+    def move(self, position): 
+        self.shrc.move(position, self.axis)
+    
+    def set_axis(self, axis): 
+        self.axis = axis
+
+    def query_position(self, axis):
+        return self.shrc.query_position(axis)
     
     def get_position_xyz(self):
         x = self.shrc.get_position(1)

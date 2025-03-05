@@ -12,6 +12,10 @@ from powermeter import CustomTLPM
 from multizaber import ZaberMultiple
 from ccsxxx import CCSXXX
 
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
+
 class MokeSpectro:
     def __init__(self, path_root, com_shrc, com_keithley, com_sr830, com_zaber, index_zaber, index_powermeter, visa_ccs):
         self.path_root = Path(path_root)
@@ -37,7 +41,7 @@ class MokeSpectro:
         self.shrc.home(1)
         self.shrc.home(2)
         self.shrc.home(3)
-        print("Waiting for 5 s")
+        logger.info("Waiting for 5 seconds")
         time.sleep(5)
 
         self.shrc.move(8.282 * 1e3, 3)
@@ -84,7 +88,7 @@ class MokeSpectro:
         return x, v
 
     def auto_focus(self, x, y, z):
-        print(f"Moving to ({x},{y})")
+        logger.info(f"Moving to ({x},{y})")
         self.shrc.move(x, 1)
         time.sleep(2)
         self.shrc.move(y, 2)
@@ -92,7 +96,7 @@ class MokeSpectro:
         z_array, v_array = self.scan1d(z-20, z+20, 0.5, axis=3, myname="scan1d_focus", wait_time=0.2)
         z_max = z_array[np.argmax(v_array)]
 
-        print(f"moving to z={z_max}")
+        logger.info(f"Moving to z={z_max}")
         self.shrc.move(z_max, 3)
         time.sleep(1)
 
@@ -147,6 +151,7 @@ class MokeSpectro:
             self.zaber.move_relative(zaber_increment, self.index_zaber)
             time.sleep(wait_time)
             wavelength_current = self.read_wavelength()
+            logger.info(f"Current wavelength: {wavelength_current}")
             power = self.read_power(wavelength_current)
 
             voltage = np.abs(self.keithley.read())
@@ -163,7 +168,7 @@ class MokeSpectro:
             p = np.append(p, power)
 
             res = {"wavelength (nm)": wavelength_current, "ref power (W)": power, "v (V)": voltage, "moke": moke}
-            print(res)
+            logger.info(res)
 
             plt.clf()
             plt.subplot(121)
@@ -191,7 +196,7 @@ class MokeSpectro:
         df.to_csv(self.generate_filename(myname, "csv"))
 
 if __name__ == "__main__":
-    path_root = r"C:\Users\xxx\yyy\zzz"
+    path_root = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi\test")
     com_shrc = "ASRL3::INSTR"
     com_keithley = "USB0::0x05E6::0x2100::1149087::INSTR"
     com_sr830 = "GPIB0::1::INSTR"
