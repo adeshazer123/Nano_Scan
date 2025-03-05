@@ -24,7 +24,6 @@ class MainWindow(QMainWindow):
 
         self.initUI()
         self.scanner = None
-        self.set_axis_input.setText("1")
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -81,7 +80,7 @@ class MainWindow(QMainWindow):
         self.query_position_button.setFixedWidth(200) 
         self.query_position_button.clicked.connect(self.query_position)
         grid_layout.addWidget(self.query_position_button, 2, 0, 1, 6)
-        self.query_position_label = QLabel(f"Position: {self.query_position()}")
+        self.query_position_label = QLabel(f"Position: ")
         grid_layout.addWidget(self.query_position_label, 3, 0, 1, 6)
 
 
@@ -191,13 +190,14 @@ class MainWindow(QMainWindow):
             self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
         else: 
             self.scanner.close_connection()
+    @pyqtSlot()
     def query_position(self): 
         try: 
             axis = int(self.set_axis_input.text())
             self.scanner.set_axis(axis)
             position = self.scanner.query_position(axis) 
             print(f"position {position}")
-            QMessageBox.information(self, "Position", f"Current position: {position}")
+            self.query_position_label.setText(f"Position: {position}")
             return position
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
@@ -212,9 +212,12 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def set_axis(self): 
         try: 
-            axis = int(self.set_axis_input.text())
-            self.scanner.set_axis(axis)
-            logger.info(f"NanoScanner initialized at {axis}")
+            if self.set_axis_input is None: 
+                self.scanner.set_axis(1)
+            else:
+                axis = int(self.set_axis_input.text())
+                self.scanner.set_axis(axis)
+                logger.info(f"NanoScanner initialized at {axis}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
