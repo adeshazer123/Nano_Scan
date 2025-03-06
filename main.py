@@ -80,7 +80,7 @@ class MainWindow(QMainWindow):
         position_layout = QVBoxLayout() 
 
         self.query_position_label = QLabel(f"Position: ")
-        self.query_position_label.setStyleSheet("font-weight: bold; font-size: 18px;")
+        # self.query_position_label.setStyleSheet("font-weight: bold; font-size: 18px;")
         position_layout.addWidget(self.query_position_label)
 
         self.query_position_button = QPushButton("Query Position")
