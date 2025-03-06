@@ -87,7 +87,7 @@ class NanoScanner:
         z_array, v_array = self.scan1d(z-20, z+20, 0.5, axis = 3, myname = "auto_focus")
         z_max = z_array[np.argmax(v_array)]
 
-        self.shrc.move(z, 3)
+        self.shrc.move(z_max, 3)
 
 
     def generate_filename(self ,path_root, myname, extension="csv"):
@@ -263,31 +263,3 @@ if __name__ == '__main__':
 
         scanner.close_connection()
 
-
-#############COMMENTS################
-# *  from .... Keithley import ...
-# parameters
-
-# # initialize SHRC
-# com = "ASRL3::INSTR"
-# shrc = SHRC203(com)
-# shrc.open_connection()
-
-# * initialize Keithely
-# ( 1) USB0::0x05E6::0x2100::1149087::INSTR -> KEITHLEY INSTRUMENTS INC.,MODEL 2100,1,01.08-01-01
-
-# Move to home of Axis 1, 2, and 3 (X, Y, Z, respectively)
-# shrc.home(1)
-# shrc.home(2)
-# shrc.home(3)
-
-# Move relative
-# shrc.move_relative(10,1)
-
-# Focus (move absolute)
-# shrc.move(8.282*1e3 ,3) # position (um), axis
-
-
-
-
-#################END OF COMMENTS######

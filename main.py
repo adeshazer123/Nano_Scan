@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot
@@ -27,7 +27,7 @@ class MainWindow(QMainWindow):
 
     def initUI(self):
         layout = QVBoxLayout()
-        grid_layout = QGridLayout() 
+        grid_layout = QGridLayout()
 
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
@@ -75,15 +75,21 @@ class MainWindow(QMainWindow):
         self.y_step_input.setPlaceholderText("Enter y step")
         grid_layout.addWidget(QLabel("Y Step"), 1, 4)
         grid_layout.addWidget(self.y_step_input, 1, 5)
+        
+        position_group = QGroupBox("Position Display")
+        position_layout = QVBoxLayout() 
+
+        self.query_position_label = QLabel(f"Position: ")
+        self.query_position_label.setStyleSheet("font-weight: bold; font-size: 18px;")
+        position_layout.addWidget(self.query_position_label)
 
         self.query_position_button = QPushButton("Query Position")
         self.query_position_button.setFixedWidth(200) 
         self.query_position_button.clicked.connect(self.query_position)
-        grid_layout.addWidget(self.query_position_button, 2, 0, 1, 6)
-        self.query_position_label = QLabel(f"Position: ")
-        grid_layout.addWidget(self.query_position_label, 3, 0, 1, 6)
+        position_layout.addWidget(self.query_position_button)
 
-
+        position_group.setLayout(position_layout)
+        layout.addWidget(position_group)
         layout.addLayout(grid_layout)
 
         self.file_path_input = QLineEdit(self)
@@ -96,8 +102,10 @@ class MainWindow(QMainWindow):
         self.browse_buttom.clicked.connect(self.browse_file)
         layout.addWidget(self.browse_buttom)
 
+        layout.addWidget(QLabel("Select File Format"))
         self.file_format_combo = QComboBox(self)
         self.file_format_combo.addItems(["CSV", "HDF5"])
+        self.file_format_combo.setFixedWidth(200)   
         layout.addWidget(self.file_format_combo)
 
         self.move_position_input = QLineEdit(self)
@@ -105,46 +113,53 @@ class MainWindow(QMainWindow):
         self.move_position_input.setFixedWidth(200)
         layout.addWidget(self.move_position_input)
 
-        self.set_axis_input = QLineEdit(self)   
-        self.set_axis_input.setPlaceholderText("Enter axis")
+        self.move_stage_button = QPushButton("Move Stage")
+        self.move_stage_button.clicked.connect(self.move_stage)
+        self.move_stage_button.setFixedWidth(200)
+        layout.addWidget(self.move_stage_button)
+
+        layout.addWidget(QLabel("Select Axis"))
+        self.set_axis_input = QComboBox(self)
+        self.set_axis_input.addItems(["1", "2", "3"])  
         self.set_axis_input.setFixedWidth(200)
+        self.set_axis_input.currentIndexChanged.connect(self.query_position)
         layout.addWidget(self.set_axis_input)
 
         self.focus_position_input = QLineEdit(self)
-        self.focus_position_input.setPlaceholderText("Enter focus position")
+        self.focus_position_input.setPlaceholderText("Enter focus center")
         self.focus_position_input.setFixedWidth(200)
         layout.addWidget(self.focus_position_input)
+
+        self.focus_stage_button = QPushButton("Auto Focus")
+        self.focus_stage_button.clicked.connect(self.focus_stage)
+        self.focus_stage_button.setFixedWidth(200)
+        layout.addWidget(self.focus_stage_button)
    
         self.initialize_button = QPushButton("Initialize")
         self.initialize_button.clicked.connect(self.initalize)
         self.initialize_button.setFixedWidth(200)
         layout.addWidget(self.initialize_button)
 
-        self.move_stage_button = QPushButton("Move Stage")
-        self.move_stage_button.clicked.connect(self.move_stage)
-        self.move_stage_button.setFixedWidth(200)
-        layout.addWidget(self.move_stage_button)
 
-        self.set_axis_button = QPushButton("Set Axis")
-        self.set_axis_button.clicked.connect(self.set_axis)
-        self.set_axis_button.setFixedWidth(200)
-        layout.addWidget(self.set_axis_button)
 
-        self.focus_stage_button = QPushButton("Focus Stage")
-        self.focus_stage_button.clicked.connect(self.focus_stage)
-        self.focus_stage_button.setFixedWidth(200)
-        layout.addWidget(self.focus_stage_button)
+        # self.set_axis_button = QPushButton("Set Axis")
+        # self.set_axis_button.clicked.connect(self.set_axis)
+        # self.set_axis_button.setFixedWidth(200)
+        # layout.addWidget(self.set_axis_button)
+
+
+
 
         self.start_scan_button = QPushButton("Start Scan")
         self.start_scan_button.clicked.connect(self.start_scan)
         self.start_scan_button.setFixedWidth(200)
 
-        self.show_results_button = QPushButton("Show Results")
-        self.show_results_button.clicked.connect(self.show_results)
-        self.show_results_button.setFixedWidth(200)
+        # self.show_results_button = QPushButton("Show Results")
+        # self.show_results_button.clicked.connect(self.show_results)
+        # self.show_results_button.setFixedWidth(200)
 
         layout.addWidget(self.start_scan_button)
-        layout.addWidget(self.show_results_button)
+        # layout.addWidget(self.show_results_button)
 
 
 
@@ -193,11 +208,12 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def query_position(self): 
         try: 
-            axis = int(self.set_axis_input.text())
+            axis = int(self.set_axis_input.currentText())
             self.scanner.set_axis(axis)
             position = self.scanner.query_position(axis) 
             print(f"position {position}")
             self.query_position_label.setText(f"Position: {position}")
+            
             return position
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
@@ -209,17 +225,17 @@ class MainWindow(QMainWindow):
         if file_path:
             self.file_path_input.setText(file_path)
 
-    @pyqtSlot()
-    def set_axis(self): 
-        try: 
-            if self.set_axis_input is None: 
-                self.scanner.set_axis(1)
-            else:
-                axis = int(self.set_axis_input.text())
-                self.scanner.set_axis(axis)
-                logger.info(f"NanoScanner initialized at {axis}")
-        except Exception as e:
-            logger.error(f"An error occurred: {str(e)}")
+    # @pyqtSlot()
+    # def set_axis(self): 
+    #     try: 
+    #         if self.set_axis_input is None: 
+    #             self.scanner.set_axis(1)
+    #         else:
+    #             axis = int(self.set_axis_input.text())
+    #             self.scanner.set_axis(axis)
+    #             logger.info(f"NanoScanner initialized at {axis}")
+    #     except Exception as e:
+    #         logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
     def move_stage(self): 
         try: 
@@ -232,9 +248,11 @@ class MainWindow(QMainWindow):
     @pyqtSlot() 
     def focus_stage(self):
         try: 
-            focus_position = float(self.focus_position_input.text())
-            self.scanner.focus(focus_position)
-            logger.info(f"Focused stage at position {focus_position}")
+            rough_focus = float(self.focus_position_input.text())
+            x_start = float(self.x_start_input.text())
+            y_start = float(self.y_start_input.text())
+            self.scanner.auto_focus(x_start, y_start, rough_focus)
+            # logger.info(f"Focused stage at position {focus_position}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
