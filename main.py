@@ -1,8 +1,8 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
 import sys
 import numpy as np
-from PyQt5.QtCore import pyqtSlot
+from PyQt5.QtCore import pyqtSlot, Qt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas 
 import pandas as pd
@@ -134,14 +134,27 @@ class MainWindow(QMainWindow):
         self.focus_stage_button.clicked.connect(self.focus_stage)
         self.focus_stage_button.setFixedWidth(200)
         layout.addWidget(self.focus_stage_button)
-   
+
+        initialize_container = QVBoxLayout()
+
+        initalize_layout = QHBoxLayout()
         self.initialize_button = QPushButton("Initialize")
         self.initialize_button.clicked.connect(self.initalize)
         self.initialize_button.setFixedWidth(200)
-        layout.addWidget(self.initialize_button)
+        initalize_layout.addWidget(self.initialize_button)
 
+        self.green_laser_button = QPushButton()
+        self.green_laser_button.setFixedWidth(20)
+        self.green_laser_button.setFixedHeight(20)
+        self.green_laser_button.setStyleSheet("background-color: red; border-radius: 10px;")
+        initalize_layout.addWidget(self.green_laser_button)
 
+        initalize_layout.setAlignment(Qt.AlignLeft)
 
+        initialize_container.addLayout( initalize_layout)
+
+# Finally, add the container to the main layout
+        layout.addLayout(initialize_container)
         # self.set_axis_button = QPushButton("Set Axis")
         # self.set_axis_button.clicked.connect(self.set_axis)
         # self.set_axis_button.setFixedWidth(200)
@@ -203,8 +216,10 @@ class MainWindow(QMainWindow):
     def initalize(self):
         if self.scanner is None:
             self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
+            self.green_laser_button.setStyleSheet("background-color: green; border-radius: 10px;")
         else: 
             self.scanner.close_connection()
+            self.green_laser_button.setStyleSheet("background-color: red; border-radius: 10px;")
     @pyqtSlot()
     def query_position(self): 
         try: 
