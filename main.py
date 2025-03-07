@@ -118,6 +118,16 @@ class MainWindow(QMainWindow):
         self.move_stage_button.setFixedWidth(200)
         layout.addWidget(self.move_stage_button)
 
+        self.move_relative_input = QLineEdit(self)
+        self.move_relative_input.setPlaceholderText("Enter relative move")
+        self.move_relative_input.setFixedWidth(200)
+        layout.addWidget(self.move_relative_input)
+
+        self.move_relative_button = QPushButton("Move Relative")
+        self.move_relative_button.clicked.connect(self.move_stage)
+        self.move_relative_button.setFixedWidth(200)
+        layout.addWidget(self.move_relative_button)
+
         layout.addWidget(QLabel("Select Axis"))
         self.set_axis_input = QComboBox(self)
         self.set_axis_input.addItems(["1", "2", "3"])  
@@ -254,9 +264,14 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def move_stage(self): 
         try: 
-            move_position = float(self.move_position_input.text())
-            self.scanner.move(move_position)
-            logger.info(f"Moved stage to position {move_position}")
+            if self.move_relative_button.isChecked():
+                move_relative = float(self.move_relative_input.text())
+                self.scanner.move_relative(move_relative, self.set_axis_input.currentText())
+                logger.info(f"Moved stage to relative position {move_relative}")
+            elif self.move_stage_button.isChecked(): 
+                move_position = float(self.move_position_input.text())
+                self.scanner.move(move_position, self.set_axis_input.currentText())
+                logger.info(f"Moved stage to position {move_position}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     
