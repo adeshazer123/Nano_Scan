@@ -264,11 +264,12 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def move_stage(self): 
         try: 
-            if self.move_relative_button.isChecked():
+            sender = self.sender()
+            if sender == self.move_relative_button:
                 move_relative = float(self.move_relative_input.text())
                 self.scanner.move_relative(move_relative, self.set_axis_input.currentText())
                 logger.info(f"Moved stage to relative position {move_relative}")
-            elif self.move_stage_button.isChecked(): 
+            elif sender == self.move_stage_button:
                 move_position = float(self.move_position_input.text())
                 self.scanner.move(move_position, self.set_axis_input.currentText())
                 logger.info(f"Moved stage to position {move_position}")
@@ -358,17 +359,21 @@ class MainWindow(QMainWindow):
         self.canvas.axes.set_ylabel("Voltage (V)")
         self.canvas.draw()
 
-        self.harmonics1_canvas.axes.plot(x, v, label="Harmonics 1d")
+        harmonics1_data = self.scanner.harmonics_one()
+        harmonics2_data = self.scanner.harmonics_two()
+
+        self.harmonics1_canvas.axes.clear()
+        self.harmonics1_canvas.axes.plot(harmonics1_data['x'], harmonics1_data['v'], label="Harmonics 1d")
         self.harmonics1_canvas.axes.set_xlabel("Position (um)")
         self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d")
         self.harmonics1_canvas.axes.legend()
+        self.harmonics1_canvas.draw()
 
-        self.harmonics2_canvas.axes.plot(y, v, label="Harmonics 2d")
+        self.harmonics2_canvas.axes.clear()
+        self.harmonics2_canvas.axes.plot(harmonics2_data['x'], harmonics2_data['v'], label="Harmonics 2d")
         self.harmonics2_canvas.axes.set_xlabel("Position (um)")
         self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d")
         self.harmonics2_canvas.axes.legend()
-
-        self.harmonics1_canvas.draw()
         self.harmonics2_canvas.draw()
 
 if __name__ == "__main__":
