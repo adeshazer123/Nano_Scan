@@ -230,7 +230,7 @@ class SHRC203VISADriver:
 
     def stop(self, channel):
         """Stop the stage"""
-        self._instr.write(f"L:{channel}")
+        self._instr.query(f"L:{channel}")
         # self.wait_for_ready(channel)
 
     def read_state(self, channel):

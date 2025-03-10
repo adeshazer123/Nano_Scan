@@ -7,6 +7,9 @@ import pandas as pd
 import logging
 import argparse
 import numpy as np
+from powermeter import CustomTLPM
+from ccsxxx import CCSXXX
+from multizaber import ZaberMultiple
 from shrc203_VISADriver import SHRC203VISADriver as SHRC203
 from keithley2100_VISADriver import Keithley2100VISADriver as Keithley
 from sr830_VISADriver import SR830VISADriver as SR830
@@ -22,11 +25,16 @@ logging.basicConfig(filename=logname,
 logger = logging.getLogger('scanTest')
 
 class NanoScanner: 
-    def __init__(self, com_shrc, com_keithley, com_sr830):
+    def __init__(self, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx):
         self.path_root = Path(r"C:\Users\DK-microscope\Measurement Data\Astha\keithley") #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
         self.shrc = SHRC203(com_shrc)
         self.keithley = Keithley(com_keithley)
         self.sr830 = SR830(com_sr830)
+        self.pwmeter = CustomTLPM()
+        self.zaber = ZaberMultiple()
+        self.wavelength = CCSXXX(com_ccsx)
+        self.wavelength.connect()
+        self.zaber.connect(com_zaber)
         self.shrc.open_connection()
         self.keithley.init_hardware()
         self.axis = 1
@@ -97,6 +105,19 @@ class NanoScanner:
         filename = Path.joinpath(path_root,f"{prefix}_{myname}.{extension}")
         return filename
 
+    
+    def get_wavelength(self): 
+        wave = self.wavelength.get_wavelength_data()
+        intensity = self.wavelength.get_scan_data()
+        return wave[intensity.argmax()]
+
+    def wavelength_to_position(self, wavelength): 
+        position = -66.5 * wavelength + 63840
+        return position * 1e-3
+    
+    def get_power(self): 
+        return self.pwmeter.get_power()
+
     def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke", wait_time = 0.2):
         x_scan = np.arrange(x_start, x_stop, x_step)
         y_scan = np.arrange(y_start, y_stop, y_step)
@@ -142,7 +163,6 @@ class NanoScanner:
                 theta1 = np.append(theta1, theta1_value)
                 x2 = np.append(x2, x2_value)
                 theta2 = np.append(theta2, theta2_value)
-
                 plt.clf()
 
                 plt.subplot(121)
@@ -152,14 +172,76 @@ class NanoScanner:
                 plt.subplot(122)
                 plt.scatter(x, y, c=x2/v) # TODO replace with theta_k
                 plt.title('x2/v')
+                plt.xlabel('Position (um)')
+                plt.ylabel('x2/v')
+                plt.pause(0.05)
+
+                plt.subplot(111)
+                plt.scatter(x, y, c=x1/v)
+                plt.title('x1/v')
+                plt.xlabel('Position (um)')
+                plt.ylabel('x1/v')
                 plt.pause(0.05)
 
                 # also plot x,y,x2/v, x1/v
         df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v})
         return df
 
-    def moke_spectroscopy(self):
-        pass                
+    def moke_spectroscopy(self, step, index_zaber):
+        step = 5
+        x, y, z = self.get_position_xyz()
+        voltage = np.array([])
+        power = np.array([])
+        moke = np.array([])
+        wavelength = np.array([])
+        r1 = np.array([])
+        theta1 = np.array([])
+        r2 = np.array([])
+        theta2 = np.array([])
+        position = np.array([])
+
+        plt.ion() 
+
+        self.zaber.home(1)
+        wavelength = self.get_wavelength()
+
+        while wavelength > 700:
+            zaber_shift = 13.3 / (970 - 690) * step
+            self.zaber.move_relative(zaber_shift, index_zaber)
+            time.sleep(0.5)
+            wavelength_read = self.get_wavelength()
+            power = self.get_power()
+
+            voltage = np.abs(self.keithley.read())
+            v = np.append(voltage, v)
+            wavelength = np.append(wavelength, wavelength_read)
+
+            r1_value, theta1 = self.harmonics_one(0.5)
+            r2_value, theta2 = self.harmonics_two(0.5)
+            r1 = np.append(r1, r1_value)
+            theta1 = np.append(theta1, theta1)
+            r2 = np.append(r2, r2_value)
+            theta2 = np.append(theta2, theta2)
+            moke = np.append(moke, r2_value / voltage / power)
+            power = np.append(power, power)
+
+            #Plotting the wavelength vs MOKE values being read
+            plt.clf()
+            plt.subplot(121)
+            plt.plot(wavelength, voltage / power, "-")
+            plt.title("Reflection")
+            plt.xlabel("Wavelength (nm)")
+            plt.ylabel("Reflection (a.u.)")
+
+            plt.subplot(122)
+            plt.plot(wavelength, moke, "o")
+            plt.title("Wavelength vs MOKE")
+            plt.xlabel("Wavelength (nm)")
+            plt.ylabel("MOKE (a.u.)")
+            plt.pause(0.05)
+
+        df = pd.DataFrame({"wavelength (nm)":wavelength, "v (V)":v, "r1":r1, "theta1":theta1, "r2":r2, "theta2":theta2, "moke":moke})
+        return df
 
     def scan1d(self, x_start, x_stop, x_step, axis =1, myname = "scan1d", wait_time = 0.2):
         """ Scan 1D area with SHRC203 and Keithley 2100
