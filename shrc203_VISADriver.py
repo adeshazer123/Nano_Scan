@@ -119,7 +119,7 @@ class SHRC203VISADriver:
             logger.error(f"Error connecting to {self.rsrc_name}: {e}")
     
     def set_mode(self):
-        self._instr.write("MODE:HOST")
+        self._instr.query("MODE:HOST")
 
     def set_loop(self, loop : dict, channel : int):
         """
@@ -127,7 +127,7 @@ class SHRC203VISADriver:
         1: Open loop
         0: Close loop
         """
-        self._instr.write(f"F:{channel}{loop}")
+        self._instr.query(f"F:{channel}{loop}")
         self.loop[channel-1] = loop
 
     def get_loop(self, channel):
@@ -140,10 +140,10 @@ class SHRC203VISADriver:
         Move the specified channel to the position.
         """
         if position >= 0:
-            self._instr.write(f"A:{channel}+{self.unit}{position}")
+            self._instr.query(f"A:{channel}+{self.unit}{position}")
         else:
-            self._instr.write(f"A:{channel}-{self.unit}{abs(position)}")
-        self._instr.write("G:")
+            self._instr.query(f"A:{channel}-{self.unit}{abs(position)}")
+        self._instr.query("G:")
         self.wait_for_ready(channel)
         self.position[channel-1] = position
         time.sleep(2)
@@ -179,7 +179,7 @@ class SHRC203VISADriver:
         """
 
         if 0 < speed_ini <= speed_fin and accel_t > 0:
-            self._instr.write(f"D:{channel},{speed_ini},{speed_fin},{accel_t}")
+            self._instr.query(f"D:{channel},{speed_ini},{speed_fin},{accel_t}")
         else:
             Exception("Invalid parameters")
 
@@ -203,15 +203,15 @@ class SHRC203VISADriver:
     def move_relative(self, position, channel):
         """Move the stage to a relative position."""
         if position >= 0:
-            self._instr.write(f"M:{channel}+{self.unit}{position}")
+            self._instr.query(f"M:{channel}+{self.unit}{position}")
         else:
-            self._instr.write(f"M:{channel}-{self.unit}{abs(position)}")
-        self._instr.write("G:")
+            self._instr.query(f"M:{channel}-{self.unit}{abs(position)}")
+        self._instr.query("G:")
         self.wait_for_ready(channel)
 
     def home(self, channel):
         """Move the stage to the home position."""
-        self._instr.write(f"H:{channel}")
+        self._instr.query(f"H:{channel}")
         self.wait_for_ready(channel)
         
 
