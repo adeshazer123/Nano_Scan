@@ -38,9 +38,6 @@ class MainWindow(QMainWindow):
         self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        # grid_layout.addWidget(self.canvas, 2, 0)
-        # grid_layout.addWidget(self.harmonics1_canvas, 2, 2)
-        # grid_layout.addWidget(self.harmonics2_canvas, 2,4)
 
         self.tabs = QTabWidget()
         self.tabs.setTabPosition(QTabWidget.North)
