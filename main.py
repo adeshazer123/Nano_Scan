@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTimer
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot, Qt
@@ -24,6 +24,8 @@ class MainWindow(QMainWindow):
 
         self.initUI()
         self.scanner = None
+        self.scan_timer = QTimer(self)
+        self.scan_timer.timeout.connect(self.update_scan_plot)
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -162,30 +164,13 @@ class MainWindow(QMainWindow):
         initalize_layout.setAlignment(Qt.AlignLeft)
 
         initialize_container.addLayout( initalize_layout)
-
-# Finally, add the container to the main layout
         layout.addLayout(initialize_container)
-        # self.set_axis_button = QPushButton("Set Axis")
-        # self.set_axis_button.clicked.connect(self.set_axis)
-        # self.set_axis_button.setFixedWidth(200)
-        # layout.addWidget(self.set_axis_button)
-
-
-
 
         self.start_scan_button = QPushButton("Start Scan")
         self.start_scan_button.clicked.connect(self.start_scan)
         self.start_scan_button.setFixedWidth(200)
 
-        # self.show_results_button = QPushButton("Show Results")
-        # self.show_results_button.clicked.connect(self.show_results)
-        # self.show_results_button.setFixedWidth(200)
-
         layout.addWidget(self.start_scan_button)
-        # layout.addWidget(self.show_results_button)
-
-
-
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
@@ -304,6 +289,8 @@ class MainWindow(QMainWindow):
             # print(type(y_step))
 
             # Example scan parameters
+            self.scan_data = []
+            self.scan_timer.start(1000)
             df = self.scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
 
             # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
@@ -327,6 +314,16 @@ class MainWindow(QMainWindow):
             self.plot_scan_results(df)
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+    
+    def update_scan_plot(self):
+        try:
+            new_data = self.scanner.get_latest_scan_data()
+            if new_data: 
+                self.scan_data.append(new_data)
+                self.plot_scan_results(pd.DataFrame(self.scan_data))
+        except Exception as e:
+            logger.error(f"An error occurred: {str(e)}")
+            self.scan_timer.stop()
     @pyqtSlot()
     def show_results(self):
         # Implement logic to display scan results

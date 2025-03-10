@@ -55,24 +55,24 @@ class NanoScanner:
         return x, y, z
     def harmonics_one(self, wait_time): 
         self.sr830.set_harmonics(1)
-        self.sr830.read_r_theta()
+        self.sr830.read_x_theta()
         time.sleep(wait_time)
-        r1, theta1 = self.sr830.read_r_theta()
-        return r1, theta1
+        x1, theta1 = self.sr830.read_x_theta()
+        return x1, theta1
 
     def harmonics_two(self, wait_time): 
         """Reads the r and theta values for the second harmonic
         Args: 
             wait_time (float): Time to wait between measurements
             Returns:
-            r2 (float): r value for the second harmonic
+            x2 (float): r value for the second harmonic
             theta2 (float): theta value for the second harmonic
             """
         self.sr830.set_harmonics(2)
-        self.sr830.read_r_theta()
+        self.sr830.read_x_theta()
         time.sleep(wait_time)
-        r2, theta2 = self.sr830.read_r_theta()
-        return r2, theta2
+        x2, theta2 = self.sr830.read_x_theta()
+        return x2, theta2
     def auto_focus(self, x, y, z):
         """Auto focus for the SHRC203 scanner 
         Args: 
@@ -104,9 +104,9 @@ class NanoScanner:
         x = np.array([])
         y = np.array([])
         v = np.array([])
-        r1 = np.array([])
+        x1 = np.array([])
         theta1 = np.array([]) 
-        r2 = np.array([]) 
+        x2 = np.array([]) 
         theta2 = np.array([]) 
         Rv = np.array([])
 
@@ -133,29 +133,33 @@ class NanoScanner:
                 voltage = np.abs(self.keithely.read()) # Measure voltage in Keithley
                 v = np.append(v, voltage)
 
-                r1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
-                r2_value, theta2_value = self.harmonics_two(wait_time) # Measure second harmonic in the lock-in amplifier   
+                x1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
+                x2_value, theta2_value = self.harmonics_two(wait_time) # Measure second harmonic in the lock-in amplifier   
 
-                # r1_value, theta1_value, r2_value, theta2_value = self.read_moke() # Measure MOKE in the lock-in amplifier
+                # x1_value, theta1_value, x2_value, theta2_value = self.read_moke() # Measure MOKE in the lock-in amplifier
 
-                r1 = np.append(r1, r1_value)
+                x1 = np.append(x1, x1_value)
                 theta1 = np.append(theta1, theta1_value)
-                r2 = np.append(r2, r2_value)
+                x2 = np.append(x2, x2_value)
                 theta2 = np.append(theta2, theta2_value)
-                Rv= np.append(Rv, r2_value/voltage)
-                theta_k = r1**2+r2**2+theta1+theta2 # TODO correct this equiation
 
                 plt.clf()
 
                 plt.subplot(121)
                 plt.scatter(x, y, c=v)
-
                 plt.title('Reflection')
 
                 plt.subplot(122)
-                plt.scatter(x, y, c=Rv) # TODO replace with theta_k
-                plt.title('R/v')
+                plt.scatter(x, y, c=x2/v) # TODO replace with theta_k
+                plt.title('x2/v')
                 plt.pause(0.05)
+
+                # also plot x,y,x2/v, x1/v
+        df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v})
+        return df
+
+    def moke_spectroscopy(self):
+        pass                
 
     def scan1d(self, x_start, x_stop, x_step, axis =1, myname = "scan1d", wait_time = 0.2):
         """ Scan 1D area with SHRC203 and Keithley 2100
