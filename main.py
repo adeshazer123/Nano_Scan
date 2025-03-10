@@ -16,6 +16,12 @@ class MplCanvas(FigureCanvas):
         super().__init__(fig)
         self.colorbar = None  
 
+    def move_home(self, parent = None): 
+        self.move()
+        initial_position = self.query_position()
+        self.move(initial_position)
+        self.move
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
