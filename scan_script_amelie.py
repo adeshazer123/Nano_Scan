@@ -27,8 +27,8 @@ logger = logging.getLogger('scanTest')
 from ccsxxx import CCSXXX
 
 class NanoScanner: 
-    def __init__(self, path_root, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx, com_pem, index_powermeter=0, index_zaber=1):
-        self.path_root = Path(path_root) #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
+    def __init__(self, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx, com_pem, index_powermeter=0, index_zaber=1):
+        # self.path_root = Path(r"C:\Users\DK-microscope\Measurement Data") #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
         self.shrc = SHRC203(com_shrc)
         self.keithley = Keithley(com_keithley)
         self.sr830 = SR830(com_sr830)
@@ -235,9 +235,9 @@ class NanoScanner:
             theta1 = np.append(theta1, theta1_value)
             x2 = np.append(x2, x2_value)
             theta2 = np.append(theta2, theta2_value)
-            kerr_value = x2_value / voltage_read / power_read
+            kerr_value = x2_value / voltage_read
             kerr = np.append(kerr, kerr_value)
-            ellip_value = x1_value / voltage_read / power_read
+            ellip_value = x1_value / voltage_read
             ellip = np.append(ellip, ellip_value)
             power = np.append(power, power_read)
 
@@ -349,7 +349,7 @@ class NanoScanner:
 
         plt.pcolormesh(x_scan,y_scan,v.reshape(len(x_scan), len(y_scan)), shading="auto")
         plt.colorbar()
-        plt.savefig(self.generate_filename(self.path_root,"scan", "png"))
+        # plt.savefig(self.generate_filename(self.path_root,"scan", "png"))
 
         df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v})
         return df
@@ -365,18 +365,17 @@ if __name__ == '__main__':
         parser.add_argument('num_scans', type = int, help = 'Number of scans to perform')
         args = parser.parse_args()
 
-        path_root = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
-        scanner = NanoScanner(path_root,"COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR", com_zaber="COM5", com_ccsx='USB0::0x1313::0x8087::M00934802::RAW', com_pem="ASRL6::INSTR") # Replace with an actual visa resource.
+        scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR", com_zaber="COM5", com_ccsx='USB0::0x1313::0x8087::M00934802::RAW', com_pem="ASRL6::INSTR") # Replace with an actual visa resource.
         index_zaber = 1
         index_powermeter = 0
 
-        # for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
-        #     # scanner.home() #change axis value
-        #     # scanner.focus(8.282*1e3, 3) #change to values that make sense
-        #     # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
-        #     # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
+        for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
+            # scanner.home() #change axis value
+            # scanner.focus(8.282*1e3, 3) #change to values that make sense
+            # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
+            # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
 
-        #     df = scanner.moke_spectroscopy(10,1)
-        #     scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
+            df = scanner.moke_spectroscopy(10,1)
+            # scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
 
-        # scanner.close_connection()
+        scanner.close_connection()

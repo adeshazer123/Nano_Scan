@@ -1,8 +1,8 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTimer
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
 import sys
 import numpy as np
-from PyQt5.QtCore import pyqtSlot, Qt
+from PyQt5.QtCore import pyqtSlot, Qt, QTimer
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas 
 import pandas as pd
@@ -213,7 +213,7 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def initalize(self):
         if self.scanner is None:
-            self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR")
+            self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR", com_zaber="COM5", com_ccsx='USB0::0x1313::0x8087::M00934802::RAW', com_pem="ASRL6::INSTR")
             self.green_laser_button.setStyleSheet("background-color: green; border-radius: 10px;")
         else: 
             self.scanner.close_connection()
@@ -279,7 +279,7 @@ class MainWindow(QMainWindow):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
             step = float(self.x_step_input.text())
-            index_zaber = int(self.set_axis_input.currentText())
+            index_zaber = int(self.set_axis_input.currentText()) # DK - this is zaber's axis index, which should be independent of SHRC's set_axis_input
             x_start = float(self.x_start_input.text())
             # print(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
@@ -297,7 +297,7 @@ class MainWindow(QMainWindow):
             self.scan_data = []
             self.scan_timer.start(1000)
             df = self.scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
-            df_t = self.scanner.moke_spectroscopy(step, index_zaber)
+            # df_t = self.scanner.moke_spectroscopy(step, index_zaber)
 
             # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
             directory_path = self.file_path_input.text()
@@ -307,20 +307,20 @@ class MainWindow(QMainWindow):
                 if file_format == "HDF5":
                     file_name = self.scanner.generate_filename(directory_path, "Scan", extension="h5")
                     df.to_hdf(file_name, key='df', mode='w')
-                    df_t.to_hdf(file_name, key='df_t', mode='a')
+                    # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
                     print("This is file_format == 'CSV'")
                     file_name = self.scanner.generate_filename(directory_path, "Scan", extension="csv")
                     print(f"file_name after create file-name {file_name}")
                     df.to_csv(file_name, index=False)
-                    df_t.to_csv(file_name, index=False)
+                    # df_t.to_csv(file_name, index=False)
                     print(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
             self.plot_scan_results(df)
-            self.plot_scan_results(df_t)
+            # self.plot_scan_results(df_t) # Can you create a separate button to start lock-in spectroscopy?
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     
@@ -365,18 +365,18 @@ class MainWindow(QMainWindow):
         self.canvas.axes.set_ylabel("Voltage (V)")
         self.canvas.draw()
 
-        harmonics1_data = self.scanner.harmonics_one()
-        harmonics2_data = self.scanner.harmonics_two()
+        # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
+        # harmonics2_data = self.scanner.harmonics_two()
 
         self.harmonics1_canvas.axes.clear()
-        self.harmonics1_canvas.axes.plot(harmonics1_data['x'], harmonics1_data['v'], label="Harmonics 1d")
+        # self.harmonics1_canvas.axes.plot(harmonics1_data['x'], harmonics1_data['v'], label="Harmonics 1d") # DK - I noticed that the 2D scan (=2D) and spectroscopy (=1D) have different dimensionality. We need to create a tab separately for 1D and 2D
         self.harmonics1_canvas.axes.set_xlabel("Position (um)")
         self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d")
         self.harmonics1_canvas.axes.legend()
         self.harmonics1_canvas.draw()
 
         self.harmonics2_canvas.axes.clear()
-        self.harmonics2_canvas.axes.plot(harmonics2_data['x'], harmonics2_data['v'], label="Harmonics 2d")
+        # self.harmonics2_canvas.axes.plot(harmonics2_data['x'], harmonics2_data['v'], label="Harmonics 2d")# DK - update accordingly
         self.harmonics2_canvas.axes.set_xlabel("Position (um)")
         self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d")
         self.harmonics2_canvas.axes.legend()
