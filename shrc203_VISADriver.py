@@ -139,7 +139,7 @@ class SHRC203VISADriver:
             self._instr.query(f"A:{channel}-{self.unit}{abs(position)}")
         self._instr.query("G:")
         self.wait_for_ready(channel)
-        self.position[channel-1] = position
+        # self.position[channel-1] = position
     
     def query_position(self, channel):
         # units = ["N", "U", "M", "D", "P"]

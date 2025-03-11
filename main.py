@@ -278,6 +278,8 @@ class MainWindow(QMainWindow):
     def start_scan(self):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
+            step = float(self.x_step_input.text())
+            index_zaber = int(self.set_axis_input.currentText())
             x_start = float(self.x_start_input.text())
             # print(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
@@ -295,6 +297,7 @@ class MainWindow(QMainWindow):
             self.scan_data = []
             self.scan_timer.start(1000)
             df = self.scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
+            df_t = self.scanner.moke_spectroscopy(step, index_zaber)
 
             # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
             directory_path = self.file_path_input.text()
@@ -304,17 +307,20 @@ class MainWindow(QMainWindow):
                 if file_format == "HDF5":
                     file_name = self.scanner.generate_filename(directory_path, "Scan", extension="h5")
                     df.to_hdf(file_name, key='df', mode='w')
+                    df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
                     print("This is file_format == 'CSV'")
                     file_name = self.scanner.generate_filename(directory_path, "Scan", extension="csv")
                     print(f"file_name after create file-name {file_name}")
                     df.to_csv(file_name, index=False)
+                    df_t.to_csv(file_name, index=False)
                     print(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
             self.plot_scan_results(df)
+            self.plot_scan_results(df_t)
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     

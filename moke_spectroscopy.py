@@ -48,15 +48,15 @@ class MokeSpectro:
 
     def read_moke(self, wait_time):
         self.sr830.set_harmonics(1)
-        self.sr830.read_r_theta()
+        self.sr830.read_x_theta()
         time.sleep(wait_time)
-        r1, theta1 = self.sr830.read_r_theta()
+        x1, theta1 = self.sr830.read_x_theta()
 
         self.sr830.set_harmonics(2)
-        self.sr830.read_r_theta()
+        self.sr830.read_x_theta()
         time.sleep(wait_time)
-        r2, theta2 = self.sr830.read_r_theta()
-        return r1, theta1, r2, theta2
+        x2, theta2 = self.sr830.read_x_theta()
+        return x1, theta1, x2, theta2
 
     def scan1d(self, x_start, x_stop, x_step, axis=1, myname="scan1d", wait_time=0.2):
         axis_name = ["x", "y", "z"]
@@ -135,9 +135,9 @@ class MokeSpectro:
         w = np.array([])
         p = np.array([])
         v = np.array([])
-        r1 = np.array([])
+        x1 = np.array([])
         theta1 = np.array([])
-        r2 = np.array([])
+        x2 = np.array([])
         theta2 = np.array([])
         moke = np.array([])
 
@@ -155,33 +155,40 @@ class MokeSpectro:
             power = self.read_power(wavelength_current)
 
             voltage = np.abs(self.keithley.read())
-            v = np.append(v, voltage)
+            v = np.append(v, voltage) # -> tab2
             w = np.append(w, wavelength_current)
 
-            r1_value, theta1_value, r2_value, theta2_value = self.read_moke(wait_time)
-            r1 = np.append(r1, r1_value)
+            x1_value, theta1_value, x2_value, theta2_value = self.read_moke(wait_time)
+            x1 = np.append(x1, x1_value)
             theta1 = np.append(theta1, theta1_value)
-            r2 = np.append(r2, r2_value)
+            x2 = np.append(x2, x2_value)
             theta2 = np.append(theta2, theta2_value)
-            moke = np.append(moke, r2_value / voltage / power)
+            moke = np.append(moke, x2_value / voltage / power) # -> tab3
+            # similarly moke1 = ... x1_value / voltage / power # -> tab4
 
             p = np.append(p, power)
 
             res = {"wavelength (nm)": wavelength_current, "ref power (W)": power, "v (V)": voltage, "moke": moke}
             logger.info(res)
 
+            # tab1 -> mapping
+
             plt.clf()
-            plt.subplot(121)
+            plt.subplot(131) # tab2
             plt.plot(w, v / p, "o")
             plt.xlabel("Wavelength (nm)")
             plt.ylabel("Reflection (a.u.)")
             plt.title('Reflection')
 
-            plt.subplot(122)
-            plt.plot(w, moke, "oC1")
+            plt.subplot(132) # tab3
+            plt.plot(w, moke, "oC1") 
             plt.xlabel("Wavelength (nm)")
             plt.ylabel("Kerr rotation (a.u.)")
             plt.title('Kerr rotation')
+
+            plt.subplot(133) # tab4
+            # plt.plot(...)
+
 
             plt.pause(0.05)
 
@@ -189,8 +196,8 @@ class MokeSpectro:
 
         data = {
             "x (um)": x, "y (um)": y, "z (um)": z, "wavelength (nm)": w, "ref power (W)": p, "v (V)": v,
-            "reflection (a.u,)": v / p, "r1 (V)": r1, "theta1 (deg)": theta1, "r2 (V)": r2, "theta2 (deg)": theta2,
-            "r2/v/p": moke
+            "reflection (a.u,)": v / p, "x1 (V)": x1, "theta1 (deg)": theta1, "x2 (V)": x2, "theta2 (deg)": theta2,
+            "x2/v/p": moke
         }
         df = pd.DataFrame(data)
         df.to_csv(self.generate_filename(myname, "csv"))

@@ -8,11 +8,11 @@ import logging
 import argparse
 import numpy as np
 from powermeter import CustomTLPM
-from ccsxxx import CCSXXX
 from multizaber import ZaberMultiple
 from shrc203_VISADriver import SHRC203VISADriver as SHRC203
 from keithley2100_VISADriver import Keithley2100VISADriver as Keithley
 from sr830_VISADriver import SR830VISADriver as SR830
+from pem200_driver import PEM200Driver
 # print(os.getcwd())
 # # logger.debug('This message should go to the log file')
 logname = 'scan_logger.log' 
@@ -24,25 +24,39 @@ logging.basicConfig(filename=logname,
 
 logger = logging.getLogger('scanTest')
 
+from ccsxxx import CCSXXX
+
 class NanoScanner: 
-    def __init__(self, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx):
-        self.path_root = Path(r"C:\Users\DK-microscope\Measurement Data\Astha\keithley") #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
+    def __init__(self, path_root, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx, com_pem, index_powermeter=0, index_zaber=1):
+        self.path_root = Path(path_root) #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
         self.shrc = SHRC203(com_shrc)
         self.keithley = Keithley(com_keithley)
         self.sr830 = SR830(com_sr830)
         self.pwmeter = CustomTLPM()
+        self.pwmeter.open_by_index(index_powermeter)
         self.zaber = ZaberMultiple()
+        self.pem = PEM200Driver(com_pem)
+        self.pem.connect()
+        logger.info("PEM initialized and connection opened.")
+        # configure the PEM
+        self.pem.set_retardation(0.25)
+        self.pem.set_pem_output(1)
+        logger.info("PEM configured with retardation and output.")        
         self.wavelength = CCSXXX(com_ccsx)
         self.wavelength.connect()
         self.zaber.connect(com_zaber)
         self.shrc.open_connection()
         self.keithley.init_hardware()
+
+
         self.axis = 1
+        self.index_powermeter = index_powermeter
+        self.index_zaber = index_zaber
     
     def home(self): 
         for i in range(3): 
-            self.shrc.home(self.axis)
-            i+=1
+            i+=1            
+            self.shrc.home(i)
             
     def focus(self, position): 
         self.shrc.move(position, self.axis)
@@ -57,18 +71,18 @@ class NanoScanner:
         return self.shrc.query_position(axis)
     
     def get_position_xyz(self):
-        x = self.shrc.get_position(1)
-        y = self.shrc.get_position(2)
-        z = self.shrc.get_position(3)
+        x = self.shrc.query_position(1)
+        y = self.shrc.query_position(2)
+        z = self.shrc.query_position(3)
         return x, y, z
-    def harmonics_one(self, wait_time): 
+    def harmonics_one(self, wait_time=1): 
         self.sr830.set_harmonics(1)
         self.sr830.read_x_theta()
         time.sleep(wait_time)
         x1, theta1 = self.sr830.read_x_theta()
         return x1, theta1
 
-    def harmonics_two(self, wait_time): 
+    def harmonics_two(self, wait_time=1): 
         """Reads the r and theta values for the second harmonic
         Args: 
             wait_time (float): Time to wait between measurements
@@ -89,10 +103,8 @@ class NanoScanner:
             z (float): z position
             """
         self.shrc.move(x, 1)
-        time.sleep(5)
         self.shrc.move(y, 2)
-        time.sleep(5)
-        z_array, v_array = self.scan1d(z-20, z+20, 0.5, axis = 3, myname = "auto_focus")
+        z_array, v_array = self.scan1d(z-40, z+40, 1.0, axis = 3, myname = "auto_focus")
         z_max = z_array[np.argmax(v_array)]
 
         self.shrc.move(z_max, 3)
@@ -115,12 +127,13 @@ class NanoScanner:
         position = -66.5 * wavelength + 63840
         return position * 1e-3
     
-    def get_power(self): 
+    def get_power(self, wavelength): 
+        self.pwmeterwavelength = wavelength
         return self.pwmeter.get_power()
 
     def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke", wait_time = 0.2):
-        x_scan = np.arrange(x_start, x_stop, x_step)
-        y_scan = np.arrange(y_start, y_stop, y_step)
+        x_scan = np.arange(x_start, x_stop, x_step)
+        y_scan = np.arange(y_start, y_stop, y_step)
 
         x = np.array([])
         y = np.array([])
@@ -132,9 +145,9 @@ class NanoScanner:
         Rv = np.array([])
 
         self.shrc.move(x_scan[0], 1)
-        time.sleep(5)
+        # time.sleep(5)
         self.shrc.move(y_scan[0], 2)
-        time.sleep(5)
+        # time.sleep(5)
 
         x_current, y_current, z_current = self.get_position_xyz()
         self.auto_focus(x_current, y_current, z_current)
@@ -142,16 +155,16 @@ class NanoScanner:
         plt.ion()
         for j in range(len(y_scan)):
             self.shrc.move(y_scan[j], 2)
-            time.sleep(wait_time)
+            # time.sleep(wait_time)
 
             for i in range(len(x_scan)):
                 self.shrc.move(x_scan[i], 1)
 
-                time.sleep(wait_time)
+                # time.sleep(wait_time)
                 x = np.append(x, x_scan[i])
                 y = np.append(y, y_scan[j])
 
-                voltage = np.abs(self.keithely.read()) # Measure voltage in Keithley
+                voltage = self.keithley.read() # Measure voltage in Keithley
                 v = np.append(v, voltage)
 
                 x1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
@@ -176,71 +189,84 @@ class NanoScanner:
                 plt.ylabel('x2/v')
                 plt.pause(0.05)
 
-                plt.subplot(111)
-                plt.scatter(x, y, c=x1/v)
-                plt.title('x1/v')
-                plt.xlabel('Position (um)')
-                plt.ylabel('x1/v')
-                plt.pause(0.05)
-
                 # also plot x,y,x2/v, x1/v
-        df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v})
+        df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v, "x1 (V)":x1, "theta1 (deg)":theta1, "x2 (V)":x2, "theta2 (deg)":theta2})
+        
         return df
 
-    def moke_spectroscopy(self, step, index_zaber):
+    def moke_spectroscopy(self, step=5, myname="moke_spe", wait_time=1):
         step = 5
         x, y, z = self.get_position_xyz()
         voltage = np.array([])
         power = np.array([])
-        moke = np.array([])
+        kerr = np.array([])
+        ellip = np.array([])
         wavelength = np.array([])
-        r1 = np.array([])
+        x1 = np.array([])
         theta1 = np.array([])
-        r2 = np.array([])
+        x2 = np.array([])
         theta2 = np.array([])
         position = np.array([])
 
         plt.ion() 
 
-        self.zaber.home(1)
-        wavelength = self.get_wavelength()
+        self.zaber.move_abs(0, self.index_zaber)
 
-        while wavelength > 700:
+        wavelength_read = self.get_wavelength()
+
+        while wavelength_read > 700:
             zaber_shift = 13.3 / (970 - 690) * step
-            self.zaber.move_relative(zaber_shift, index_zaber)
-            time.sleep(0.5)
-            wavelength_read = self.get_wavelength()
-            power = self.get_power()
+            self.zaber.move_relative(zaber_shift, self.index_zaber)
 
-            voltage = np.abs(self.keithley.read())
-            v = np.append(voltage, v)
+            # time.sleep(0.5)
+            wavelength_read = self.get_wavelength()
+            power_read = self.get_power(wavelength_read)
+            self.pem.set_modulation_amplitude(wavelength_read)
+
+            voltage_read = self.keithley.read()
+
+            voltage = np.append(voltage, voltage_read)
             wavelength = np.append(wavelength, wavelength_read)
 
-            r1_value, theta1 = self.harmonics_one(0.5)
-            r2_value, theta2 = self.harmonics_two(0.5)
-            r1 = np.append(r1, r1_value)
-            theta1 = np.append(theta1, theta1)
-            r2 = np.append(r2, r2_value)
-            theta2 = np.append(theta2, theta2)
-            moke = np.append(moke, r2_value / voltage / power)
-            power = np.append(power, power)
+            x1_value, theta1_value = self.harmonics_one(wait_time)
+            x2_value, theta2_value = self.harmonics_two(wait_time)
 
-            #Plotting the wavelength vs MOKE values being read
+            x1 = np.append(x1, x1_value)
+            theta1 = np.append(theta1, theta1_value)
+            x2 = np.append(x2, x2_value)
+            theta2 = np.append(theta2, theta2_value)
+            kerr_value = x2_value / voltage_read / power_read
+            kerr = np.append(kerr, kerr_value)
+            ellip_value = x1_value / voltage_read / power_read
+            ellip = np.append(ellip, ellip_value)
+            power = np.append(power, power_read)
+
             plt.clf()
-            plt.subplot(121)
+            plt.subplot(131)
             plt.plot(wavelength, voltage / power, "-")
             plt.title("Reflection")
             plt.xlabel("Wavelength (nm)")
             plt.ylabel("Reflection (a.u.)")
 
-            plt.subplot(122)
-            plt.plot(wavelength, moke, "o")
-            plt.title("Wavelength vs MOKE")
+            plt.subplot(132)
+            plt.plot(wavelength, kerr, "o")
+            plt.title("Wavelength vs Kerr")
             plt.xlabel("Wavelength (nm)")
-            plt.ylabel("MOKE (a.u.)")
+            plt.ylabel("Kerr (a.u.)")
             plt.pause(0.05)
 
-        df = pd.DataFrame({"wavelength (nm)":wavelength, "v (V)":v, "r1":r1, "theta1":theta1, "r2":r2, "theta2":theta2, "moke":moke})
+            plt.subplot(133)
+            # plt.plot(...)
+
+
+        data = {
+            "x (um)": x, "y (um)": y, "z (um)": z, "wavelength (nm)": wavelength, "ref power (W)": power, "v (V)": voltage,
+            "reflection (a.u,)": voltage / power, "x1 (V)": x1, "theta1 (deg)": theta1, "x2 (V)": x2, "theta2 (deg)": theta2,
+            "kerr (a.u.)": kerr, "ellip (a.u.)": ellip
+        }
+        print(data)
+        df = pd.DataFrame(data)
+        # df.to_csv(self.generate_filename(myname, "csv"))
         return df
 
     def scan1d(self, x_start, x_stop, x_step, axis =1, myname = "scan1d", wait_time = 0.2):
@@ -258,7 +284,7 @@ class NanoScanner:
         v = np.array([])
         
         self.shrc.move(x_scan[0], axis)
-        time.sleep(5)
+        # time.sleep(5)
 
         plt.ion()
 
@@ -278,14 +304,14 @@ class NanoScanner:
 
             plt.pause(0.05)
 
-            time.sleep(0.5)
+            # time.sleep(0.5)
 
-        plt.plot(x, v)
-        plt.savefig(self.generate_filename(self.path_root,"scan", "png"))
+        # plt.plot(x, v)
+        # plt.savefig(self.generate_filename(self.path_root,"scan", "png"))
 
-        df = pd.DataFrame({"x (um)":x, "v (V)":v})
-        return df
-    
+        # df = pd.DataFrame({"x (um)":x, "v (V)":v})
+        return x, v
+
     def scan2d(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan"):
         x_scan = np.arange(x_start, x_stop, x_step)
         y_scan = np.arange(y_start, y_stop, y_step)
@@ -319,7 +345,7 @@ class NanoScanner:
 
                 plt.pause(0.05)
 
-                time.sleep(0.5)
+                # time.sleep(0.5)
 
         plt.pcolormesh(x_scan,y_scan,v.reshape(len(x_scan), len(y_scan)), shading="auto")
         plt.colorbar()
@@ -331,21 +357,26 @@ class NanoScanner:
     def close_connection(self): 
         self.shrc.close()
         self.keithley.close()
+        self.pem.set_pem_output(0)
+        self.pem.close(0)
 
 if __name__ == '__main__':
         parser = argparse.ArgumentParser(description='Scan a 2D area with a SHRC203 and a Keithley 2100')
         parser.add_argument('num_scans', type = int, help = 'Number of scans to perform')
         args = parser.parse_args()
 
-        default_path = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
-        scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR") # Replace with an actual visa resource.
-        # scanner.set_units('um') #set the default unit
+        path_root = Path(r"C:\Users\DK-microscope\Measurement Data\Daichi")
+        scanner = NanoScanner(path_root,"COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR", com_zaber="COM5", com_ccsx='USB0::0x1313::0x8087::M00934802::RAW', com_pem="ASRL6::INSTR") # Replace with an actual visa resource.
+        index_zaber = 1
+        index_powermeter = 0
 
-        for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
-            scanner.home(axis = 3) #change axis value
-            scanner.focus(8.282*1e3, 3) #change to values that make sense
-            df = scanner.scan2d(0, 30, 10, 0, 30, 10)
-            scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
+        # for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
+        #     # scanner.home() #change axis value
+        #     # scanner.focus(8.282*1e3, 3) #change to values that make sense
+        #     # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
+        #     # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
 
-        scanner.close_connection()
+        #     df = scanner.moke_spectroscopy(10,1)
+        #     scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
 
+        # scanner.close_connection()
