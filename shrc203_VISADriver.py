@@ -218,14 +218,13 @@ class SHRC203VISADriver:
 
     def wait_for_ready(self, channel):
         """Waits for the stage to be ready."""
-        time0 = time.time()
-        while self.read_state(channel) != "R":
-            # logger.debug(self.read_state(channel))
-            time1 = time.time() - time0
-            if time1 >= 60:
-                logger.error("Timeout")
-                break
-            time.sleep(0.2)
+        if self.read_state(channel) == "B":
+            time0 = time.time()
+            while self.read_state(channel) == "B":
+                if time.time() - time0 >= 10:
+                    logger.error("Timeout")
+                    break
+        return self.read_state(channel)
             
 
     def stop(self, channel):
