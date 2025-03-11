@@ -389,11 +389,12 @@ class MainWindow(QMainWindow):
         self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d (X2/v)")
         self.harmonics2_canvas.draw()
 
-class WavelengthWindow(QMainWindow): 
-    def __init__(self):
+class WavelengthWindow(QMainWindow, NanoScanner): 
+    def __init__(self, scanner):
         super().__init__()
         self.setWindowTitle("Second Experiment of Wavelength")
         self.setGeometry(150,150,600,400)
+        self.scanner = scanner
         self.initUI()
     def initUI(self):
         layout = QVBoxLayout()
@@ -447,11 +448,73 @@ class WavelengthWindow(QMainWindow):
             }
         """)
     def start_scan(self): 
-        pass
+        try: 
+            index = int(self.set_index_input.text())
+            zaber_index = self.add_zaber_index.currentText()
+            if zaber_index == "Linear": 
+                zaber_index = 1 
+            else: 
+                zaber_index = 0
+            df = self.scanner.scan2d_moke(index, zaber_index)
+            self.plot_scan_results(df)
+        except Exception as e:
+            logger.error(f"An error occurred: {str(e)}")
+    
+    def plot_scan_results(self, df): 
+        self.wavelength1_canvas.axes.clear()
+        self.wavelength2_canvas.axes.clear()
+        self.wavelength3_canvas.axes.clear()
+
+        x = df["x (um)"].values
+        y = df["y (um)"].values
+        wavelength = df["wavelength (nm)"].values
+        voltage = df["v (V)"].values
+        reflection = df["reflection (a.u,)"].values
+        kerr = df["kerr"].values
+        ellip = df["ellip"].values
+        power = df["ref power (W)"].values
+
+        x_min = np.unique(x)
+        y_min = np.unique(y)
+        v_reshaped = voltage.reshape(len(y_min), len(x_min))
+        wavelength_reshaped = wavelength.reshape(len(y_min), len(x_min))
+        reflection_reshaped = reflection.reshape(len(y_min), len(x_min))
+        kerr_reshaped = kerr.reshape(len(y_min), len(x_min))
+        ellip_reshaped = ellip.reshape(len(y_min), len(x_min))
+        power_reshaped = power.reshape(len(y_min), len(x_min))
+        # x1/v, x2/v
+
+        img = self.wavelength1_canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
+        if self.wavelength1_canvas.colorbar is None: 
+            self.wavelength1_canvas.colorbar = self.wavelength1_canvas.figure.colorbar(img, ax=self.wavelength1_canvas.axes)
+        else:
+            self.wavelength1_canvas.colorbar.update_normal(img) 
+        # if self.canvas.colorbar is not None:
+        #     self.canvas.colorbar.remove()
+        #     self.canvas.colorbar = None
+
+        self.wavelength1_canvas.axes.set_xlabel("Position X, Y (um)")
+        self.wavelength1_canvas.axes.set_ylabel("Voltage (V)")
+        self.wavelength1_canvas.draw()
+
+        # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
+        # harmonics2_data = self.scanner.harmonics_two()
+        img1 = self.wavelength2_canvas.axes.pcolormesh(x_min, y_min, x1_v, shading="auto", cmap="viridis")
+        if self.wavelength2_canvas.colorbar is None:
+            self.wavelength2_canvas.colorbar = self.wavelength2_canvas.figure.colorbar(img1, ax=self.wavelength2_canvas.axes)
+        else:
+            self.wavelength2_canvas.colorbar.update_normal(img1)
+
+        self.wavelength2_canvas.axes.set_xlabel("Position (X, Y (um))")
+        self.wavelength2_canvas.axes.set_ylabel("Harmonics 1d (X1/v)")
+        self.wavelength2_canvas.draw()
+
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
+    window_two = WavelengthWindow()
     window.show()
+    window_two.show()
     sys.exit(app.exec_())
