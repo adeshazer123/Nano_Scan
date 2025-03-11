@@ -16,12 +16,6 @@ class MplCanvas(FigureCanvas):
         super().__init__(fig)
         self.colorbar = None  
 
-    def move_home(self, parent = None): 
-        self.move()
-        initial_position = self.query_position()
-        self.move(initial_position)
-        self.move
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -238,28 +232,19 @@ class MainWindow(QMainWindow):
         if file_path:
             self.file_path_input.setText(file_path)
 
-    # @pyqtSlot()
-    # def set_axis(self): 
-    #     try: 
-    #         if self.set_axis_input is None: 
-    #             self.scanner.set_axis(1)
-    #         else:
-    #             axis = int(self.set_axis_input.text())
-    #             self.scanner.set_axis(axis)
-    #             logger.info(f"NanoScanner initialized at {axis}")
-    #     except Exception as e:
-    #         logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
     def move_stage(self): 
         try: 
             sender = self.sender()
             if sender == self.move_relative_button:
                 move_relative = float(self.move_relative_input.text())
-                self.scanner.move_relative(move_relative, self.set_axis_input.currentText())
+                self.scanner.move_relative(move_relative)
+                self.query_position()
                 logger.info(f"Moved stage to relative position {move_relative}")
             elif sender == self.move_stage_button:
                 move_position = float(self.move_position_input.text())
-                self.scanner.move(move_position, self.set_axis_input.currentText())
+                self.scanner.move(move_position)
+                self.query_position()
                 logger.info(f"Moved stage to position {move_position}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
@@ -279,7 +264,7 @@ class MainWindow(QMainWindow):
         # Here you would implement the logic to start the scan using NanoScanner
         try:
             step = float(self.x_step_input.text())
-            index_zaber = int(self.set_axis_input.currentText()) # DK - this is zaber's axis index, which should be independent of SHRC's set_axis_input
+            index_zaber = 1 # int(self.set_axis_input.currentText()) # DK - this is zaber's axis index, which should be independent of SHRC's set_axis_input
             x_start = float(self.x_start_input.text())
             # print(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
@@ -296,7 +281,7 @@ class MainWindow(QMainWindow):
             # Example scan parameters
             self.scan_data = []
             self.scan_timer.start(1000)
-            df = self.scanner.scan2d(x_start, x_stop, x_step, y_start, y_stop, y_step)
+            df = self.scanner.scan2d_moke(x_start, x_stop, x_step, y_start, y_stop, y_step)
             # df_t = self.scanner.moke_spectroscopy(step, index_zaber)
 
             # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
@@ -347,10 +332,16 @@ class MainWindow(QMainWindow):
         x = df["x (um)"].values
         y = df["y (um)"].values
         v = df["v (V)"].values
+        x1 = df["x1 (V)"].values
+        x2 = df["x2 (V)"].values
 
         x_min = np.unique(x)
         y_min = np.unique(y)
         v_reshaped = v.reshape(len(y_min), len(x_min))
+        x1_v = (x1 / v).reshape(len(y_min), len(x_min))
+        x2_v = (x2 / v).reshape(len(y_min), len(x_min))
+
+        # x1/v, x2/v
 
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
         if self.canvas.colorbar is None: 
@@ -367,20 +358,26 @@ class MainWindow(QMainWindow):
 
         # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
         # harmonics2_data = self.scanner.harmonics_two()
+        img1 = self.harmonics1_canvas.axes.pcolormesh(x_min, y_min, x1_v, shading="auto", cmap="viridis")
+        if self.harmonics1_canvas.colorbar is None:
+            self.harmonics1_canvas.colorbar = self.harmonics1_canvas.figure.colorbar(img1, ax=self.harmonics1_canvas.axes)
+        else:
+            self.harmonics1_canvas.colorbar.update_normal(img1)
 
-        self.harmonics1_canvas.axes.clear()
-        # self.harmonics1_canvas.axes.plot(harmonics1_data['x'], harmonics1_data['v'], label="Harmonics 1d") # DK - I noticed that the 2D scan (=2D) and spectroscopy (=1D) have different dimensionality. We need to create a tab separately for 1D and 2D
-        self.harmonics1_canvas.axes.set_xlabel("Position (um)")
-        self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d")
-        self.harmonics1_canvas.axes.legend()
+        self.harmonics1_canvas.axes.set_xlabel("Position (X, Y (um))")
+        self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d (X1/v)")
         self.harmonics1_canvas.draw()
 
-        self.harmonics2_canvas.axes.clear()
-        # self.harmonics2_canvas.axes.plot(harmonics2_data['x'], harmonics2_data['v'], label="Harmonics 2d")# DK - update accordingly
-        self.harmonics2_canvas.axes.set_xlabel("Position (um)")
-        self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d")
-        self.harmonics2_canvas.axes.legend()
+        img2 = self.harmonics2_canvas.axes.pcolormesh(x_min, y_min, x2_v, shading="auto", cmap="viridis")
+        if self.harmonics2_canvas.colorbar is None:
+            self.harmonics2_canvas.colorbar = self.harmonics2_canvas.figure.colorbar(img2, ax=self.harmonics2_canvas.axes)
+        else:
+            self.harmonics2_canvas.colorbar.update_normal(img2)
+        
+        self.harmonics2_canvas.axes.set_xlabel("Position (X, Y (um))")
+        self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d (X2/v)")
         self.harmonics2_canvas.draw()
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

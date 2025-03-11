@@ -1,9 +1,11 @@
 import os
 import ctypes
 import numpy as np
+from pathlib import Path
 
-dll_path = r"C:\Program Files\IVI Foundation\VISA\Win64\Bin"
-os.chdir(dll_path)
+dll_path = Path(r"C:\Program Files\IVI Foundation\VISA\Win64\Bin")
+os.add_dll_directory(dll_path)
+# os.chdir(dll_path)
 lib = ctypes.cdll.LoadLibrary("TLCCS_64.dll")
 
 class CCSXXX:

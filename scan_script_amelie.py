@@ -12,7 +12,9 @@ from multizaber import ZaberMultiple
 from shrc203_VISADriver import SHRC203VISADriver as SHRC203
 from keithley2100_VISADriver import Keithley2100VISADriver as Keithley
 from sr830_VISADriver import SR830VISADriver as SR830
+from ccsxxx import CCSXXX
 from pem200_driver import PEM200Driver
+
 # print(os.getcwd())
 # # logger.debug('This message should go to the log file')
 logname = 'scan_logger.log' 
@@ -24,30 +26,30 @@ logging.basicConfig(filename=logname,
 
 logger = logging.getLogger('scanTest')
 
-from ccsxxx import CCSXXX
 
 class NanoScanner: 
     def __init__(self, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx, com_pem, index_powermeter=0, index_zaber=1):
         # self.path_root = Path(r"C:\Users\DK-microscope\Measurement Data") #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
         self.shrc = SHRC203(com_shrc)
         self.keithley = Keithley(com_keithley)
+        self.keithley.init_hardware()
+
         self.sr830 = SR830(com_sr830)
+        
         self.pwmeter = CustomTLPM()
         self.pwmeter.open_by_index(index_powermeter)
+        
         self.zaber = ZaberMultiple()
+        
         self.pem = PEM200Driver(com_pem)
         self.pem.connect()
-        logger.info("PEM initialized and connection opened.")
-        # configure the PEM
         self.pem.set_retardation(0.25)
         self.pem.set_pem_output(1)
-        logger.info("PEM configured with retardation and output.")        
+
         self.wavelength = CCSXXX(com_ccsx)
         self.wavelength.connect()
         self.zaber.connect(com_zaber)
         self.shrc.open_connection()
-        self.keithley.init_hardware()
-
 
         self.axis = 1
         self.index_powermeter = index_powermeter
@@ -63,6 +65,9 @@ class NanoScanner:
 
     def move(self, position): 
         self.shrc.move(position, self.axis)
+    
+    def move_relative(self, position): 
+        self.shrc.move_relative(position, self.axis)
     
     def set_axis(self, axis): 
         self.axis = axis
@@ -120,6 +125,7 @@ class NanoScanner:
     
     def get_wavelength(self): 
         wave = self.wavelength.get_wavelength_data()
+        self.wavelength.start_scan()
         intensity = self.wavelength.get_scan_data()
         return wave[intensity.argmax()]
 
@@ -150,7 +156,7 @@ class NanoScanner:
         # time.sleep(5)
 
         x_current, y_current, z_current = self.get_position_xyz()
-        self.auto_focus(x_current, y_current, z_current)
+        # self.auto_focus(x_current, y_current, z_current)
 
         plt.ion()
         for j in range(len(y_scan)):
@@ -178,15 +184,22 @@ class NanoScanner:
                 theta2 = np.append(theta2, theta2_value)
                 plt.clf()
 
-                plt.subplot(121)
+                plt.subplot(131)
                 plt.scatter(x, y, c=v)
                 plt.title('Reflection')
 
-                plt.subplot(122)
+                plt.subplot(132)
                 plt.scatter(x, y, c=x2/v) # TODO replace with theta_k
                 plt.title('x2/v')
                 plt.xlabel('Position (um)')
                 plt.ylabel('x2/v')
+                plt.pause(0.05)
+
+                plt.subplot(133)
+                plt.scatter(x, y, c=x1/v)
+                plt.title('x1/v')
+                plt.xlabel('Position (um)')
+                plt.ylabel('x1/v')
                 plt.pause(0.05)
 
                 # also plot x,y,x2/v, x1/v
@@ -358,7 +371,7 @@ class NanoScanner:
         self.shrc.close()
         self.keithley.close()
         self.pem.set_pem_output(0)
-        self.pem.close(0)
+        self.pem.close()
 
 if __name__ == '__main__':
         parser = argparse.ArgumentParser(description='Scan a 2D area with a SHRC203 and a Keithley 2100')
