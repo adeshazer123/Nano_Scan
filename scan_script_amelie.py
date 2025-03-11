@@ -170,8 +170,8 @@ class NanoScanner:
                 x = np.append(x, x_scan[i])
                 y = np.append(y, y_scan[j])
 
-                voltage = self.keithley.read() # Measure voltage in Keithley
-                v = np.append(v, voltage)
+                voltage_current = self.keithley.read() # Measure voltage in Keithley
+                voltage = np.append(voltage, voltage_current)
 
                 x1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
                 x2_value, theta2_value = self.harmonics_two(wait_time) # Measure second harmonic in the lock-in amplifier   
@@ -185,25 +185,25 @@ class NanoScanner:
                 plt.clf()
 
                 plt.subplot(131)
-                plt.scatter(x, y, c=v)
+                plt.scatter(x, y, c=voltage)
                 plt.title('Reflection')
 
                 plt.subplot(132)
-                plt.scatter(x, y, c=x2/v) # TODO replace with theta_k
+                plt.scatter(x, y, c=x2/voltage) # TODO replace with theta_k
                 plt.title('x2/v')
                 plt.xlabel('Position (um)')
                 plt.ylabel('x2/v')
                 plt.pause(0.05)
 
                 plt.subplot(133)
-                plt.scatter(x, y, c=x1/v)
+                plt.scatter(x, y, c=x1/voltage)
                 plt.title('x1/v')
                 plt.xlabel('Position (um)')
                 plt.ylabel('x1/v')
                 plt.pause(0.05)
 
                 # also plot x,y,x2/v, x1/v
-        df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":v, "x1 (V)":x1, "theta1 (deg)":theta1, "x2 (V)":x2, "theta2 (deg)":theta2})
+        df = pd.DataFrame({"x (um)":x, "y (um)":y, "v (V)":voltage, "x1 (V)":x1, "kerr": x2/voltage, "ellip": x1/voltage, "theta1 (deg)":theta1, "x2 (V)":x2, "theta2 (deg)":theta2})
         
         return df
 
@@ -212,8 +212,6 @@ class NanoScanner:
         x, y, z = self.get_position_xyz()
         voltage = np.array([])
         power = np.array([])
-        kerr = np.array([])
-        ellip = np.array([])
         wavelength = np.array([])
         x1 = np.array([])
         theta1 = np.array([])
@@ -248,10 +246,6 @@ class NanoScanner:
             theta1 = np.append(theta1, theta1_value)
             x2 = np.append(x2, x2_value)
             theta2 = np.append(theta2, theta2_value)
-            kerr_value = x2_value / voltage_read
-            kerr = np.append(kerr, kerr_value)
-            ellip_value = x1_value / voltage_read
-            ellip = np.append(ellip, ellip_value)
             power = np.append(power, power_read)
 
             plt.clf()
@@ -262,22 +256,26 @@ class NanoScanner:
             plt.ylabel("Reflection (a.u.)")
 
             plt.subplot(132)
-            plt.plot(wavelength, kerr, "o")
+            plt.plot(wavelength, x2/voltage, "o")
             plt.title("Wavelength vs Kerr")
             plt.xlabel("Wavelength (nm)")
             plt.ylabel("Kerr (a.u.)")
             plt.pause(0.05)
 
             plt.subplot(133)
-            # plt.plot(...)
+            plt.plot(wavelength, x1/voltage, "o")
+            plt.title("Wavelength vs Ellipticity")
+            plt.xlabel("Wavelength (nm)")
+            plt.ylabel("Ellipticity (a.u.)")
+            plt.pause(0.05)
 
 
         data = {
             "x (um)": x, "y (um)": y, "z (um)": z, "wavelength (nm)": wavelength, "ref power (W)": power, "v (V)": voltage,
             "reflection (a.u,)": voltage / power, "x1 (V)": x1, "theta1 (deg)": theta1, "x2 (V)": x2, "theta2 (deg)": theta2,
-            "kerr (a.u.)": kerr, "ellip (a.u.)": ellip
+            "kerr": x2/voltage, "ellip": x1/voltage
         }
-        print(data)
+        
         df = pd.DataFrame(data)
         # df.to_csv(self.generate_filename(myname, "csv"))
         return df

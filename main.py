@@ -26,6 +26,7 @@ class MainWindow(QMainWindow):
         self.scanner = None
         self.scan_timer = QTimer(self)
         self.scan_timer.timeout.connect(self.update_scan_plot)
+        self.second_window = None
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -43,7 +44,12 @@ class MainWindow(QMainWindow):
         self.tabs.addTab(self.canvas, "2D Scan")
         self.tabs.addTab(self.harmonics1_canvas, "Harmonics 1D")
         self.tabs.addTab(self.harmonics2_canvas, "Harmonics 2D")
-        layout.addWidget(self.tabs)        
+        layout.addWidget(self.tabs)  
+
+        self.open_wavelength_window_button = QPushButton("Open Wavelength Window")
+        self.open_wavelength_window_button.clicked.connect(self.open_wavelength_window)
+        self.open_wavelength_window_button.setFixedWidth(200)
+        layout.addWidget(self.open_wavelength_window_button)      
 
         self.x_start_input = QLineEdit(self)
         self.x_start_input.setPlaceholderText("Enter x start")
@@ -231,6 +237,11 @@ class MainWindow(QMainWindow):
         file_path = QFileDialog.getExistingDirectory(self, "Select Directory")
         if file_path:
             self.file_path_input.setText(file_path)
+    
+    def open_wavelength_window(self):
+        if self.second_window is None: 
+            self.second_window = WavelengthWindow()
+        self.second_window.show()
 
     @pyqtSlot()
     def move_stage(self): 
@@ -377,6 +388,66 @@ class MainWindow(QMainWindow):
         self.harmonics2_canvas.axes.set_xlabel("Position (X, Y (um))")
         self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d (X2/v)")
         self.harmonics2_canvas.draw()
+
+class WavelengthWindow(QMainWindow): 
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Second Experiment of Wavelength")
+        self.setGeometry(150,150,600,400)
+        self.initUI()
+    def initUI(self):
+        layout = QVBoxLayout()
+        self.tabs = QTabWidget()
+        self.tabs.setTabPosition(QTabWidget.North)
+
+        self.wavelength1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.wavelength2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.wavelength3_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.tabs.addTab(self.wavelength1_canvas, "Wavelength 1")
+        self.tabs.addTab(self.wavelength2_canvas, "Wavelength 2")
+        self.tabs.addTab(self.wavelength3_canvas, "Wavelength 3")
+        layout.addWidget(self.tabs)
+
+        self.set_index_input = QLineEdit(self)
+        self.set_index_input.setPlaceholderText("Enter set index")
+        layout.addWidget(self.set_index_input)
+
+        self.add_zaber_index = QComboBox(self)
+        self.add_zaber_index.addItems(["Linear", "Rotary"])
+        layout.addWidget(self.add_zaber_index)
+
+        container = QWidget()
+        container.setLayout(layout)
+        self.setCentralWidget(container)
+
+        self.setStyleSheet("""
+            QWidget {
+                background-color:rgb(4, 52, 99);
+                color:rgb(148, 148, 152);
+            }
+            QLineEdit {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                background-color: #003366;
+                color: #ffffff;
+            }
+            QPushButton {
+                padding: 5px;
+                background-color: #0078d7;
+                color: #ffffff;
+                border: none;
+                border-radius: 5px;
+            }
+            QPushButton:hover {
+                background-color: #005bb5;
+            }
+            QPushButton:pressed {
+                background-color: #003f8a;
+            }
+        """)
+    def start_scan(self): 
+        pass
 
 
 if __name__ == "__main__":
