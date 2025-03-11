@@ -58,11 +58,6 @@ class SHRC203VISADriver:
         self._instr = None
         self.rsrc_name = rsrc_name
         self.set_unit(self.default_units)
-        self.loop = [-1, -1, -1]
-        self.position = [0, 0, 0]
-        self.speed_ini = [-1, -1, -1]
-        self.speed_fin = [-1, -1, -1]
-        self.accel_t = [-1, -1, -1]
 
     def set_unit(self, unit: str):
         """
@@ -121,19 +116,18 @@ class SHRC203VISADriver:
     def set_mode(self):
         self._instr.query("MODE:HOST")
 
-    def set_loop(self, loop : dict, channel : int):
+    def set_loop(self, loop, channel : int):
         """
         Open the loop of the specified channel.
         1: Open loop
         0: Close loop
         """
         self._instr.query(f"F:{channel}{loop}")
-        self.loop[channel-1] = loop
 
-    def get_loop(self, channel):
+    def get_loop(self, channel):# DK - get loop from query
         """
         Get the loop status of the specified channel."""
-        return self.loop[channel-1] 
+        return int(self._instr.query(f"?:F{channel}"))
 
     def move(self, position, channel): 
         """
@@ -146,13 +140,6 @@ class SHRC203VISADriver:
         self._instr.query("G:")
         self.wait_for_ready(channel)
         self.position[channel-1] = position
-        time.sleep(2)
-
-
-    def get_position(self, channel):
-        if self.position[channel-1] is None:
-            return logger.error("Position is None")
-        return self.position[channel-1]
     
     def query_position(self, channel):
         # units = ["N", "U", "M", "D", "P"]
