@@ -11,7 +11,7 @@ from powermeter import CustomTLPM
 from multizaber import ZaberMultiple
 from shrc203_VISADriver import SHRC203VISADriver as SHRC203
 from keithley2100_VISADriver import Keithley2100VISADriver as Keithley
-from sr830_VISADriver import SR830VISADriver as SR830
+from pymeasure.instruments.srs.sr830 import SR830
 from ccsxxx import CCSXXX
 from pem200_driver import PEM200Driver
 
@@ -22,7 +22,7 @@ logging.basicConfig(filename=logname,
                     filemode='a',
                     format='%(asctime)s,%(msecs)03d %(name)s %(levelname)s %(message)s',
                     datefmt='%Y-%m-%d %H:%M:%S',
-                    level=logging.DEBUG)
+                    level=logging.INFO)
 
 logger = logging.getLogger('scanTest')
 
@@ -80,14 +80,14 @@ class NanoScanner:
         y = self.shrc.query_position(2)
         z = self.shrc.query_position(3)
         return x, y, z
-    def harmonics_one(self, wait_time=1): 
-        self.sr830.set_harmonics(1)
-        self.sr830.read_x_theta()
-        time.sleep(wait_time)
-        x1, theta1 = self.sr830.read_x_theta()
-        return x1, theta1
+    def harmonics_one(self): 
+        self.sr830.harmonic = 1
+        time.sleep(self.sr830.time_constant*1.1)
+        self.sr830.quick_range()
+        x, theta = self.sr830.snap('X', 'Theta')
+        return x, theta
 
-    def harmonics_two(self, wait_time=1): 
+    def harmonics_two(self): 
         """Reads the r and theta values for the second harmonic
         Args: 
             wait_time (float): Time to wait between measurements
@@ -95,11 +95,12 @@ class NanoScanner:
             x2 (float): r value for the second harmonic
             theta2 (float): theta value for the second harmonic
             """
-        self.sr830.set_harmonics(2)
-        self.sr830.read_x_theta()
-        time.sleep(wait_time)
-        x2, theta2 = self.sr830.read_x_theta()
-        return x2, theta2
+        self.sr830.harmonic = 2
+        time.sleep(self.sr830.time_constant*1.1)
+        self.sr830.quick_range()
+        x, theta = self.sr830.snap('X', 'Theta')
+        return x, theta
+    
     def auto_focus(self, x, y, z):
         """Auto focus for the SHRC203 scanner 
         Args: 
@@ -137,7 +138,7 @@ class NanoScanner:
         self.pwmeterwavelength = wavelength
         return self.pwmeter.get_power()
 
-    def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke", wait_time = 0.2):
+    def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke", wait_time = 0.3):
         x_scan = np.arange(x_start, x_stop, x_step)
         y_scan = np.arange(y_start, y_stop, y_step)
 
@@ -207,7 +208,7 @@ class NanoScanner:
         
         return df
 
-    def moke_spectroscopy(self, step=5, myname="moke_spe", wait_time=1):
+    def moke_spectroscopy(self, step=5, myname="moke_spe"):
         step = 5
         x, y, z = self.get_position_xyz()
         voltage = np.array([])
@@ -239,8 +240,8 @@ class NanoScanner:
             voltage = np.append(voltage, voltage_read)
             wavelength = np.append(wavelength, wavelength_read)
 
-            x1_value, theta1_value = self.harmonics_one(wait_time)
-            x2_value, theta2_value = self.harmonics_two(wait_time)
+            x1_value, theta1_value = self.harmonics_one()
+            x2_value, theta2_value = self.harmonics_two()
 
             x1 = np.append(x1, x1_value)
             theta1 = np.append(theta1, theta1_value)
@@ -269,6 +270,7 @@ class NanoScanner:
             plt.ylabel("Ellipticity (a.u.)")
             plt.pause(0.05)
 
+            plt.tight_layout()
 
         data = {
             "x (um)": x, "y (um)": y, "z (um)": z, "wavelength (nm)": wavelength, "ref power (W)": power, "v (V)": voltage,
@@ -280,7 +282,7 @@ class NanoScanner:
         # df.to_csv(self.generate_filename(myname, "csv"))
         return df
 
-    def scan1d(self, x_start, x_stop, x_step, axis =1, myname = "scan1d", wait_time = 0.2):
+    def scan1d(self, x_start, x_stop, x_step, axis =1, myname = "scan1d"):
         """ Scan 1D area with SHRC203 and Keithley 2100
         Args:
             x_start (float): Start position
