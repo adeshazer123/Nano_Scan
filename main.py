@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTextEdit
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot, Qt, QTimer
@@ -9,7 +9,17 @@ import pandas as pd
 from scan_script_amelie import NanoScanner
 import logging
 
+class QTextEditLogger(logging.Handler):
+    def __init__(self, parent):
+        super().__init__()
+        self.widget = parent
+        self.widget.setReadOnly(True)
+    def emit(self, record):
+        msg = self.format(record)
+        self.widget.append(msg)
+        
 logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)  
 logger.addHandler(logging.StreamHandler())
 
 class MplCanvas(FigureCanvas):
@@ -27,12 +37,7 @@ class MainWindow(QMainWindow):
 
         self.initUI()
         self.scanner = None
-        # self.scan_timer = QTimer(self)
-        # self.scan_timer.timeout.connect(self.update_scan_plot)
         self.second_window = None
-        # self.file_path_input = None
-        # self.file_format_combo = None
-
     def initUI(self):
         layout = QVBoxLayout()
         grid_layout = QGridLayout()
@@ -90,7 +95,6 @@ class MainWindow(QMainWindow):
         position_layout = QVBoxLayout() 
 
         self.query_position_label = QLabel(f"Position: ")
-        # self.query_position_label.setStyleSheet("font-weight: bold; font-size: 18px;")
         position_layout.addWidget(self.query_position_label)
 
         self.query_position_button = QPushButton("Query Position")
@@ -111,6 +115,11 @@ class MainWindow(QMainWindow):
         self.browse_buttom.setFixedWidth(200)
         self.browse_buttom.clicked.connect(self.browse_file)
         layout.addWidget(self.browse_buttom)
+
+        self.file_name_input = QLineEdit(self)
+        self.file_name_input.setPlaceholderText("Enter file name")
+        self.file_name_input.setFixedWidth(200)
+        layout.addWidget(self.file_name_input)
 
         layout.addWidget(QLabel("Select File Format"))
         self.file_format_combo = QComboBox(self)
@@ -179,6 +188,12 @@ class MainWindow(QMainWindow):
         self.start_scan_button.setFixedWidth(200)
 
         layout.addWidget(self.start_scan_button)
+
+        log_text_edit = QTextEdit()
+        self.log_text = QTextEditLogger(log_text_edit)
+        layout.addWidget(log_text_edit)
+        logger.addHandler(self.log_text)
+        
         container = QWidget()
         container.setLayout(layout)
         self.setCentralWidget(container)
@@ -220,9 +235,11 @@ class MainWindow(QMainWindow):
         if self.scanner is None:
             self.scanner = NanoScanner("COM3", "USB0::0x05E6::0x2100::1149087::INSTR", "GPIB0::1::INSTR", com_zaber="COM5", com_ccsx='USB0::0x1313::0x8087::M00934802::RAW', com_pem="ASRL6::INSTR")
             self.green_laser_button.setStyleSheet("background-color: green; border-radius: 10px;")
+            logger.info("Initialized NanoScanner")
         else: 
             self.scanner.close_connection()
             self.green_laser_button.setStyleSheet("background-color: red; border-radius: 10px;")
+            logger.info("Closed NanoScanner connection")
     @pyqtSlot()
     def query_position(self): 
         try: 
@@ -303,19 +320,20 @@ class MainWindow(QMainWindow):
             # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
             directory_path = self.file_path_input.text()
             directory_path = Path(directory_path)
+            file_name = self.file_name_input.text()
+            logging.debug(f"file_name after create file-name {file_name}")
             if directory_path:
                 file_format = self.file_format_combo.currentText()
                 if file_format == "HDF5":
-                    file_name = self.scanner.generate_filename(directory_path, "MAP", extension="h5")
+                    file_name = self.scanner.generate_filename(directory_path, file_name, extension="h5")
                     logger.info(f"Saving scan data to {file_name}")
                     df.to_hdf(file_name, key='df', mode='w')
                     # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
                     logging.debug("This is file_format == 'CSV'")
-                    file_name = self.scanner.generate_filename(directory_path, "MAP", extension="csv")
+                    file_name = self.scanner.generate_filename(directory_path, file_name, extension="csv")
                     logger.info(f"Saving scan data to {file_name}")
                     df.to_csv(file_name, index=False)
-                    # df_t.to_csv(file_name, index=False)
                     logging.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
@@ -326,16 +344,6 @@ class MainWindow(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     
-    # def update_scan_plot(self):
-    #     try:
-    #         new_data = self.scanner.get_latest_scan_data()
-    #         if new_data: 
-    #             self.scan_data.append(new_data)
-    #             self.plot_scan_results(pd.DataFrame(self.scan_data))
-                
-    #     except Exception as e:
-    #         logger.error(f"An error occurred: {str(e)}")
-    #         self.scan_timer.stop()
     @pyqtSlot()
     def show_results(self):
         # Implement logic to display scan results
@@ -523,11 +531,7 @@ class WavelengthWindow(QMainWindow):
         self.wavelength1_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength1_canvas.axes.set_ylabel("Reflection")
         self.wavelength1_canvas.draw()
-
-        # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
-        # harmonics2_data = self.scanner.harmonics_two()
-        
-        # Replace pcolormesh with other plot types to show a spectrum        
+       
         self.wavelength2_canvas.axes.plot(wavelength, kerr, "o")
         self.wavelength2_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength2_canvas.axes.set_ylabel("Kerr")

@@ -55,11 +55,11 @@ class NanoScanner:
         logger.info(f"Zaber connected with COM port: {com_zaber}")
 
         # Initialize PEM200
-        self.pem = PEM200Driver(com_pem)
-        self.pem.connect()
-        self.pem.set_retardation(0.25)
-        self.pem.set_pem_output(1)
-        logger.info(f"PEM200 initialized with COM port: {com_pem}")
+        # self.pem = PEM200Driver(com_pem)
+        # self.pem.connect()
+        # self.pem.set_retardation(0.25)
+        # self.pem.set_pem_output(1)
+        # logger.info(f"PEM200 initialized with COM port: {com_pem}")
 
         # Initialize Wavelength Meter
         self.wavelength = CCSXXX(com_ccsx)
@@ -132,7 +132,7 @@ class NanoScanner:
         logger.info(f"Auto focus at position {z_max} um")
 
 
-    def generate_filename(self ,path_root, myname, extension="csv"):
+    def generate_filename(self, path_root, myname, extension="csv"):
         now = datetime.now()
         prefix = now.strftime("%Y%m%d_%H%M%S")
 
@@ -159,7 +159,7 @@ class NanoScanner:
         # Configure the powermeter and pem to the correct wavelength
         wavelength_read = self.get_wavelength()
         power_read = self.get_power(wavelength_read)
-        self.pem.set_modulation_amplitude(wavelength_read)
+        # self.pem.set_modulation_amplitude(wavelength_read)
         logging.info(f"Starting MOKE scan at wavelength {wavelength_read} nm and power {power_read} W")
 
         x_scan = np.arange(x_start, x_stop, x_step)
@@ -261,7 +261,7 @@ class NanoScanner:
             # time.sleep(0.5)
             wavelength_read = self.get_wavelength()
             power_read = self.get_power(wavelength_read)
-            self.pem.set_modulation_amplitude(wavelength_read)
+            # self.pem.set_modulation_amplitude(wavelength_read)
 
             wavelength_last = wavelength_read
             voltage_read = self.keithley.read()
@@ -400,8 +400,8 @@ class NanoScanner:
     def close_connection(self): 
         self.shrc.close()
         self.keithley.close()
-        self.pem.set_pem_output(0)
-        self.pem.close()
+        # self.pem.set_pem_output(0)
+        # self.pem.close()
 
 if __name__ == '__main__':
         parser = argparse.ArgumentParser(description='Scan a 2D area with a SHRC203 and a Keithley 2100')
@@ -412,13 +412,13 @@ if __name__ == '__main__':
         index_zaber = 1
         index_powermeter = 0
 
-        for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
-            # scanner.home() #change axis value
-            # scanner.focus(8.282*1e3, 3) #change to values that make sense
-            # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
-            # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
+        # for _ in range(args.num_scans): #In the terminal, input would be python scan_script-Amelie.py 5
+        #     # scanner.home() #change axis value
+        #     # scanner.focus(8.282*1e3, 3) #change to values that make sense
+        #     # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
+        #     # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
 
-            df = scanner.moke_spectroscopy(10)
-            # scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
+        #     df = scanner.moke_spectroscopy(10)
+        #     # scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
 
-        scanner.close_connection()
+        # scanner.close_connection()

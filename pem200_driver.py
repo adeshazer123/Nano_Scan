@@ -15,6 +15,7 @@ class PEM200Driver:
         self.instrument = self.rm.open_resource(self.resource_name)
         self.instrument.timeout = 5000  # Set timeout to 5 seconds
         self.instrument.read_termination = '\n'  # Set read termination to newline
+        self.instrument.write_termination = '\n'
 
     def identify(self):
         response = self.instrument.query('*IDN?')
@@ -49,7 +50,7 @@ class PEM200Driver:
 
         """
         if 0.0 <= drive_value <= 1.0:
-            self.instrument.query(f':MOD:DRV {drive_value}')
+            self.instrument.write(f':MOD:DRV {drive_value}')
         else:
             raise Exception("Drive value must be between 0.0 and 1.0")
 
@@ -79,7 +80,7 @@ class PEM200Driver:
         """
 
         amplitude =  wavelength * self.retardation
-        self.instrument.query(f':MOD:AMP {amplitude}')
+        self.instrument.write(f':MOD:AMP {amplitude}')
         self.wavelength = wavelength
 
 
@@ -92,7 +93,7 @@ class PEM200Driver:
     def set_pem_output(self, state):
         """Set the state of the PEM output"""
         if state in [0, 1]:
-            self.instrument.query(f':SYS:PEMO {state}')
+            self.instrument.write(f':SYS:PEMO {state}')
         else:
             raise Exception("State must be 0 (off) or 1 (on)")
 
