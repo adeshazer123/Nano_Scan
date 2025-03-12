@@ -478,38 +478,37 @@ class WavelengthWindow(QMainWindow):
         y_min = np.unique(y)
         v_reshaped = voltage.reshape(len(y_min), len(x_min))
         wavelength_reshaped = wavelength.reshape(len(y_min), len(x_min))
-        reflection_reshaped = reflection.reshape(len(y_min), len(x_min))
-        kerr_reshaped = kerr.reshape(len(y_min), len(x_min))
-        ellip_reshaped = ellip.reshape(len(y_min), len(x_min))
-        power_reshaped = power.reshape(len(y_min), len(x_min))
+        reflection_reshaped = reflection.reshape(len(y_min), len(x_min)) # DK - you do not have to reshape into 2D becaues reflection is already 1D.
+        kerr_reshaped = kerr.reshape(len(y_min), len(x_min)) # DK - same as reflection
+        ellip_reshaped = ellip.reshape(len(y_min), len(x_min)) # DK - same as reflection
+        power_reshaped = power.reshape(len(y_min), len(x_min)) # DK - same as reflection
         # x1/v, x2/v
 
-        img = self.wavelength1_canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
-        if self.wavelength1_canvas.colorbar is None: 
-            self.wavelength1_canvas.colorbar = self.wavelength1_canvas.figure.colorbar(img, ax=self.wavelength1_canvas.axes)
-        else:
-            self.wavelength1_canvas.colorbar.update_normal(img) 
+        # Replace pcolormesh with other plot types to show a spectrum
+        self.wavelength1_canvas.axes.plot(wavelength_reshaped, reflection_reshaped)
         # if self.canvas.colorbar is not None:
         #     self.canvas.colorbar.remove()
         #     self.canvas.colorbar = None
 
-        self.wavelength1_canvas.axes.set_xlabel("Position X, Y (um)")
-        self.wavelength1_canvas.axes.set_ylabel("Voltage (V)")
+        self.wavelength1_canvas.axes.set_xlabel("Wavelength (nm)")
+        self.wavelength1_canvas.axes.set_ylabel("Reflection")
         self.wavelength1_canvas.draw()
 
         # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
         # harmonics2_data = self.scanner.harmonics_two()
-        img1 = self.wavelength2_canvas.axes.pcolormesh(x_min, y_min, x1_v, shading="auto", cmap="viridis")
-        if self.wavelength2_canvas.colorbar is None:
-            self.wavelength2_canvas.colorbar = self.wavelength2_canvas.figure.colorbar(img1, ax=self.wavelength2_canvas.axes)
-        else:
-            self.wavelength2_canvas.colorbar.update_normal(img1)
+        
+        # Replace pcolormesh with other plot types to show a spectrum        
+        self.wavelength2_canvas.axes.plot(wavelength_reshaped, ellip_reshaped)
 
-        self.wavelength2_canvas.axes.set_xlabel("Position (X, Y (um))")
-        self.wavelength2_canvas.axes.set_ylabel("Harmonics 1d (X1/v)")
+        self.wavelength2_canvas.axes.set_xlabel("Wavelength (nm)")
+        self.wavelength2_canvas.axes.set_ylabel("Elliptec")
         self.wavelength2_canvas.draw()
 
-
+        self.wavelength3_canvas.axes.plot(wavelength_reshaped, kerr_reshaped)
+        self.wavelength3_canvas.axes.set_xlabel("Wavelength (nm)")
+        self.wavelength3_canvas.axes.set_ylabel("Kerr")
+        self.wavelength3_canvas.draw()
+        
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
