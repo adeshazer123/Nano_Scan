@@ -208,7 +208,7 @@ class SHRC203VISADriver:
         if self.read_state(channel) == "B":
             time0 = time.time()
             while self.read_state(channel) == "B":
-                if time.time() - time0 >= 10:
+                if time.time() - time0 >= 20:
                     logger.error("Timeout")
                     break
         return self.read_state(channel)
