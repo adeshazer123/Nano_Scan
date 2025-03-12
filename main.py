@@ -409,14 +409,14 @@ class WavelengthWindow(QMainWindow):
         self.wavelength1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.wavelength2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.wavelength3_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.tabs.addTab(self.wavelength1_canvas, "Wavelength 1")
-        self.tabs.addTab(self.wavelength2_canvas, "Wavelength 2")
-        self.tabs.addTab(self.wavelength3_canvas, "Wavelength 3")
+        self.tabs.addTab(self.wavelength1_canvas, "Reflection")
+        self.tabs.addTab(self.wavelength2_canvas, "Kerr")
+        self.tabs.addTab(self.wavelength3_canvas, "Ellipticity")
         layout.addWidget(self.tabs)
 
-        self.set_index_input = QLineEdit(self)
-        self.set_index_input.setPlaceholderText("Enter set index")
-        layout.addWidget(self.set_index_input)
+        self.set_step_input = QLineEdit(self)
+        self.set_step_input.setPlaceholderText("Enter wavelength step (nm)")
+        layout.addWidget(self.set_step_input)
 
         self.add_zaber_index = QComboBox(self)
         self.add_zaber_index.addItems(["Linear", "Rotary"])
@@ -461,13 +461,13 @@ class WavelengthWindow(QMainWindow):
     @pyqtSlot()
     def start_scan(self): 
         try: 
-            index = int(self.set_index_input.text())
+            step = int(self.set_step_input.text())
             zaber_index = self.add_zaber_index.currentText()
             if zaber_index == "Linear": 
                 zaber_index = 1 
             else: 
                 zaber_index = 2
-            df = self.scanner.moke_spectroscopy(index)
+            df = self.scanner.moke_spectroscopy(step)
             directory_path = self.file_path_input
             directory_path = Path(directory_path)
             if directory_path:
@@ -509,7 +509,7 @@ class WavelengthWindow(QMainWindow):
         # x1/v, x2/v
 
         # Replace pcolormesh with other plot types to show a spectrum
-        self.wavelength1_canvas.axes.plot(wavelength, reflection)
+        self.wavelength1_canvas.axes.plot(wavelength, reflection, "o")
         # if self.canvas.colorbar is not None:
         #     self.canvas.colorbar.remove()
         #     self.canvas.colorbar = None
@@ -522,15 +522,14 @@ class WavelengthWindow(QMainWindow):
         # harmonics2_data = self.scanner.harmonics_two()
         
         # Replace pcolormesh with other plot types to show a spectrum        
-        self.wavelength2_canvas.axes.plot(wavelength, ellip)
-
+        self.wavelength2_canvas.axes.plot(wavelength, kerr, "o")
         self.wavelength2_canvas.axes.set_xlabel("Wavelength (nm)")
-        self.wavelength2_canvas.axes.set_ylabel("Elliptec")
+        self.wavelength2_canvas.axes.set_ylabel("Kerr")
         self.wavelength2_canvas.draw()
 
-        self.wavelength3_canvas.axes.plot(wavelength, kerr)
+        self.wavelength3_canvas.axes.plot(wavelength, ellip, "o")
         self.wavelength3_canvas.axes.set_xlabel("Wavelength (nm)")
-        self.wavelength3_canvas.axes.set_ylabel("Kerr")
+        self.wavelength3_canvas.axes.set_ylabel("Elliptec")
         self.wavelength3_canvas.draw()
         
 
