@@ -240,7 +240,7 @@ class MainWindow(QMainWindow):
     
     def open_wavelength_window(self):
         if self.second_window is None: 
-            self.second_window = WavelengthWindow()
+            self.second_window = WavelengthWindow(self.scanner)
         self.second_window.show()
 
     @pyqtSlot()
@@ -389,8 +389,8 @@ class MainWindow(QMainWindow):
         self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d (X2/v)")
         self.harmonics2_canvas.draw()
 
-class WavelengthWindow(QMainWindow, NanoScanner): 
-    def __init__(self, scanner):
+class WavelengthWindow(QMainWindow): 
+    def __init__(self, scanner=None):
         super().__init__()
         self.setWindowTitle("Second Experiment of Wavelength")
         self.setGeometry(150,150,600,400)
@@ -514,7 +514,7 @@ class WavelengthWindow(QMainWindow, NanoScanner):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
-    window_two = WavelengthWindow()
+    # window_two = WavelengthWindow()
     window.show()
-    window_two.show()
+    # window_two.show()
     sys.exit(app.exec_())
