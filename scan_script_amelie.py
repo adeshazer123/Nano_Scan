@@ -25,31 +25,47 @@ logging.basicConfig(filename=logname,
                     level=logging.INFO)
 
 logger = logging.getLogger('scanTest')
+logger.addHandler(logging.StreamHandler())
 
 
 class NanoScanner: 
     def __init__(self, com_shrc, com_keithley, com_sr830, com_zaber, com_ccsx, com_pem, index_powermeter=0, index_zaber=1):
-        # self.path_root = Path(r"C:\Users\DK-microscope\Measurement Data") #?????? Fix this. Amelie does not understand why this is needed. We should not need to specify the path here.
+        # Initialize SHRC203
         self.shrc = SHRC203(com_shrc)
+        self.shrc.open_connection()
+        logger.info(f"SHRC203 initialized with COM port: {com_shrc}")
+
+        # Initialize Keithley
         self.keithley = Keithley(com_keithley)
         self.keithley.init_hardware()
+        logger.info(f"Keithley initialized with COM port: {com_keithley}")
 
+        # Initialize SR830
         self.sr830 = SR830(com_sr830)
-        
+        logger.info(f"SR830 initialized with COM port: {com_sr830}")
+
+        # Initialize Powermeter
         self.pwmeter = CustomTLPM()
         self.pwmeter.open_by_index(index_powermeter)
-        
+        logger.info(f"Powermeter initialized with index: {index_powermeter}")
+
+        # Initialize Zaber
         self.zaber = ZaberMultiple()
-        
+        self.zaber.connect(com_zaber)
+        logger.info(f"Zaber connected with COM port: {com_zaber}")
+
+        # Initialize PEM200
         self.pem = PEM200Driver(com_pem)
         self.pem.connect()
         self.pem.set_retardation(0.25)
         self.pem.set_pem_output(1)
+        logger.info(f"PEM200 initialized with COM port: {com_pem}")
 
+        # Initialize Wavelength Meter
         self.wavelength = CCSXXX(com_ccsx)
         self.wavelength.connect()
-        self.zaber.connect(com_zaber)
-        self.shrc.open_connection()
+        logger.info(f"Wavelength meter connected with COM port: {com_ccsx}")
+
 
         self.axis = 1
         self.index_powermeter = index_powermeter
@@ -83,7 +99,9 @@ class NanoScanner:
     def harmonics_one(self): 
         self.sr830.harmonic = 1
         time.sleep(self.sr830.time_constant*1.1)
-        self.sr830.quick_range()
+
+        if self.sr830.is_out_of_range():
+            self.sr830.quick_range()
         x, theta = self.sr830.snap('X', 'Theta')
         return x, theta
 
@@ -97,23 +115,21 @@ class NanoScanner:
             """
         self.sr830.harmonic = 2
         time.sleep(self.sr830.time_constant*1.1)
-        self.sr830.quick_range()
+        if self.sr830.is_out_of_range():
+            self.sr830.quick_range()
         x, theta = self.sr830.snap('X', 'Theta')
         return x, theta
     
-    def auto_focus(self, x, y, z):
+    def auto_focus(self, z):
         """Auto focus for the SHRC203 scanner 
         Args: 
-            x (float): x position
-            y (float): y position
             z (float): z position
             """
-        self.shrc.move(x, 1)
-        self.shrc.move(y, 2)
         z_array, v_array = self.scan1d(z-40, z+40, 1.0, axis = 3, myname = "auto_focus")
         z_max = z_array[np.argmax(v_array)]
 
         self.shrc.move(z_max, 3)
+        logger.info(f"Auto focus at position {z_max} um")
 
 
     def generate_filename(self ,path_root, myname, extension="csv"):
@@ -131,6 +147,7 @@ class NanoScanner:
         return wave[intensity.argmax()]
 
     def wavelength_to_position(self, wavelength): 
+        
         position = -66.5 * wavelength + 63840
         return position * 1e-3
     
@@ -138,13 +155,19 @@ class NanoScanner:
         self.pwmeterwavelength = wavelength
         return self.pwmeter.get_power()
 
-    def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke", wait_time = 0.3):
+    def scan2d_moke(self, x_start, x_stop, x_step, y_start, y_stop, y_step, myname="scan_moke"):
+        # Configure the powermeter and pem to the correct wavelength
+        wavelength_read = self.get_wavelength()
+        power_read = self.get_power(wavelength_read)
+        self.pem.set_modulation_amplitude(wavelength_read)
+        logging.info(f"Starting MOKE scan at wavelength {wavelength_read} nm and power {power_read} W")
+
         x_scan = np.arange(x_start, x_stop, x_step)
         y_scan = np.arange(y_start, y_stop, y_step)
 
         x = np.array([])
         y = np.array([])
-        v = np.array([])
+        voltage = np.array([])
         x1 = np.array([])
         theta1 = np.array([]) 
         x2 = np.array([]) 
@@ -174,8 +197,8 @@ class NanoScanner:
                 voltage_current = self.keithley.read() # Measure voltage in Keithley
                 voltage = np.append(voltage, voltage_current)
 
-                x1_value, theta1_value = self.harmonics_one(wait_time) # Measure first harmonic in the lock-in amplifier
-                x2_value, theta2_value = self.harmonics_two(wait_time) # Measure second harmonic in the lock-in amplifier   
+                x1_value, theta1_value = self.harmonics_one() # Measure first harmonic in the lock-in amplifier
+                x2_value, theta2_value = self.harmonics_two() # Measure second harmonic in the lock-in amplifier   
 
                 # x1_value, theta1_value, x2_value, theta2_value = self.read_moke() # Measure MOKE in the lock-in amplifier
 
@@ -188,19 +211,21 @@ class NanoScanner:
                 plt.subplot(131)
                 plt.scatter(x, y, c=voltage)
                 plt.title('Reflection')
+                plt.xlabel('Position X (um)')
+                plt.ylabel('Position Y (um)')
 
                 plt.subplot(132)
                 plt.scatter(x, y, c=x2/voltage) # TODO replace with theta_k
                 plt.title('x2/v')
-                plt.xlabel('Position (um)')
-                plt.ylabel('x2/v')
+                plt.xlabel('Position X (um)')
+                plt.ylabel('Position Y (um)')
                 plt.pause(0.05)
 
                 plt.subplot(133)
                 plt.scatter(x, y, c=x1/voltage)
                 plt.title('x1/v')
-                plt.xlabel('Position (um)')
-                plt.ylabel('x1/v')
+                plt.xlabel('Position X (um)')
+                plt.ylabel('Position Y (um)')
                 plt.pause(0.05)
 
                 # also plot x,y,x2/v, x1/v
@@ -209,7 +234,6 @@ class NanoScanner:
         return df
 
     def moke_spectroscopy(self, step=5, myname="moke_spe"):
-        step = 5
         x, y, z = self.get_position_xyz()
         voltage = np.array([])
         power = np.array([])
@@ -225,8 +249,12 @@ class NanoScanner:
         self.zaber.move_abs(0, self.index_zaber)
 
         wavelength_read = self.get_wavelength()
+        wavelength_last = wavelength_read
 
         while wavelength_read > 700:
+            if wavelength_read > wavelength_last:
+                logger.info("Current wavelength is larger than the previous wavelength. Breaking the loop.")
+                break            
             zaber_shift = 13.3 / (970 - 690) * step
             self.zaber.move_relative(zaber_shift, self.index_zaber)
 
@@ -235,6 +263,7 @@ class NanoScanner:
             power_read = self.get_power(wavelength_read)
             self.pem.set_modulation_amplitude(wavelength_read)
 
+            wavelength_last = wavelength_read
             voltage_read = self.keithley.read()
 
             voltage = np.append(voltage, voltage_read)
@@ -270,7 +299,7 @@ class NanoScanner:
             plt.ylabel("Ellipticity (a.u.)")
             plt.pause(0.05)
 
-            plt.tight_layout()
+            # plt.tight_layout()
 
         data = {
             "x (um)": x, "y (um)": y, "z (um)": z, "wavelength (nm)": wavelength, "ref power (W)": power, "v (V)": voltage,
@@ -303,6 +332,7 @@ class NanoScanner:
 
 
         for i in range(len(x_scan)):
+            self.shrc.move(x_scan[i], axis)
             x = np.append(x, x_scan[i])
 
             # voltage = np.random.rand() # * Replace with Keithley 
@@ -311,7 +341,7 @@ class NanoScanner:
             v = np.append(v, voltage)
 
             plt.clf()
-            plt.plot(x, v)
+            plt.plot(x, v,)
             plt.xlabel("Position (um)")
             plt.ylabel("Voltage (V)")
 
@@ -338,11 +368,11 @@ class NanoScanner:
 
         for j in range(len(y_scan)):
             # print(f"Y: {y_scan[j]}")
-            # self.shrc.move(y_scan[j], 2)
+            self.shrc.move(y_scan[j], 2)
 
             for i in range(len(x_scan)):
                 # print(f"X: {x_scan[i]}")
-                # self.shrc.move(x_scan[i], 1)
+                self.shrc.move(x_scan[i], 1)
                 x = np.append(x, x_scan[i])
                 y = np.append(y, y_scan[j])
 
@@ -388,7 +418,7 @@ if __name__ == '__main__':
             # df = scanner.scan2d(0, 30, 10, 0, 30, 10)
             # scanner.generate_filename(path_root = default_path, myname = "scan", extension="csv")
 
-            df = scanner.moke_spectroscopy(10,1)
+            df = scanner.moke_spectroscopy(10)
             # scanner.generate_filename(path_root = default_path, myname = "moke_spe", extension="csv")
 
         scanner.close_connection()
