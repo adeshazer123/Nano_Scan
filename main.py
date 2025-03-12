@@ -8,7 +8,10 @@ from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import pandas as pd
 from scan_script_amelie import NanoScanner
 import logging
+
 logger = logging.getLogger(__name__)
+logger.addHandler(logging.StreamHandler())
+
 class MplCanvas(FigureCanvas):
     def __init__(self, parent = None, width = 5, height = 4, dpi = 100):
         fig = Figure(figsize=(width, height), dpi=dpi)
@@ -24,8 +27,8 @@ class MainWindow(QMainWindow):
 
         self.initUI()
         self.scanner = None
-        self.scan_timer = QTimer(self)
-        self.scan_timer.timeout.connect(self.update_scan_plot)
+        # self.scan_timer = QTimer(self)
+        # self.scan_timer.timeout.connect(self.update_scan_plot)
         self.second_window = None
         # self.file_path_input = None
         # self.file_format_combo = None
@@ -226,7 +229,7 @@ class MainWindow(QMainWindow):
             axis = int(self.set_axis_input.currentText())
             self.scanner.set_axis(axis)
             position = self.scanner.query_position(axis) 
-            print(f"position {position}")
+            logging.debug(f"position {position}")
             self.query_position_label.setText(f"Position: {position}")
             
             return position
@@ -253,12 +256,12 @@ class MainWindow(QMainWindow):
                 move_relative = float(self.move_relative_input.text())
                 self.scanner.move_relative(move_relative)
                 self.query_position()
-                logger.info(f"Moved stage to relative position {move_relative}")
+                logger.debug(f"Moved stage to relative position {move_relative}")
             elif sender == self.move_stage_button:
                 move_position = float(self.move_position_input.text())
                 self.scanner.move(move_position)
                 self.query_position()
-                logger.info(f"Moved stage to position {move_position}")
+                logger.debug(f"Moved stage to position {move_position}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     
@@ -266,10 +269,10 @@ class MainWindow(QMainWindow):
     def focus_stage(self):
         try: 
             rough_focus = float(self.focus_position_input.text())
-            x_start = float(self.x_start_input.text())
-            y_start = float(self.y_start_input.text())
-            self.scanner.auto_focus(x_start, y_start, rough_focus)
-            # logger.info(f"Focused stage at position {focus_position}")
+            # x_start = float(self.x_start_input.text())
+            # y_start = float(self.y_start_input.text())
+            self.scanner.auto_focus(rough_focus)
+            logger.debug(f"Focused stage at position {rough_focus}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
@@ -279,21 +282,21 @@ class MainWindow(QMainWindow):
             step = float(self.x_step_input.text())
             index_zaber = 1 # int(self.set_axis_input.currentText()) # DK - this is zaber's axis index, which should be independent of SHRC's set_axis_input
             x_start = float(self.x_start_input.text())
-            # print(type(x_start), self.x_start_input.text())
+            logging.debug(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
-            # print(type(x_stop))
+            logging.debug(type(x_stop))
             x_step = float(self.x_step_input.text())
-            # print(type(x_step))
+            logging.debug(type(x_step))
             y_start = float(self.y_start_input.text())
-            # print(type(y_start))
+            logging.debug(type(y_start))
             y_stop = float(self.y_stop_input.text())
-            # print(type(y_stop))
+            logging.debug(type(y_stop))
             y_step = float(self.y_step_input.text())
-            # print(type(y_step))
+            logging.debug(type(y_step))
 
             # Example scan parameters
             self.scan_data = []
-            self.scan_timer.start(1000)
+            # self.scan_timer.start(1000)
             df = self.scanner.scan2d_moke(x_start, x_stop, x_step, y_start, y_stop, y_step)
             # df_t = self.scanner.moke_spectroscopy(step, index_zaber)
 
@@ -303,16 +306,17 @@ class MainWindow(QMainWindow):
             if directory_path:
                 file_format = self.file_format_combo.currentText()
                 if file_format == "HDF5":
-                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="h5")
+                    file_name = self.scanner.generate_filename(directory_path, "MAP", extension="h5")
+                    logger.info(f"Saving scan data to {file_name}")
                     df.to_hdf(file_name, key='df', mode='w')
                     # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
-                    print("This is file_format == 'CSV'")
-                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="csv")
-                    print(f"file_name after create file-name {file_name}")
+                    logging.debug("This is file_format == 'CSV'")
+                    file_name = self.scanner.generate_filename(directory_path, "MAP", extension="csv")
+                    logger.info(f"Saving scan data to {file_name}")
                     df.to_csv(file_name, index=False)
                     # df_t.to_csv(file_name, index=False)
-                    print(f"file_name after to_csv {file_name}")
+                    logging.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
@@ -322,16 +326,16 @@ class MainWindow(QMainWindow):
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     
-    def update_scan_plot(self):
-        try:
-            new_data = self.scanner.get_latest_scan_data()
-            if new_data: 
-                self.scan_data.append(new_data)
-                self.plot_scan_results(pd.DataFrame(self.scan_data))
+    # def update_scan_plot(self):
+    #     try:
+    #         new_data = self.scanner.get_latest_scan_data()
+    #         if new_data: 
+    #             self.scan_data.append(new_data)
+    #             self.plot_scan_results(pd.DataFrame(self.scan_data))
                 
-        except Exception as e:
-            logger.error(f"An error occurred: {str(e)}")
-            self.scan_timer.stop()
+    #     except Exception as e:
+    #         logger.error(f"An error occurred: {str(e)}")
+    #         self.scan_timer.stop()
     @pyqtSlot()
     def show_results(self):
         # Implement logic to display scan results
@@ -366,8 +370,8 @@ class MainWindow(QMainWindow):
         #     self.canvas.colorbar.remove()
         #     self.canvas.colorbar = None
 
-        self.canvas.axes.set_xlabel("Position X, Y (um)")
-        self.canvas.axes.set_ylabel("Voltage (V)")
+        self.canvas.axes.set_xlabel("Position X (um)")
+        self.canvas.axes.set_ylabel("Position Y (um)")
         self.canvas.draw()
 
         # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
@@ -378,8 +382,8 @@ class MainWindow(QMainWindow):
         else:
             self.harmonics1_canvas.colorbar.update_normal(img1)
 
-        self.harmonics1_canvas.axes.set_xlabel("Position (X, Y (um))")
-        self.harmonics1_canvas.axes.set_ylabel("Harmonics 1d (X1/v)")
+        self.harmonics1_canvas.axes.set_xlabel("Position X (um)")
+        self.harmonics1_canvas.axes.set_ylabel("Position Y (um)")
         self.harmonics1_canvas.draw()
 
         img2 = self.harmonics2_canvas.axes.pcolormesh(x_min, y_min, x2_v, shading="auto", cmap="viridis")
@@ -388,8 +392,8 @@ class MainWindow(QMainWindow):
         else:
             self.harmonics2_canvas.colorbar.update_normal(img2)
         
-        self.harmonics2_canvas.axes.set_xlabel("Position (X, Y (um))")
-        self.harmonics2_canvas.axes.set_ylabel("Harmonics 2d (X2/v)")
+        self.harmonics2_canvas.axes.set_xlabel("Position X (um)")
+        self.harmonics2_canvas.axes.set_ylabel("Position Y (um)")
         self.harmonics2_canvas.draw()
 
 class WavelengthWindow(QMainWindow): 
@@ -461,7 +465,7 @@ class WavelengthWindow(QMainWindow):
     @pyqtSlot()
     def start_scan(self): 
         try: 
-            step = int(self.set_step_input.text())
+            step = float(self.set_step_input.text())
             zaber_index = self.add_zaber_index.currentText()
             if zaber_index == "Linear": 
                 zaber_index = 1 
@@ -473,16 +477,18 @@ class WavelengthWindow(QMainWindow):
             if directory_path:
                 file_format = self.file_format_combo
                 if file_format == "HDF5":
-                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="h5")
+                    file_name = self.scanner.generate_filename(directory_path, "SPE", extension="h5")
+                    logger.info(f"Saving scan data to {file_name}")
                     df.to_hdf(file_name, key='df', mode='w')
                     # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
-                    print("This is file_format == 'CSV'")
-                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="csv")
-                    print(f"file_name after create file-name {file_name}")
+                    logging.debug("This is file_format == 'CSV'")
+                    file_name = self.scanner.generate_filename(directory_path, "SPE", extension="csv")
+                    logging.debug(f"file_name after create file-name {file_name}")
+                    logger.info(f"Saving scan data to {file_name}")
                     df.to_csv(file_name, index=False)
                     # df_t.to_csv(file_name, index=False)
-                    print(f"file_name after to_csv {file_name}")
+                    logging.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
@@ -536,7 +542,5 @@ class WavelengthWindow(QMainWindow):
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MainWindow()
-    # window_two = WavelengthWindow()
     window.show()
-    # window_two.show()
     sys.exit(app.exec_())
