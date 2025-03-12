@@ -262,7 +262,7 @@ class MainWindow(QMainWindow):
     
     def open_wavelength_window(self):
         if self.second_window is None: 
-            self.second_window = WavelengthWindow(self.scanner, self.file_path_input.text(), self.file_format_combo.currentText())
+            self.second_window = WavelengthWindow(self.scanner, self.file_path_input.text(), self.file_format_combo.currentText(), logger)
         self.second_window.show()
 
     @pyqtSlot()
@@ -285,39 +285,26 @@ class MainWindow(QMainWindow):
     @pyqtSlot() 
     def focus_stage(self):
         try: 
+            logger.info("Starting auto focus")
             rough_focus = float(self.focus_position_input.text())
-            # x_start = float(self.x_start_input.text())
-            # y_start = float(self.y_start_input.text())
             self.scanner.auto_focus(rough_focus)
             logger.debug(f"Focused stage at position {rough_focus}")
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
     @pyqtSlot()
     def start_scan(self):
-        # Here you would implement the logic to start the scan using NanoScanner
         try:
-            step = float(self.x_step_input.text())
-            index_zaber = 1 # int(self.set_axis_input.currentText()) # DK - this is zaber's axis index, which should be independent of SHRC's set_axis_input
             x_start = float(self.x_start_input.text())
-            logging.debug(type(x_start), self.x_start_input.text())
             x_stop = float(self.x_stop_input.text())
-            logging.debug(type(x_stop))
             x_step = float(self.x_step_input.text())
-            logging.debug(type(x_step))
             y_start = float(self.y_start_input.text())
-            logging.debug(type(y_start))
             y_stop = float(self.y_stop_input.text())
-            logging.debug(type(y_stop))
             y_step = float(self.y_step_input.text())
-            logging.debug(type(y_step))
+            logger.info(f"Starting 2D scan from ({x_start}, {y_start}) to ({x_stop}, {y_stop}) with step size {x_step} x {y_step}")
 
-            # Example scan parameters
             self.scan_data = []
-            # self.scan_timer.start(1000)
             df = self.scanner.scan2d_moke(x_start, x_stop, x_step, y_start, y_stop, y_step)
-            # df_t = self.scanner.moke_spectroscopy(step, index_zaber)
 
-            # self.scanner.generate_filename(self ,path_root, myname, extension="csv")
             directory_path = self.file_path_input.text()
             directory_path = Path(directory_path)
             file_name = self.file_name_input.text()
@@ -328,7 +315,6 @@ class MainWindow(QMainWindow):
                     file_name = self.scanner.generate_filename(directory_path, file_name, extension="h5")
                     logger.info(f"Saving scan data to {file_name}")
                     df.to_hdf(file_name, key='df', mode='w')
-                    # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
                     logging.debug("This is file_format == 'CSV'")
                     file_name = self.scanner.generate_filename(directory_path, file_name, extension="csv")
@@ -340,13 +326,11 @@ class MainWindow(QMainWindow):
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
             self.plot_scan_results(df)
-            # self.plot_scan_results(df_t) # Can you create a separate button to start lock-in spectroscopy?
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     
     @pyqtSlot()
     def show_results(self):
-        # Implement logic to display scan results
         QMessageBox.information(self, "Results", "Displaying scan results...")
 
         
@@ -367,23 +351,16 @@ class MainWindow(QMainWindow):
         x1_v = (x1 / v).reshape(len(y_min), len(x_min))
         x2_v = (x2 / v).reshape(len(y_min), len(x_min))
 
-        # x1/v, x2/v
-
         img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
         if self.canvas.colorbar is None: 
             self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         else:
             self.canvas.colorbar.update_normal(img) 
-        # if self.canvas.colorbar is not None:
-        #     self.canvas.colorbar.remove()
-        #     self.canvas.colorbar = None
 
         self.canvas.axes.set_xlabel("Position X (um)")
         self.canvas.axes.set_ylabel("Position Y (um)")
         self.canvas.draw()
 
-        # harmonics1_data = self.scanner.harmonics_one()DK - we should use the values in df, not taking data here
-        # harmonics2_data = self.scanner.harmonics_two()
         img1 = self.harmonics1_canvas.axes.pcolormesh(x_min, y_min, x1_v, shading="auto", cmap="viridis")
         if self.harmonics1_canvas.colorbar is None:
             self.harmonics1_canvas.colorbar = self.harmonics1_canvas.figure.colorbar(img1, ax=self.harmonics1_canvas.axes)
@@ -404,14 +381,17 @@ class MainWindow(QMainWindow):
         self.harmonics2_canvas.axes.set_ylabel("Position Y (um)")
         self.harmonics2_canvas.draw()
 
+        logger.info("Plotted scan results")
+
 class WavelengthWindow(QMainWindow): 
-    def __init__(self, scanner=None, file_path_input=None, file_format_combo=None):
+    def __init__(self, scanner=None, file_path_input=None, file_format_combo=None, logger=None):
         super().__init__()
         self.setWindowTitle("Second Experiment of Wavelength")
         self.setGeometry(150,150,600,400)
         self.scanner = scanner
         self.file_path_input = file_path_input
         self.file_format_combo = file_format_combo
+        self.logger = logger
         self.initUI()
     def initUI(self):
         layout = QVBoxLayout()
@@ -425,6 +405,11 @@ class WavelengthWindow(QMainWindow):
         self.tabs.addTab(self.wavelength2_canvas, "Kerr")
         self.tabs.addTab(self.wavelength3_canvas, "Ellipticity")
         layout.addWidget(self.tabs)
+
+        self.file_name_input = QLineEdit(self)
+        self.file_name_input.setPlaceholderText("Enter file name")
+        self.file_name_input.setFixedWidth(200)
+        layout.addWidget(self.file_name_input)
 
         self.set_step_input = QLineEdit(self)
         self.set_step_input.setPlaceholderText("Enter wavelength step (nm)")
@@ -480,54 +465,43 @@ class WavelengthWindow(QMainWindow):
             else: 
                 zaber_index = 2
             df = self.scanner.moke_spectroscopy(step)
+
             directory_path = self.file_path_input
             directory_path = Path(directory_path)
-            if directory_path:
+            file_name = self.file_name_input.text()
+            self.logger.debug(f"file_name after create file-name {file_name}")
+            if directory_path and file_name:
                 file_format = self.file_format_combo
                 if file_format == "HDF5":
-                    file_name = self.scanner.generate_filename(directory_path, "SPE", extension="h5")
-                    logger.info(f"Saving scan data to {file_name}")
+                    file_name = self.scanner.generate_filename(directory_path, file_name, extension="h5")
+                    self.logger.info(f"Saving scan data to {file_name}")
                     df.to_hdf(file_name, key='df', mode='w')
-                    # df_t.to_hdf(file_name, key='df_t', mode='a')
                 elif file_format == "CSV":
-                    logging.debug("This is file_format == 'CSV'")
-                    file_name = self.scanner.generate_filename(directory_path, "SPE", extension="csv")
-                    logging.debug(f"file_name after create file-name {file_name}")
-                    logger.info(f"Saving scan data to {file_name}")
+                    self.logger.debug("This is file_format == 'CSV'")
+                    file_name = self.scanner.generate_filename(directory_path, file_name, extension="csv")
+                    self.logger.info(f"Saving scan data to {file_name}")
                     df.to_csv(file_name, index=False)
-                    # df_t.to_csv(file_name, index=False)
-                    logging.debug(f"file_name after to_csv {file_name}")
+
+                    self.logger.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
             self.plot_scan_results(df)
         except Exception as e:
-            logger.error(f"An error occurred: {str(e)}")
+            self.logger.error(f"An error occurred: {str(e)}")
     
     def plot_scan_results(self, df): 
         self.wavelength1_canvas.axes.clear()
         self.wavelength2_canvas.axes.clear()
         self.wavelength3_canvas.axes.clear()
 
-        x = df["x (um)"].values
-        y = df["y (um)"].values
         wavelength = df["wavelength (nm)"].values
         reflection = df["reflection (a.u,)"].values
         kerr = df["kerr"].values
         ellip = df["ellip"].values
-        power = df["ref power (W)"].values
 
-        # x_min = np.unique(x)
-        # y_min = np.unique(y)
-        # x1/v, x2/v
-
-        # Replace pcolormesh with other plot types to show a spectrum
         self.wavelength1_canvas.axes.plot(wavelength, reflection, "o")
-        # if self.canvas.colorbar is not None:
-        #     self.canvas.colorbar.remove()
-        #     self.canvas.colorbar = None
-
         self.wavelength1_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength1_canvas.axes.set_ylabel("Reflection")
         self.wavelength1_canvas.draw()
@@ -541,6 +515,8 @@ class WavelengthWindow(QMainWindow):
         self.wavelength3_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength3_canvas.axes.set_ylabel("Elliptec")
         self.wavelength3_canvas.draw()
+
+        self.logger.info("Plotted scan results")
         
 
 if __name__ == "__main__":

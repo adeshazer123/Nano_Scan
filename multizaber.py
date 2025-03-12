@@ -18,11 +18,10 @@ class ZaberMultiple:
 
     def get_axis(self, axis):  # The same names of axis (= self.axis_value) and self.axis may be confusing. I would like to rename the attribute or the object name.
         """Return Zaber Actuator Axis"""
-        return self.controller_axis[axis - 1] # DK - See my comment in move_abs. This method may be redundant.
+        return self.controller_axis[axis - 1]
 
     def get_units(self, axis):
         """Return Zaber Actuator Units"""
-        # DK - should we use a zaber_motion method to get the unit which may be more reliable?'
         return self.unit[axis - 1]
 
     def connect(self, port):

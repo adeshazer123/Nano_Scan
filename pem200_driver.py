@@ -27,11 +27,6 @@ class PEM200Driver:
 
     def set_retardation(self, retardation):
         self.retardation = retardation
-        # if 0.0 <= retardation <= 1.0:
-        #     self.retardation=retardation
-        # else:
-        #     raise Exception("Retardation value must be between 0.0 and 1.0")
-
     def get_modulation_drive(self):
         """
         Get modulator drive voltage as range 0 to 1

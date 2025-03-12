@@ -9,8 +9,6 @@ class AxisError(Exception):
     Raised when a particular axis causes an error for OptoSigma SHRC-203.
 
     """
-
-# DK - convert the keys into a correct format like '1000002'
     MESSAGES = {
         '1': 'Normal (S1 to S10 and emergency stop has not occurred)',
         '3': 'Command error',
@@ -124,7 +122,7 @@ class SHRC203VISADriver:
         """
         self._instr.query(f"F:{channel}{loop}")
 
-    def get_loop(self, channel):# DK - get loop from query
+    def get_loop(self, channel):
         """
         Get the loop status of the specified channel."""
         return int(self._instr.query(f"?:F{channel}"))
@@ -139,10 +137,8 @@ class SHRC203VISADriver:
             self._instr.query(f"A:{channel}-{self.unit}{abs(position)}")
         self._instr.query("G:")
         self.wait_for_ready(channel)
-        # self.position[channel-1] = position
     
     def query_position(self, channel):
-        # units = ["N", "U", "M", "D", "P"]
         while True:
             try: 
                 position = self._instr.query(f"Q:S{self.unit}")
@@ -201,8 +197,6 @@ class SHRC203VISADriver:
         self._instr.query(f"H:{channel}")
         self.wait_for_ready(channel)
         
-
-
     def wait_for_ready(self, channel):
         """Waits for the stage to be ready."""
         if self.read_state(channel) == "B":
@@ -217,7 +211,6 @@ class SHRC203VISADriver:
     def stop(self, channel):
         """Stop the stage"""
         self._instr.query(f"L:{channel}")
-        # self.wait_for_ready(channel)
 
     def read_state(self, channel):
         """Read the state if the stage is moving or not.
