@@ -27,6 +27,8 @@ class MainWindow(QMainWindow):
         self.scan_timer = QTimer(self)
         self.scan_timer.timeout.connect(self.update_scan_plot)
         self.second_window = None
+        # self.file_path_input = None
+        # self.file_format_combo = None
 
     def initUI(self):
         layout = QVBoxLayout()
@@ -240,7 +242,7 @@ class MainWindow(QMainWindow):
     
     def open_wavelength_window(self):
         if self.second_window is None: 
-            self.second_window = WavelengthWindow(self.scanner)
+            self.second_window = WavelengthWindow(self.scanner, self.file_path_input.text(), self.file_format_combo.currentText())
         self.second_window.show()
 
     @pyqtSlot()
@@ -326,6 +328,7 @@ class MainWindow(QMainWindow):
             if new_data: 
                 self.scan_data.append(new_data)
                 self.plot_scan_results(pd.DataFrame(self.scan_data))
+                
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
             self.scan_timer.stop()
@@ -390,11 +393,13 @@ class MainWindow(QMainWindow):
         self.harmonics2_canvas.draw()
 
 class WavelengthWindow(QMainWindow): 
-    def __init__(self, scanner=None):
+    def __init__(self, scanner=None, file_path_input=None, file_format_combo=None):
         super().__init__()
         self.setWindowTitle("Second Experiment of Wavelength")
         self.setGeometry(150,150,600,400)
         self.scanner = scanner
+        self.file_path_input = file_path_input
+        self.file_format_combo = file_format_combo
         self.initUI()
     def initUI(self):
         layout = QVBoxLayout()
@@ -416,6 +421,11 @@ class WavelengthWindow(QMainWindow):
         self.add_zaber_index = QComboBox(self)
         self.add_zaber_index.addItems(["Linear", "Rotary"])
         layout.addWidget(self.add_zaber_index)
+
+        self.start_scan_button = QPushButton("Start Scan")
+        self.start_scan_button.clicked.connect(self.start_scan)
+        self.start_scan_button.setFixedWidth(200)
+        layout.addWidget(self.start_scan_button)
 
         container = QWidget()
         container.setLayout(layout)
@@ -447,6 +457,8 @@ class WavelengthWindow(QMainWindow):
                 background-color: #003f8a;
             }
         """)
+
+    @pyqtSlot()
     def start_scan(self): 
         try: 
             index = int(self.set_index_input.text())
@@ -454,8 +466,27 @@ class WavelengthWindow(QMainWindow):
             if zaber_index == "Linear": 
                 zaber_index = 1 
             else: 
-                zaber_index = 0
-            df = self.scanner.scan2d_moke(index, zaber_index)
+                zaber_index = 2
+            df = self.scanner.moke_spectroscopy(index)
+            directory_path = self.file_path_input
+            directory_path = Path(directory_path)
+            if directory_path:
+                file_format = self.file_format_combo
+                if file_format == "HDF5":
+                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="h5")
+                    df.to_hdf(file_name, key='df', mode='w')
+                    # df_t.to_hdf(file_name, key='df_t', mode='a')
+                elif file_format == "CSV":
+                    print("This is file_format == 'CSV'")
+                    file_name = self.scanner.generate_filename(directory_path, "Scan", extension="csv")
+                    print(f"file_name after create file-name {file_name}")
+                    df.to_csv(file_name, index=False)
+                    # df_t.to_csv(file_name, index=False)
+                    print(f"file_name after to_csv {file_name}")
+                QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
+            else: 
+                QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
+
             self.plot_scan_results(df)
         except Exception as e:
             logger.error(f"An error occurred: {str(e)}")
@@ -468,24 +499,17 @@ class WavelengthWindow(QMainWindow):
         x = df["x (um)"].values
         y = df["y (um)"].values
         wavelength = df["wavelength (nm)"].values
-        voltage = df["v (V)"].values
         reflection = df["reflection (a.u,)"].values
         kerr = df["kerr"].values
         ellip = df["ellip"].values
         power = df["ref power (W)"].values
 
-        x_min = np.unique(x)
-        y_min = np.unique(y)
-        v_reshaped = voltage.reshape(len(y_min), len(x_min))
-        wavelength_reshaped = wavelength.reshape(len(y_min), len(x_min))
-        reflection_reshaped = reflection.reshape(len(y_min), len(x_min)) # DK - you do not have to reshape into 2D becaues reflection is already 1D.
-        kerr_reshaped = kerr.reshape(len(y_min), len(x_min)) # DK - same as reflection
-        ellip_reshaped = ellip.reshape(len(y_min), len(x_min)) # DK - same as reflection
-        power_reshaped = power.reshape(len(y_min), len(x_min)) # DK - same as reflection
+        # x_min = np.unique(x)
+        # y_min = np.unique(y)
         # x1/v, x2/v
 
         # Replace pcolormesh with other plot types to show a spectrum
-        self.wavelength1_canvas.axes.plot(wavelength_reshaped, reflection_reshaped)
+        self.wavelength1_canvas.axes.plot(wavelength, reflection)
         # if self.canvas.colorbar is not None:
         #     self.canvas.colorbar.remove()
         #     self.canvas.colorbar = None
@@ -498,13 +522,13 @@ class WavelengthWindow(QMainWindow):
         # harmonics2_data = self.scanner.harmonics_two()
         
         # Replace pcolormesh with other plot types to show a spectrum        
-        self.wavelength2_canvas.axes.plot(wavelength_reshaped, ellip_reshaped)
+        self.wavelength2_canvas.axes.plot(wavelength, ellip)
 
         self.wavelength2_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength2_canvas.axes.set_ylabel("Elliptec")
         self.wavelength2_canvas.draw()
 
-        self.wavelength3_canvas.axes.plot(wavelength_reshaped, kerr_reshaped)
+        self.wavelength3_canvas.axes.plot(wavelength, kerr)
         self.wavelength3_canvas.axes.set_xlabel("Wavelength (nm)")
         self.wavelength3_canvas.axes.set_ylabel("Kerr")
         self.wavelength3_canvas.draw()
