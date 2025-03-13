@@ -322,6 +322,9 @@ class MainWindow(QMainWindow):
                     df.to_csv(file_name, index=False)
                     logging.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
+                file_name = self.scanner.generate_filename(directory_path, file_name, extension="png")
+                self.canvas.figure.savefig(file_name)
+                logger.info(f"Saved scan plot to {file_name}")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
