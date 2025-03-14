@@ -1,6 +1,7 @@
 import numpy as np
 import time
 import pyvisa
+import math
 import logging
 logger = logging.getLogger(__name__)
 
@@ -131,7 +132,7 @@ class SHRC203VISADriver:
         """
         Move the specified channel to the position.
         """
-
+        position = self.round_up(position, 2)
         if position >= 0:
             self._instr.query(f"A:{channel}+{self.unit}{position}")
         else:
@@ -354,12 +355,21 @@ class SHRC203VISADriver:
         Get the loop status of the specified channel."""
         return int(self._instr.query(f"?:F{channel}"))
 
+    def round_up(self,position, increment = 0.05):
+        """Round up the position based on increment.
+        Round up based between 0.05 um.
+        Args:
+            position (float): Position of the stage.
+            increment (float): Increment of the stage.
+        Returns: 
+            float: Rounded up position.
+        """
+        return round(position /increment)* increment
     def move(self, position, channel): 
         """
         Move the specified channel to the position.
         """
-        position = round(position*10)/10
-
+        position = self.round_up(position, 0.050)
         if position >= 0:
             self._instr.query(f"A:{channel}+{self.unit}{position}")
         else:
@@ -411,11 +421,12 @@ class SHRC203VISADriver:
         self.speed_fin[channel-1] = int(speed.split("F")[1].split("R")[0])
         self.accel_t[channel-1]= int(speed.split("R")[1])
         return self.speed_ini[channel-1], self.speed_fin[channel-1], self.accel_t[channel-1]
+    
+    # the increment should be 0.050 um
 
     def move_relative(self, position, channel):
         """Move the stage to a relative position."""
-        position = round(position*10)/10
-        
+        position = self.round_up(position, 0.050)
         if position >= 0:
             self._instr.query(f"M:{channel}+{self.unit}{position}")
         else:
