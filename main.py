@@ -1,5 +1,5 @@
 from pathlib import Path
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTextEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTextEdit, QSizePolicy
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot, Qt, QTimer
@@ -33,24 +33,28 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("PyQt5 Scan Application")
-        self.setGeometry(100, 100, 400, 300)
+        self.setGeometry(100, 100, 800, 600)
 
         self.initUI()
+        self.showMaximized()
         self.scanner = None
         self.second_window = None
     def initUI(self):
         layout = QVBoxLayout()
         grid_layout = QGridLayout()
 
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        self.canvas = MplCanvas(self, width=10, height=8, dpi=100)
+        self.harmonics1_canvas = MplCanvas(self, width=10, height=8, dpi=100)
+        self.harmonics2_canvas = MplCanvas(self, width=10, height=8, dpi=100)
+        self.canvas.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.harmonics1_canvas.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.harmonics2_canvas.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         self.tabs = QTabWidget()
         self.tabs.setTabPosition(QTabWidget.North)
-        self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        # self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        # self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
+        # self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.tabs.addTab(self.canvas, "2D Scan")
         self.tabs.addTab(self.harmonics1_canvas, "Harmonics 1D")
         self.tabs.addTab(self.harmonics2_canvas, "Harmonics 2D")
@@ -322,13 +326,16 @@ class MainWindow(QMainWindow):
                     df.to_csv(file_name, index=False)
                     logging.debug(f"file_name after to_csv {file_name}")
                 QMessageBox.information(self, "Scan Complete", "Scan completed successfully!")
-                file_name = self.scanner.generate_filename(directory_path, file_name, extension="png")
-                self.canvas.figure.savefig(file_name)
-                logger.info(f"Saved scan plot to {file_name}")
+                # file_nameImage = f"{self.file_format_combo.currentText()}_image"
+                # file_nameImage = self.scanner.generate_filename(directory_path, file_nameImage, extension="png")
+                # self.canvas.figure.savefig(file_nameImage)
+                # logger.info(f"Saved scan plot to {file_nameImage}")
             else: 
                 QMessageBox.critical(self, "Error", "Please select a directory to save the scan results.")
 
             self.plot_scan_results(df)
+
+            logger.info(f"Saved scan plot to {file_name}")
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
     
@@ -354,15 +361,21 @@ class MainWindow(QMainWindow):
         x1_v = (x1 / v).reshape(len(y_min), len(x_min))
         x2_v = (x2 / v).reshape(len(y_min), len(x_min))
 
-        img = self.canvas.axes.pcolormesh(x_min, y_min, v_reshaped, shading="auto", cmap="viridis")
+        img = self.canvas.axes.pcolormesh(x_min, y_min ,v_reshaped, shading="auto", cmap="viridis")
         if self.canvas.colorbar is None: 
             self.canvas.colorbar = self.canvas.figure.colorbar(img, ax=self.canvas.axes)
         else:
             self.canvas.colorbar.update_normal(img) 
+        
 
         self.canvas.axes.set_xlabel("Position X (um)")
         self.canvas.axes.set_ylabel("Position Y (um)")
         self.canvas.draw()
+        directory_path = self.file_path_input.text()
+        directory_path = Path(directory_path)
+        file_name = f"{self.file_name_input.text()}_2D_scan"
+        file_name = self.scanner.generate_filename(directory_path, file_name, extension="png")
+        self.canvas.figure.savefig(file_name)
 
         img1 = self.harmonics1_canvas.axes.pcolormesh(x_min, y_min, x1_v, shading="auto", cmap="viridis")
         if self.harmonics1_canvas.colorbar is None:

@@ -121,7 +121,7 @@ class NanoScanner:
         logger.info(f"Auto focus at position {z_max} um")
 
 
-    def generate_filename(self, path_root, myname, extension="csv"):
+    def generate_filename(self, path_root, myname, extension):
         now = datetime.now()
         prefix = now.strftime("%Y%m%d_%H%M%S")
 
