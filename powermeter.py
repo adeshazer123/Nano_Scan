@@ -37,14 +37,17 @@ import importlib
 from pathlib import Path
 import ctypes
 import functools
+import logging
 
-from pymodaq.utils import daq_utils as utils
-from pymodaq.utils.logger import set_logger, get_module_name
-logger = set_logger(get_module_name(__file__))
-if utils.is_64bits():
-    path_dll = str(Path(os.environ['VXIPNPPATH64']).joinpath('Win64', 'Bin'))
-else:
-    path_dll = str(Path(os.environ['VXIPNPPATH']).joinpath('WinNT', 'Bin'))
+# from pymodaq.utils import daq_utils as utils
+# from pymodaq.utils.logger import set_logger, get_module_name
+# logger = set_logger(get_module_name(__file__))
+logger = logging.getLogger(__name__)
+
+# if utils.is_64bits():
+path_dll = str(Path(os.environ['VXIPNPPATH64']).joinpath('Win64', 'Bin'))
+# else:
+#     path_dll = str(Path(os.environ['VXIPNPPATH']).joinpath('WinNT', 'Bin'))
 os.add_dll_directory(path_dll)
 
 
