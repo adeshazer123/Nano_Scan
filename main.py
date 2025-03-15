@@ -1,5 +1,6 @@
 from pathlib import Path
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTextEdit
+from PyQt5.QtGui import QIcon
 import sys
 import numpy as np
 from PyQt5.QtCore import pyqtSlot, Qt, QTimer
@@ -34,6 +35,7 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.setWindowTitle("PyQt5 Scan Application")
         self.setGeometry(100, 100, 400, 300)
+        self.setWindowIcon(QIcon('logo.png'))
 
         self.initUI()
         self.scanner = None
