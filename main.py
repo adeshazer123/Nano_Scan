@@ -1,7 +1,9 @@
 from pathlib import Path
 from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QVBoxLayout, QHBoxLayout, QWidget, QMessageBox, QLineEdit, QGridLayout, QLabel, QFileDialog, QComboBox, QTabWidget, QGroupBox, QTextEdit
 from PyQt5.QtGui import QIcon
+from PyQt5 import QtGui, QtCore
 import sys
+import os
 import numpy as np
 from PyQt5.QtCore import pyqtSlot, Qt, QTimer
 from matplotlib.figure import Figure
@@ -104,6 +106,12 @@ class MainWindow(QMainWindow):
         self.query_position_button.clicked.connect(self.query_position)
         position_layout.addWidget(self.query_position_button)
 
+        self.axis_labels = []
+        for i in range(1,4):
+            label = QLabel(f"Axis {i}: ")
+            self.axis_labels.append(label)
+            position_layout.addWidget(label)
+
         position_group.setLayout(position_layout)
         layout.addWidget(position_group)
         layout.addLayout(grid_layout)
@@ -148,13 +156,6 @@ class MainWindow(QMainWindow):
         self.move_relative_button.clicked.connect(self.move_stage)
         self.move_relative_button.setFixedWidth(200)
         layout.addWidget(self.move_relative_button)
-
-        layout.addWidget(QLabel("Select Axis"))
-        self.set_axis_input = QComboBox(self)
-        self.set_axis_input.addItems(["1", "2", "3"])  
-        self.set_axis_input.setFixedWidth(200)
-        self.set_axis_input.currentIndexChanged.connect(self.query_position)
-        layout.addWidget(self.set_axis_input)
 
         self.focus_position_input = QLineEdit(self)
         self.focus_position_input.setPlaceholderText("Enter focus center")
@@ -226,6 +227,19 @@ class MainWindow(QMainWindow):
                 background-color: #003f8a;
             }
         """)
+        base_path = os.path.dirname(os.path.realpath(__file__))
+        icon_path_mask = os.path.join(base_path, "logo.png")
+
+        app_icon = QtGui.QIcon()
+        app_icon.addFile(icon_path_mask.format(16), QtCore.QSize(16, 16))
+        app_icon.addFile(icon_path_mask.format(24), QtCore.QSize(24, 24))
+        app_icon.addFile(icon_path_mask.format(32), QtCore.QSize(32, 32))
+        app_icon.addFile(icon_path_mask.format(64), QtCore.QSize(64, 64))
+        app_icon.addFile(icon_path_mask.format(128), QtCore.QSize(128, 128))
+        app_icon.addFile(icon_path_mask.format(256), QtCore.QSize(256, 256))
+
+        app.setWindowIcon(app_icon)
+        app.setApplicationName("XXX App Name")
 
     
     def __del__(self): 
@@ -245,13 +259,12 @@ class MainWindow(QMainWindow):
     @pyqtSlot()
     def query_position(self): 
         try: 
-            axis = int(self.set_axis_input.currentText())
-            self.scanner.set_axis(axis)
-            position = self.scanner.query_position(axis) 
-            logging.debug(f"position {position}")
-            self.query_position_label.setText(f"Position: {position}")
-            
-            return position
+            for i in range(1,4):
+                self.scanner.set_axis(i)
+                position = self.scanner.query_position(i)
+                self.axis_labels[i-1].setText(f"Axis {i}: {position}")
+                logger.debug(f"position {position}")
+                return position
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
             return None
