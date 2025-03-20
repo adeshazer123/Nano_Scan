@@ -5,7 +5,7 @@ from PyQt5 import QtGui, QtCore
 import sys
 import os
 import numpy as np
-from PyQt5.QtCore import pyqtSlot, Qt, QTimer
+from PyQt5.QtCore import pyqtSlot, Qt, QTimer, QSize
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas 
 import pandas as pd
@@ -38,12 +38,14 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("PyQt5 Scan Application")
         self.setGeometry(100, 100, 800, 600)
         self.setGeometry(100, 100, 400, 300)
-        self.setWindowIcon(QIcon('logo.png'))
+        # self.setWindowIcon(QIcon('logo.png'))
 
         self.initUI()
         self.showMaximized()
         self.scanner = None
         self.second_window = None
+        self.initalize()
+        self.query_all_position() #TODO -> FIX THIS!
     def initUI(self):
         layout = QVBoxLayout()
         grid_layout = QGridLayout()
@@ -162,6 +164,13 @@ class MainWindow(QMainWindow):
         self.move_relative_button.setFixedWidth(200)
         layout.addWidget(self.move_relative_button)
 
+        self.set_axis_input = QComboBox(self)
+        self.set_axis_input.addItems(["1", "2", "3"])
+        self.set_axis_input.setFixedWidth(200)
+        self.set_axis_input.currentIndexChanged.connect(self.query_position)
+        layout.addWidget(self.set_axis_input)
+
+
         self.focus_position_input = QLineEdit(self)
         self.focus_position_input.setPlaceholderText("Enter focus center")
         self.focus_position_input.setFixedWidth(200)
@@ -192,15 +201,15 @@ class MainWindow(QMainWindow):
         layout.addLayout(initialize_container)
 
         self.start_scan_button = QPushButton("Start Scan")
-        self.start_scan_button.clicked.connect(self.start_scan)
+        self.start_scan_button.clicked.connect(self.change_axis)
         self.start_scan_button.setFixedWidth(200)
 
         layout.addWidget(self.start_scan_button)
 
-        log_text_edit = QTextEdit()
-        self.log_text = QTextEditLogger(log_text_edit)
-        layout.addWidget(log_text_edit)
-        logger.addHandler(self.log_text)
+        # log_text_edit = QTextEdit()
+        # self.log_text = QTextEditLogger(log_text_edit)
+        # layout.addWidget(log_text_edit)
+        # logger.addHandler(self.log_text)
         
         container = QWidget()
         container.setLayout(layout)
@@ -236,20 +245,27 @@ class MainWindow(QMainWindow):
         icon_path_mask = os.path.join(base_path, "logo.png")
 
         app_icon = QtGui.QIcon()
-        app_icon.addFile(icon_path_mask.format(16), QtCore.QSize(16, 16))
-        app_icon.addFile(icon_path_mask.format(24), QtCore.QSize(24, 24))
-        app_icon.addFile(icon_path_mask.format(32), QtCore.QSize(32, 32))
-        app_icon.addFile(icon_path_mask.format(64), QtCore.QSize(64, 64))
-        app_icon.addFile(icon_path_mask.format(128), QtCore.QSize(128, 128))
-        app_icon.addFile(icon_path_mask.format(256), QtCore.QSize(256, 256))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(16, 16))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(24, 24))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(32, 32))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(64, 64))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(128, 128))
+        app_icon.addFile(icon_path_mask, QtCore.QSize(256, 256))
 
         app.setWindowIcon(app_icon)
-        app.setApplicationName("XXX App Name")
+        app.setApplicationName("Nano Scan")
+
+        # self.query_position()
 
     
     def __del__(self): 
         if self.scanner is not None:
             self.scanner.close_connection()
+    
+    def change_axis(self): 
+        axis = int(self.set_axis_input.currentText())
+        self.scanner.set_axis(axis)
+        self.query_position()
           
     @pyqtSlot()
     def initalize(self):
@@ -261,8 +277,19 @@ class MainWindow(QMainWindow):
             self.scanner.close_connection()
             self.green_laser_button.setStyleSheet("background-color: red; border-radius: 10px;")
             logger.info("Closed NanoScanner connection")
-    @pyqtSlot()
+    
     def query_position(self): 
+        try:
+            axis = int(self.set_axis_input.currentText())
+            position = self.scanner.query_position(axis)
+            self.query_position_label.setText(f"Position: {position}")
+            logger.debug(f"position {position}")
+            return position
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+            return None
+    @pyqtSlot()
+    def query_all_position(self): 
         try: 
             for i in range(1,4):
                 self.scanner.set_axis(i)
@@ -553,6 +580,12 @@ class WavelengthWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+    # app.setWindowIcon(QIcon("icon.png"))
+    # app_icon = QIcon()
+    # app_icon.addFile('logo.png', QSize(256,256))
+    # app.setWindowIcon(app_icon)
+    
     window = MainWindow()
     window.show()
     sys.exit(app.exec_())
+    
