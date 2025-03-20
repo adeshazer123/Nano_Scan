@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         self.scanner = None
         self.second_window = None
         self.initalize()
-        self.query_all_position() #TODO -> FIX THIS!
+        
     def initUI(self):
         layout = QVBoxLayout()
         grid_layout = QGridLayout()
@@ -59,9 +59,6 @@ class MainWindow(QMainWindow):
 
         self.tabs = QTabWidget()
         self.tabs.setTabPosition(QTabWidget.North)
-        # self.canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        # self.harmonics1_canvas = MplCanvas(self, width=5, height=4, dpi=100)
-        # self.harmonics2_canvas = MplCanvas(self, width=5, height=4, dpi=100)
         self.tabs.addTab(self.canvas, "2D Scan")
         self.tabs.addTab(self.harmonics1_canvas, "Harmonics 1D")
         self.tabs.addTab(self.harmonics2_canvas, "Harmonics 2D")
@@ -113,12 +110,6 @@ class MainWindow(QMainWindow):
         self.query_position_button.clicked.connect(self.query_position)
         position_layout.addWidget(self.query_position_button)
 
-        self.axis_labels = []
-        for i in range(1,4):
-            label = QLabel(f"Axis {i}: ")
-            self.axis_labels.append(label)
-            position_layout.addWidget(label)
-
         position_group.setLayout(position_layout)
         layout.addWidget(position_group)
         layout.addLayout(grid_layout)
@@ -164,8 +155,9 @@ class MainWindow(QMainWindow):
         self.move_relative_button.setFixedWidth(200)
         layout.addWidget(self.move_relative_button)
 
+        layout.addWidget(QLabel("Select Axis"))
         self.set_axis_input = QComboBox(self)
-        self.set_axis_input.addItems(["1", "2", "3"])
+        self.set_axis_input.addItems(["1", "2", "3"])  
         self.set_axis_input.setFixedWidth(200)
         self.set_axis_input.currentIndexChanged.connect(self.query_position)
         layout.addWidget(self.set_axis_input)
@@ -201,15 +193,9 @@ class MainWindow(QMainWindow):
         layout.addLayout(initialize_container)
 
         self.start_scan_button = QPushButton("Start Scan")
-        self.start_scan_button.clicked.connect(self.change_axis)
+        self.start_scan_button.clicked.connect(self.start_scan)
         self.start_scan_button.setFixedWidth(200)
-
         layout.addWidget(self.start_scan_button)
-
-        # log_text_edit = QTextEdit()
-        # self.log_text = QTextEditLogger(log_text_edit)
-        # layout.addWidget(log_text_edit)
-        # logger.addHandler(self.log_text)
         
         container = QWidget()
         container.setLayout(layout)
@@ -217,7 +203,7 @@ class MainWindow(QMainWindow):
 
         self.setStyleSheet("""
             QWidget {
-                background-color:rgb(4, 52, 99);
+                background-color:rgb(16, 55, 94);
                 color:rgb(148, 148, 152);
             }
             QLineEdit {
@@ -262,10 +248,10 @@ class MainWindow(QMainWindow):
         if self.scanner is not None:
             self.scanner.close_connection()
     
-    def change_axis(self): 
-        axis = int(self.set_axis_input.currentText())
-        self.scanner.set_axis(axis)
-        self.query_position()
+    # def change_axis(self): 
+    #     axis = int(self.set_axis_input.currentText())
+    #     self.scanner.set_axis(axis)
+    #     self.query_position()
           
     @pyqtSlot()
     def initalize(self):
@@ -278,28 +264,40 @@ class MainWindow(QMainWindow):
             self.green_laser_button.setStyleSheet("background-color: red; border-radius: 10px;")
             logger.info("Closed NanoScanner connection")
     
+
+    # def query_axis_position(self):
+    #     try:
+    #         axis = int(self.set_axis_input.currentText())
+    #         position = self.scanner.query_position(axis)
+    #         return position
+    #     except Exception as e:
+    #         QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+    # @pyqtSlot()
+    # def query_all_position(self): 
+    #     try: 
+    #         for i in range(1,4):
+    #             self.scanner.set_axis(i)
+    #             position = self.scanner.query_position(i)
+    #             self.axis_labels[i-1].setText(f"Axis {i}: {position}")
+    #             logger.info(f"position {position}")
+    #             return position
+    #     except Exception as e:
+    #         QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
+    #         return None
+
+    @pyqtSlot()
     def query_position(self): 
-        try:
+        try: 
             axis = int(self.set_axis_input.currentText())
-            position = self.scanner.query_position(axis)
+            self.scanner.set_axis(axis)
+            position = self.scanner.query_position(axis) 
+            logging.debug(f"position {position}")
             self.query_position_label.setText(f"Position: {position}")
-            logger.debug(f"position {position}")
+            
             return position
         except Exception as e:
             QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
-            return None
-    @pyqtSlot()
-    def query_all_position(self): 
-        try: 
-            for i in range(1,4):
-                self.scanner.set_axis(i)
-                position = self.scanner.query_position(i)
-                self.axis_labels[i-1].setText(f"Axis {i}: {position}")
-                logger.debug(f"position {position}")
-                return position
-        except Exception as e:
-            QMessageBox.critical(self, "Error", f"An error occurred: {str(e)}")
-            return None
+            return None    
         
     @pyqtSlot()
     def browse_file(self):
