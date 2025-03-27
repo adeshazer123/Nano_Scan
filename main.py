@@ -240,18 +240,10 @@ class MainWindow(QMainWindow):
 
         app.setWindowIcon(app_icon)
         app.setApplicationName("Nano Scan")
-
-        # self.query_position()
-
     
     def __del__(self): 
         if self.scanner is not None:
             self.scanner.close_connection()
-    
-    # def change_axis(self): 
-    #     axis = int(self.set_axis_input.currentText())
-    #     self.scanner.set_axis(axis)
-    #     self.query_position()
           
     @pyqtSlot()
     def initalize(self):
